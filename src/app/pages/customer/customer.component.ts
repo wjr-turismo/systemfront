@@ -5,6 +5,7 @@ import { LoginResponseData } from 'src/app/models/loginResponseData';
 import { LoginData } from 'src/app/models/loginData';
 import { LoginService } from 'src/app/services/login.service';
 import { catchError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-customer',
@@ -19,7 +20,9 @@ export class CustomerComponent implements OnInit {
   loginResponse!: LoginResponseData
   login!: LoginData |any
 
-  constructor(private service: LoginService,private a: CustomerService) { }
+  sct!:string
+
+  constructor(private service: LoginService,private a: CustomerService) {this.sct = environment.sct }
 
   ngOnInit(): void {
 
@@ -56,10 +59,14 @@ export class CustomerComponent implements OnInit {
           this.loginResponse = {
             name: response.name,
             role: response.role,
-            token: response.token
+            token: response.token,
+            loggedIn : response.loggedIn
           }
           console.log(this.loginResponse)
 
+          console.log(response.token.split(".")[0])
+
+          console.log(this.sct == response.token.split(".")[0])
       })
 
       }
