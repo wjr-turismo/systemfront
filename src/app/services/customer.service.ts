@@ -19,7 +19,7 @@ export class CustomerService {
    }
 
    getCustomers():Observable<customerData[]>{
-
+      console.log(`${this.baseUrl}/customer`)
       return this.http.get<customerData[]>(`${this.baseUrl}/customer`).pipe(
         catchError((err:any , caught: Observable<customerData[]>) => {
           console.log(err)
