@@ -8,7 +8,8 @@ import { Observable, catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  baseUrl:string
+  
+  baseUrl!:string
 
   loginResponse!: LoginResponseData | any
 
@@ -19,12 +20,14 @@ export class LoginService {
   }
 
   login(login:any):Observable<LoginResponseData>{
-    this.loginResponse = this.http.post(`${this.baseUrl}login`,login).pipe(
+    this.loginResponse = this.http.post<LoginResponseData>(`${this.baseUrl}/auth/login`,login).pipe(
       catchError((err:any, caught: Observable<LoginResponseData>) => {
+        console.log(`login: ${login}`)
         console.log(err)
         return caught
       })
     )
+    console.log(`Service response: ${this.loginResponse}`)
     return this.loginResponse
   }
 
