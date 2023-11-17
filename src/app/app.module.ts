@@ -9,12 +9,14 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
+import { HomesystemComponent } from './pages/homesystem/homesystem.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
-    LoginComponent
+    LoginComponent,
+    HomesystemComponent
   ],
   imports: [
     BrowserModule,
