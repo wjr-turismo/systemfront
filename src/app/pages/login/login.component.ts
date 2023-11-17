@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginData } from 'src/app/models/loginData';
 import { LoginResponseData } from 'src/app/models/loginResponseData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 import { LoginService } from 'src/app/services/login.service';
 import { environment } from 'src/environments/environment';
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   }) 
 
-  constructor(private service:LoginService) {
+  constructor(private service:LoginService, private guard: AuthGuardService) {
     this.sct = environment.sct
 
     this.loginForm.valueChanges.subscribe((values)=> {
@@ -59,6 +60,7 @@ export class LoginComponent implements OnInit {
 
         if(this.loginResponse.token.split(".")[0]== this.sct){
           localStorage.setItem('token',this.loginResponse.token)
+          //this.guard.canActivate(this.loginResponse.loggedIn)
           window.location.assign('/customer')
         }
         console.log(this.loginResponse)

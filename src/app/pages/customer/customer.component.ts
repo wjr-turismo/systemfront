@@ -5,6 +5,7 @@ import { LoginResponseData } from 'src/app/models/loginResponseData';
 import { LoginData } from 'src/app/models/loginData';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-customer',
@@ -20,7 +21,7 @@ export class CustomerComponent implements OnInit {
 
   sct!:string
 
-  constructor(private a: CustomerService) {this.sct = environment.sct }
+  constructor(private a: CustomerService, private guard:AuthGuardService) {this.sct = environment.sct }
 
   ngOnInit(): void {
 
@@ -30,6 +31,8 @@ export class CustomerComponent implements OnInit {
     setTimeout(() =>{
       console.log("Timeout")
       localStorage.clear()
+
+      this.guard.canActivate()
     },4000)
 
     //this.login.email = "amsasx@gmail.com"

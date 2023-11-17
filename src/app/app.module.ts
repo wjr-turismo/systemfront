@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path:'customer',component: CustomerComponent},
+      {path:'customer',component: CustomerComponent,canActivate:[AuthGuardService]},
       {path:'login',component: LoginComponent}
     ])
 
