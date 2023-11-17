@@ -1,15 +1,13 @@
 <div class="login-cotainer">
 
-    <div class="form-login">
-
+    <div class="formCard-login">
+        <h1>Login</h1>
         
             <form [formGroup]="loginForm" (submit)="doLogin()" action="">
             <input type="text"id="email" formControlName="email" placeholder="Email">
             <input type="password" id="password" formControlName="password" placeholder="Senha">
-            <button type="submit"></button>
+            <button type="submit">Entrar</button>
             </form>
-
-        
 
     </div>
 
