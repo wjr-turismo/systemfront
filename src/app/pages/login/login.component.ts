@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user',this.loginResponse.name)
           localStorage.setItem('role',this.loginResponse.role)
           //this.guard.canActivate(this.loginResponse.loggedIn)
-          window.location.assign('/customer')
+          window.location.assign('/homesystem')
         }
         console.log(this.loginResponse)
 
