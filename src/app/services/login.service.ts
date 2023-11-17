@@ -24,12 +24,16 @@ export class LoginService {
     this.loginResponse = this.http.post<LoginResponseData>(`${this.baseUrl}/auth/login`,login).pipe(
       catchError((err:any, caught: Observable<LoginResponseData>) => {
         console.log(`login: ${login}`)
-        console.log(err)
-        return caught
+        console.log(err.status)
+
+        if(err.status==403) window.alert("Verifique seu Login!")
+        
+        return err
       })
     )
     console.log(`Service response: ${this.loginResponse}`)
-
+    console.log(this.loginResponse.status)
+    
     return this.loginResponse
   }
 
