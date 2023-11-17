@@ -13,8 +13,10 @@ export class AuthGuardService implements CanActivate{
   canActivate():boolean{
     if(localStorage.getItem('token')?.split('.')[0]==environment.sct){
         return true
+        
     }
     this.router.navigateByUrl("/login")
     return false
+    
   }
 }

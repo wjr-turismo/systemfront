@@ -3,7 +3,7 @@ import { customerData } from '../../models/customerData'
 import { CustomerService } from '../../services/customer.service'
 import { LoginResponseData } from 'src/app/models/loginResponseData';
 import { LoginData } from 'src/app/models/loginData';
-import { catchError } from 'rxjs';
+import { catchError, timeout } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
@@ -16,6 +16,9 @@ export class CustomerComponent implements OnInit {
 
   customers!: customerData[]
   customer!: customerData
+  time: any
+
+  user = localStorage.getItem('user')
 
  
 
@@ -27,20 +30,30 @@ export class CustomerComponent implements OnInit {
 
     console.log("asd")
 
+    window.onload = (() => this.idleLogout())
 
-    setTimeout(() =>{
-      console.log("Timeout")
-      localStorage.clear()
+  }
 
-      this.guard.canActivate()
-    },4000)
+  idleLogout(){
 
-    //this.login.email = "amsasx@gmail.com"
-    //this.login.password = "1313454"
+    let idletime = 60*1000
+    window.onload = (()=> this.resetTimer(idletime))
+    document.onmousemove = (()=> this.resetTimer(idletime))
+    document.onkeyup = (()=> this.resetTimer(idletime))
+  }
+
+  resetTimer(out:number){
+
+    console.log("Reseting Timer")
+    let timer = clearTimeout(this.time)
   
+      this.time = setTimeout(() => {
+        localStorage.clear()
+        this.guard.canActivate()
+        
+      }, out)
+    
 
-    //this.doLogin({email:"amsasx@gmail.com",password:"1313454"})
-   //this.getCustomers()
 
   }
 

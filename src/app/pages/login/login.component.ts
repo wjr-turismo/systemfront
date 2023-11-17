@@ -60,6 +60,8 @@ export class LoginComponent implements OnInit {
 
         if(this.loginResponse.token.split(".")[0]== this.sct){
           localStorage.setItem('token',this.loginResponse.token)
+          localStorage.setItem('user',this.loginResponse.name)
+          localStorage.setItem('role',this.loginResponse.role)
           //this.guard.canActivate(this.loginResponse.loggedIn)
           window.location.assign('/customer')
         }
