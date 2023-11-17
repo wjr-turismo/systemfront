@@ -3,7 +3,6 @@ import { customerData } from '../../models/customerData'
 import { CustomerService } from '../../services/customer.service'
 import { LoginResponseData } from 'src/app/models/loginResponseData';
 import { LoginData } from 'src/app/models/loginData';
-import { LoginService } from 'src/app/services/login.service';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -17,12 +16,11 @@ export class CustomerComponent implements OnInit {
   customers!: customerData[]
   customer!: customerData
 
-  loginResponse!: LoginResponseData
-  login!: LoginData |any
+ 
 
   sct!:string
 
-  constructor(private service: LoginService,private a: CustomerService) {this.sct = environment.sct }
+  constructor(private a: CustomerService) {this.sct = environment.sct }
 
   ngOnInit(): void {
 
@@ -32,7 +30,7 @@ export class CustomerComponent implements OnInit {
     //this.login.password = "1313454"
   
 
-    this.doLogin({email:"amsasx@gmail.com",password:"1313454"})
+    //this.doLogin({email:"amsasx@gmail.com",password:"1313454"})
    //this.getCustomers()
 
   }
@@ -50,28 +48,11 @@ export class CustomerComponent implements OnInit {
   }
   */
 
-  doLogin(lo: any){
-
-      this.service.login(lo). subscribe((response) => {
-          console.log(`response: ${response.name}`)
-
-          
-          this.loginResponse = {
-            name: response.name,
-            role: response.role,
-            token: response.token,
-            loggedIn : response.loggedIn
-          }
-          console.log(this.loginResponse)
-
-          console.log(response.token.split(".")[0])
-
-          console.log(this.sct == response.token.split(".")[0])
-      })
 
       }
 
-  }
+
+  
 
 
 

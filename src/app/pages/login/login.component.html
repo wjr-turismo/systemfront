@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="login-cotainer">
+
+    <div class="form-login">
+
+        
+            <form [formGroup]="loginForm" (submit)="doLogin()" action="">
+            <input type="text"id="email" formControlName="email" placeholder="Email">
+            <input type="password" id="password" formControlName="password" placeholder="Senha">
+            <button type="submit"></button>
+            </form>
+
+        
+
+    </div>
+
+</div>
