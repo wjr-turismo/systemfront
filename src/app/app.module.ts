@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,10 @@ import { LoginComponent } from './pages/login/login.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
-      {path:'',component: CustomerComponent}
+      {path:'',component: CustomerComponent},
+      {path:'login',component: LoginComponent}
     ])
 
   ],
