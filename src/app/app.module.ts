@@ -25,6 +25,7 @@ import { HomesystemComponent } from './pages/homesystem/homesystem.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path:'customer',component: CustomerComponent,canActivate:[AuthGuardService]},
+      {path:'homesystem',component:HomesystemComponent,canActivate:[AuthGuardService]},
       {path:'login',component: LoginComponent}
     ])
 
