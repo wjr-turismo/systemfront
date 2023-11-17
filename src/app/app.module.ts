@@ -10,13 +10,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { HomesystemComponent } from './pages/homesystem/homesystem.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
     LoginComponent,
-    HomesystemComponent
+    HomesystemComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
