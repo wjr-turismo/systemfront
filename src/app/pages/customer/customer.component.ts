@@ -26,6 +26,12 @@ export class CustomerComponent implements OnInit {
 
     console.log("asd")
 
+
+    setTimeout(() =>{
+      console.log("Timeout")
+      localStorage.clear()
+    },4000)
+
     //this.login.email = "amsasx@gmail.com"
     //this.login.password = "1313454"
   

@@ -29,6 +29,7 @@ export class LoginService {
       })
     )
     console.log(`Service response: ${this.loginResponse}`)
+
     return this.loginResponse
   }
 

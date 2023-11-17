@@ -4,6 +4,7 @@ import { LoginData } from 'src/app/models/loginData';
 import { LoginResponseData } from 'src/app/models/loginResponseData';
 
 import { LoginService } from 'src/app/services/login.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
+  sct!: string
   loginResponse!: LoginResponseData
   login: LoginData | any
 
@@ -24,6 +26,8 @@ export class LoginComponent implements OnInit {
   }) 
 
   constructor(private service:LoginService) {
+    this.sct = environment.sct
+
     this.loginForm.valueChanges.subscribe((values)=> {
       console.log(values)
       console.log(values.password)
@@ -53,19 +57,19 @@ export class LoginComponent implements OnInit {
           loggedIn : response.loggedIn
         }
 
-        if(this.loginResponse!=null) window.location.assign('/customer')
+        if(this.loginResponse.token.split(".")[0]== this.sct){
+          localStorage.setItem('token',this.loginResponse.token)
+          window.location.assign('/customer')
+        }
         console.log(this.loginResponse)
 
         console.log(response.token.split(".")[0])
 
     })
-    
-
   }
 
   print(){
     
     
-
  }
 }
