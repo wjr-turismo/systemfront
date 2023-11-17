@@ -16,7 +16,7 @@ export class CustomerComponent implements OnInit {
 
   customers!: customerData[]
   customer!: customerData
-  time: any
+
 
   user = localStorage.getItem('user')?.split(' ')[0]
 
@@ -28,34 +28,11 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("asd")
-
-    window.onload = (() => this.idleLogout())
+   
 
   }
 
-  idleLogout(){
 
-    let idletime = 60*1000
-    window.onload = (()=> this.resetTimer(idletime))
-    document.onmousemove = (()=> this.resetTimer(idletime))
-    document.onkeyup = (()=> this.resetTimer(idletime))
-  }
-
-  resetTimer(out:number){
-
-    console.log("Reseting Timer")
-    let timer = clearTimeout(this.time)
-  
-      this.time = setTimeout(() => {
-        localStorage.clear()
-        this.guard.canActivate()
-        
-      }, out)
-    
-
-
-  }
 
   /*getCustomers(){
     this.service.getCustomers().subscribe((customers) => {

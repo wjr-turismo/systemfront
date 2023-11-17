@@ -1,0 +1,30 @@
+.menu-conteiner{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: -9px 39px 16px -17px rgba(0,0,0,0.1);
+    height: 60px;
+
+}
+
+.image-menu > a > *{
+    width: 40px;
+}
+
+.options-container-menu{
+    
+    border:2px solid gray;
+}
+
+.options-list-menu{
+    
+    display: flex;
+    list-style: none;
+}
+
+.options-list-menu > a {
+    margin-right: 1rem;
+    text-decoration: none;
+    
+}
