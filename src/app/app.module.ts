@@ -21,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path:'',component: CustomerComponent},
+      {path:'customer',component: CustomerComponent},
       {path:'login',component: LoginComponent}
     ])
 

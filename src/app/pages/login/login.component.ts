@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
           token: response.token,
           loggedIn : response.loggedIn
         }
+
+        if(this.loginResponse!=null) window.location.assign('/customer')
         console.log(this.loginResponse)
 
         console.log(response.token.split(".")[0])
