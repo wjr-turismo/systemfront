@@ -18,7 +18,7 @@ export class CustomerComponent implements OnInit {
   customer!: customerData
   time: any
 
-  user = localStorage.getItem('user')
+  user = localStorage.getItem('user')?.split(' ')[0]
 
  
 
