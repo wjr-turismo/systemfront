@@ -2,10 +2,10 @@
 
     <div class="image-menu">
         <a routerLink="/homesystem"><img src="../../assets/logo.png" alt=""></a>
-       <a routerLink="/customer"><li>Vendas</li></a>
     </div>
     <div class="options-container-menu">
         <ul class="options-list-menu">      
+            <a routerLink="/customer"><li>Vendas</li></a>
             <a routerLink="/customer"><li *ngIf="userLogged.role=='admin'">Gerenciar</li></a>
             <a routerLink="/customer" (click)="logout()"><li>logout</li></a>
         </ul>
