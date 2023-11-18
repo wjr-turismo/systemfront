@@ -18,7 +18,8 @@ export class CustomerComponent implements OnInit {
   customer!: customerData
 
 
-  user = localStorage.getItem('user')?.split(' ')[0]
+  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
+
 
  
 
