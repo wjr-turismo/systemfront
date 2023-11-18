@@ -12,6 +12,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { HomesystemComponent } from './pages/homesystem/homesystem.component';
 import { MenuComponent } from './menu/menu.component';
 import { ManagementComponent } from './pages/management/management.component';
+import { EmployeeListComponent } from './pages/management/employee-list/employee-list.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ManagementComponent } from './pages/management/management.component';
     HomesystemComponent,
     MenuComponent,
     ManagementComponent,
+    EmployeeListComponent,
   ],
   imports: [
     BrowserModule,
