@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./management.component.css']
 })
 export class ManagementComponent implements OnInit {
+  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
 
   constructor() { }
 
