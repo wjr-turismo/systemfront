@@ -41,13 +41,6 @@
 
 }
 
-.options-list-menu > a :hover{
-    
-    cursor: pointer; 
-    color: #1B5693;
-    font-weight: 600;
-    
-}
 
 .page_activated{
     color: white;
