@@ -23,7 +23,7 @@
 .options-container-menu{
     
     border:2px solid gray;
-    padding: 1rem;
+    
 }
 
 .options-list-menu{
@@ -37,18 +37,24 @@
     margin-right: 1rem;
     text-decoration: none;
     cursor: pointer; 
+    padding: 1rem;
 
 }
 
-.options-list-menu > a:hover{
-    margin-right: 1rem;
-    text-decoration: none;
+.options-list-menu > a :hover{
+    
     cursor: pointer; 
     color: #1B5693;
-    font-weight: 700;
+    font-weight: 600;
+    
 }
 
 .page_activated{
-    color: #1B5693;
-    font-weight: 700;
+    color: white;
+    background-color: #1B5693;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
