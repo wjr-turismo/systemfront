@@ -1,12 +1,23 @@
 <div class="menu-conteiner">
 
     <div class="image-menu">
-        <a routerLink="/homesystem"><img src="../../assets/logo.png" alt=""></a>
+        <a routerLink="/homesystem">
+        <img src="../../assets/logo.png" alt="">
+        </a>
     </div>
     <div class="options-container-menu">
         <ul class="options-list-menu">      
-            <a routerLink="/customer"><li>Vendas</li></a>
-            <a routerLink="/customer"><li *ngIf="userLogged.role=='admin'">Gerenciar</li></a>
+            <a 
+            routerLink="/customer" 
+            routerLinkActive="page_activated"
+            ariaCurrentWhenActive="page" mouse>
+            <li>Vendas</li>
+        </a>
+            <a routerLink="/homesystem" 
+            routerLinkActive="page_activated"
+            ariaCurrentWhenActive="page" mouse>
+            <li *ngIf="userLogged.role=='admin'">Gerenciar</li>
+        </a>
             <a routerLink="/customer" (click)="logout()"><li>logout</li></a>
         </ul>
     </div>
