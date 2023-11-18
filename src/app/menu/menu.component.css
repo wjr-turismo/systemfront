@@ -15,8 +15,8 @@
 }
 
 .image-menu > a > *{
-    width: 40px;
-    
+    width: 50px;
+    cursor: pointer;
 }
 
 .options-container-menu{
@@ -33,5 +33,5 @@
 .options-list-menu > a {
     margin-right: 1rem;
     text-decoration: none;
-    
+    cursor: pointer; 
 }
