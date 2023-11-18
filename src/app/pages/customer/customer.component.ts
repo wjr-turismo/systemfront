@@ -24,17 +24,17 @@ export class CustomerComponent implements OnInit {
 
   sct!:string
 
-  constructor(private a: CustomerService, private guard:AuthGuardService) {this.sct = environment.sct }
+  constructor(private service: CustomerService, private guard:AuthGuardService) {this.sct = environment.sct }
 
   ngOnInit(): void {
 
-   
+   this.getCustomers()
 
   }
 
 
 
-  /*getCustomers(){
+  getCustomers(){
     this.service.getCustomers().subscribe((customers) => {
 
       console.log(customers[0].name)
@@ -45,8 +45,7 @@ export class CustomerComponent implements OnInit {
 
     })
   }
-  */
-
+  
 
       }
 
