@@ -22,7 +22,7 @@
 
 .options-container-menu{
     
-    border:2px solid gray;
+    border:2px solid white;
     
 }
 
@@ -36,8 +36,9 @@
 .options-list-menu > a{
     margin-right: 1rem;
     text-decoration: none;
-    cursor: pointer; 
-    padding: 1rem;
+    cursor: pointer;
+    border-radius: 1rem; 
+    padding: 0.5rem;
 
 }
 
