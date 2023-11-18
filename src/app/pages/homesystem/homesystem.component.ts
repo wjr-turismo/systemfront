@@ -9,6 +9,7 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 export class HomesystemComponent implements OnInit {
 
   time: any
+  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
 
 
   constructor(private guard: AuthGuardService) { }
@@ -23,7 +24,7 @@ export class HomesystemComponent implements OnInit {
 
   idleLogout(){
 
-    let idletime = 4000
+    let idletime = 60*60*1000
     window.onload = (()=> this.resetTimer(idletime))
     document.onmousemove = (()=> this.resetTimer(idletime))
     document.onkeyup = (()=> this.resetTimer(idletime))
