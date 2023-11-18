@@ -19,8 +19,9 @@ export class CustomerService {
    }
 
    getCustomers():Observable<customerData[]>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       console.log(`${this.baseUrl}/customer`)
-      return this.http.get<customerData[]>(`${this.baseUrl}/customer`).pipe(
+      return this.http.get<customerData[]>(`${this.baseUrl}/customer`,{headers}).pipe(
         catchError((err:any , caught: Observable<customerData[]>) => {
           console.log(err)
           return caught
