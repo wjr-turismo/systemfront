@@ -2,11 +2,10 @@
 
 <div class="management-container">
     <div class="tabs-management">
-        <button href="#">Listar Funcionarios</button>
-        <button>Adicionar Funcionarios</button>
+        <button (click)="toogle()" >{{buttonText}}</button>
     </div>
     <div class="content-management">
-        asdasd
+        <app-employee-list *ngIf="isShown==true"></app-employee-list>
     </div>
 </div>
 
