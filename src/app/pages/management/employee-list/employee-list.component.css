@@ -1,0 +1,16 @@
+.table-employee-list > *{
+    padding: 1rem;
+}
+
+.employee-list-container > *{
+    display: flex;
+}
+
+.employee-list-container > table{
+    border-color: solid black 2px;
+}
+
+thead{
+    font-weight: 700;
+    background-color: gray;
+}
