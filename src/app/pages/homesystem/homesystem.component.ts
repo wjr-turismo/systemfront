@@ -23,6 +23,14 @@ export class HomesystemComponent implements OnInit {
 
 
   idleLogout(){
+    let now = new Date()
+    let end = new Date()
+    end.setMinutes(now.getMinutes() + 1)
+
+    let left:number =  (end.getMinutes()-now.getMinutes())*1000*60
+
+    console.log(left)
+
 
     let idletime = 60*60*1000
     window.onload = (()=> this.resetTimer(idletime))
