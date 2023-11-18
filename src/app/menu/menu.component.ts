@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private guard: AuthGuardService) { }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+
+    localStorage.clear()
+    this.guard.canActivate()
+
   }
 
 }

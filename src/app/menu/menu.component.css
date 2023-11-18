@@ -8,8 +8,15 @@
 
 }
 
+.image-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
 .image-menu > a > *{
     width: 40px;
+    
 }
 
 .options-container-menu{
