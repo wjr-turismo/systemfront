@@ -1,4 +1,7 @@
 
-<app-menu></app-menu>
-
-<p style="margin-top: 2rem;">homesystem works!</p>
+<app-menu [userLogged]="user" ></app-menu>
+<div class="homesystem-container">
+    <div class="welcoming-homesystem">
+        <h1>Olá, {{user.name}}!</h1>
+    </div>
+</div>
