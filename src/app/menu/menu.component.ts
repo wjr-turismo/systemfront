@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthGuardService } from '../services/auth-guard.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { AuthGuardService } from '../services/auth-guard.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  @Input() userLogged!:any
 
   constructor(private guard: AuthGuardService) { }
 
