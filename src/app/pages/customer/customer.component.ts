@@ -37,6 +37,8 @@ export class CustomerComponent implements OnInit {
   getCustomers(){
     this.service.getCustomers().subscribe((customers) => {
 
+      this.customers = customers
+    
       console.log(customers[0].name)
 
       console.log(customers[0].dependents[0])
