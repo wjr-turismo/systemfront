@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { customerData } from '../../models/customerData'
 import { CustomerService } from '../../services/customer.service'
-import { LoginResponseData } from 'src/app/models/loginResponseData';
-import { LoginData } from 'src/app/models/loginData';
-import { catchError, timeout } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
