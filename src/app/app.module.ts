@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { HomesystemComponent } from './pages/homesystem/homesystem.component';
 import { MenuComponent } from './menu/menu.component';
+import { ManagementComponent } from './pages/management/management.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { MenuComponent } from './menu/menu.component';
     CustomerComponent,
     LoginComponent,
     HomesystemComponent,
-    MenuComponent
+    MenuComponent,
+    ManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { MenuComponent } from './menu/menu.component';
     RouterModule.forRoot([
       {path:'customer',component: CustomerComponent,canActivate:[AuthGuardService]},
       {path:'homesystem',component:HomesystemComponent,canActivate:[AuthGuardService]},
+      {path:'management',component:ManagementComponent,canActivate:[AuthGuardService]},
       {path:'login',component: LoginComponent}
     ])
 
