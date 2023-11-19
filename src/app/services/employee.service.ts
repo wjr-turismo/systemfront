@@ -22,7 +22,7 @@ export class EmployeeService {
   getEmployees():Observable<EmployeeData>{
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
 
-    this.employees = this.http.get<EmployeeData>(`${this.baseUrl}employee`,{headers}).pipe(
+    this.employees = this.http.get<EmployeeData>(`${this.baseUrl}/employee`,{headers}).pipe(
       catchError((err:any,caught:Observable<EmployeeData>) => {
 
         console.log(err)
