@@ -1,6 +1,12 @@
 <div class="employee-list-container">
 
-    <div class="table-employee-list">
+
+<div class="content">
+    <div class="tabs-management">
+        <button (click)="toogle()" >{{buttonText}}</button>
+    </div>
+
+    <div class="table-employee-list" *ngIf="isTableShown==true">
     <table>
         <thead>
             <td>Nome</td>
@@ -17,5 +23,6 @@
         </tbody>
     </table>
     </div>
+</div>
 
 </div>

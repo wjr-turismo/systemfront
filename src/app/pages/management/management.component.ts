@@ -7,23 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementComponent implements OnInit {
   user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
-  isShown:boolean = true
+  isEmployeeShown:boolean = false
+  isCustomerShown:boolean = false
 
-  buttonText:string =  "Adicionar Funcionários"
+  
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  toogle(){
-    this.isShown= !this.isShown
-    
-    if(!this.isShown){
-      this.buttonText = "Listar Funcionários"
-    }else{
-      this.buttonText = "Adicionar Funcionários"
+  toogle(cat:string){
+
+    switch (cat){
+      case "cus":
+        this.isCustomerShown = true
+        this.isEmployeeShown= false
+        break
+      case "empl":
+       this.isCustomerShown = false
+        this.isEmployeeShown= true
     }
+    
 
   }
 

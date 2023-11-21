@@ -11,6 +11,10 @@ export class EmployeeListComponent implements OnInit {
 
   employees!:EmployeeData[] |any
 
+  isTableShown:boolean=true
+
+  buttonText:string =  "Adicionar Funcionários"
+
 
   constructor(private service:EmployeeService) { }
 
@@ -27,5 +31,17 @@ export class EmployeeListComponent implements OnInit {
 
     })
   }
+
+  toogle(){
+    this.isTableShown = !this.isTableShown
+
+    if(!this.isTableShown){
+      this.buttonText = "Listar Funcionários"
+    }else{
+      this.buttonText = "Adicionar Funcionários"
+    }
+  }
+
+
 
 }

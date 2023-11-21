@@ -1,11 +1,28 @@
 <app-menu [userLogged]="user"></app-menu>
 
 <div class="management-container">
-    <div class="tabs-management">
-        <button (click)="toogle()" >{{buttonText}}</button>
+
+        <div class="options-container-menu">
+            <ul class="options-list-menu">      
+            <a 
+            (click)="toogle('cus')"
+            >
+                <li>Clientes</li>
+            </a>
+            <a 
+            (click)="toogle('empl')"
+            >
+                <li>Funcionários</li>
+            </a>
+            </ul>
+        </div>
+
+
+    <div class="content-management">
+        <app-employee-list *ngIf="isEmployeeShown==true"></app-employee-list>
     </div>
     <div class="content-management">
-        <app-employee-list *ngIf="isShown==true"></app-employee-list>
+        <h1 *ngIf="isCustomerShown==true">Alo</h1>
     </div>
 </div>
 
