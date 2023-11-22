@@ -2,7 +2,7 @@
 
 <div class="management-container">
 
-        <div class="options-container-menu">
+    <div class="options-container-menu">
             <ul class="options-list-menu">      
             <a 
             (click)="toogle('cus')"
@@ -15,11 +15,11 @@
                 <li>Funcionários</li>
             </a>
             </ul>
-        </div>
+    </div>
 
 
-    <div class="content-management">
-        <app-employee-list *ngIf="isEmployeeShown==true"></app-employee-list>
+    <div class="content-management"*ngIf="isEmployeeShown==true">
+        <app-employee-list ></app-employee-list>
     </div>
     <div class="content-management">
         <h1 *ngIf="isCustomerShown==true">Alo</h1>
