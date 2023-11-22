@@ -26,13 +26,13 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
 
-   this.getCustomers()
+   //this.getCustomers()
 
   }
 
 
 
-  getCustomers(){
+  /*getCustomers(){
     this.service.getCustomers().subscribe((customers) => {
 
       this.customers = customers
@@ -44,7 +44,7 @@ export class CustomerComponent implements OnInit {
 
 
     })
-  }
+  }*/
   
 
       }
