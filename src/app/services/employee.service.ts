@@ -9,8 +9,8 @@ import { Observable, catchError } from 'rxjs';
 })
 export class EmployeeService {
 
-  employees: EmployeeData[] |any
-  employee!: EmployeeData 
+  employees: EmployeeData[] | any
+  employee!: EmployeeData | any
   baseUrl!:string
 
   constructor(private http: HttpClient) { 
@@ -32,6 +32,18 @@ export class EmployeeService {
     )
     return this.employees
 
+  }
+
+  addEmployee(employee:EmployeeData):Observable<EmployeeData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    this.employee = this.http.post<EmployeeData>(`${this.baseUrl}/employee`,employee, {headers}).pipe(
+        catchError((err:any,caught:Observable<EmployeeData>) => {
+          console.log(err)
+          return caught
+        })
+    )
+        console.log(this.employee)
+        return this.employee
   }
 
 
