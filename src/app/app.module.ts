@@ -13,6 +13,7 @@ import { HomesystemComponent } from './pages/homesystem/homesystem.component';
 import { MenuComponent } from './menu/menu.component';
 import { ManagementComponent } from './pages/management/management.component';
 import { EmployeeListComponent } from './pages/management/employee-list/employee-list.component';
+import { EmployeeFormComponent } from './pages/management/employee-form/employee-form.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { EmployeeListComponent } from './pages/management/employee-list/employee
     MenuComponent,
     ManagementComponent,
     EmployeeListComponent,
+    EmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
