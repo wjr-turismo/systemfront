@@ -48,7 +48,10 @@ export class EmployeeFormComponent implements OnInit {
      ],
       email :  this.employeeForm.controls.email.value 
     }
-
+    
+    this.service.addEmployee(this.employee).subscribe((response) => {
+      console.log(`Response: ${response.name}`)
+    })
     
 
     console.log("IMPRIMINDO")
