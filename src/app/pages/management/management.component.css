@@ -1,5 +1,4 @@
 .management-container{
-    margin: auto;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -10,11 +9,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 1rem;
     align-items: center;
     text-decoration: none;
     list-style: none;
     color: black;
+    padding-top: 0.5rem;
 }
 
 a{
