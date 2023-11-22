@@ -1,0 +1,33 @@
+.table-customer-list > *{
+    padding: 1rem;
+}
+
+.content{
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.customer-list-container > table{
+    border-color: solid black 2px;
+}
+
+button{
+    color: white;
+    padding: 0.4rem;
+    border: solid black 1px;
+    border-radius: 1rem;
+    background-color: #1B5693;
+
+}
+
+button:hover{
+    background-color: #4484BF;
+}
+
+thead{
+    font-weight: 700;
+    background-color: gray;
+}
