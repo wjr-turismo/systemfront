@@ -14,6 +14,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ManagementComponent } from './pages/management/management.component';
 import { EmployeeListComponent } from './pages/management/employee-list/employee-list.component';
 import { EmployeeFormComponent } from './pages/management/employee-form/employee-form.component';
+import { CustomerListComponent } from './pages/management/customer-list/customer-list.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { EmployeeFormComponent } from './pages/management/employee-form/employee
     ManagementComponent,
     EmployeeListComponent,
     EmployeeFormComponent,
+    CustomerListComponent,
   ],
   imports: [
     BrowserModule,
