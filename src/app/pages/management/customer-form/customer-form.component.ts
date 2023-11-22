@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { customerData } from 'src/app/models/customerData';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-customer-form',
@@ -25,9 +26,9 @@ export class CustomerFormComponent implements OnInit {
     cpfdep1: new FormControl(null)
   })
 
-  customer!: customerData
+  customer!: customerData|any
 
-  constructor() { }
+  constructor(private service: CustomerService) { }
 
   ngOnInit(): void {
   }
@@ -36,30 +37,40 @@ export class CustomerFormComponent implements OnInit {
   registercustomer(){
 
     console.log(this.customerForm)
-    /*this.customer = {
-      name: string,
-      cpf: number,
-      rg: string,
-      birth: Date,
-      email: string,
-      places: string,
-      tripDates: string,
+
+    this.customer = {
+      name: this.customerForm.controls.name.value,
+      cpf: this.customerForm.controls.cpf.value,
+      rg: this.customerForm.controls.rg.value,
+      birth: this.customerForm.controls.birth.value,
+      email: this.customerForm.controls.email.value,
+      places: this.customerForm.controls.places.value,
+      tripDates: this.customerForm.controls.tripDates.value,
       dependents: [
         {
-          name: string,
-          description: string,
-          rg: string,
-          cpf: number
+          name: this.customerForm.controls.namedep1.value,
+          description: this.customerForm.controls.descriptiondep1.value,
+          rg: this.customerForm.controls.rgdep1.value,
+          cpf: this.customerForm.controls.cpfdep1.value
         }
       ],
       phone: [
         {
-          whats: string,
-          personal: string
+          whats: this.customerForm.controls.whats.value,
+          personal: this.customerForm.controls.personal.value
         }
       ]
-    }*/
+    }
 
+    console.log(` CUSTOMER:  ${this.customer}`)
+    console.log(`${this.customerForm.controls.name.value}`)
+
+    this.service.addCustomer(this.customer).subscribe((response) => {
+      console.log(`Response: ${response}`)
+      this.customer = response
+    })
+    console.log(`RETURN: ${this.customer}`)
+    
 
   }
 
