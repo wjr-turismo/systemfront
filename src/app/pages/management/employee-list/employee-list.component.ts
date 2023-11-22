@@ -13,7 +13,7 @@ export class EmployeeListComponent implements OnInit {
 
   isTableShown:boolean=true
 
-  buttonText:string =  "Adicionar Cliente"
+  buttonText:string =  "Adicionar Funcionário"
 
 
   constructor(private service:EmployeeService) { }
@@ -36,9 +36,9 @@ export class EmployeeListComponent implements OnInit {
     this.isTableShown = !this.isTableShown
 
     if(!this.isTableShown){
-      this.buttonText = "Listar Clientes"
+      this.buttonText = "Listar Funcionários"
     }else{
-      this.buttonText = "Adicionar Cliente"
+      this.buttonText = "Adicionar Funcionário"
     }
   }
 
