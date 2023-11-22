@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ManagementComponent implements OnInit {
   user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
   isEmployeeShown:boolean = false
-  isCustomerShown:boolean = false
+  isCustomerShown:boolean = true
 
   
 
