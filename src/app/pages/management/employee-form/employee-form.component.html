@@ -1,0 +1,55 @@
+<div class="employee-form-cotainer">
+
+    <div class="formCard-employee">
+           <h2 style="margin-bottom: 1rem;">Adicionar Funcionário</h2>
+            <form [formGroup]="employeeForm" (submit)="registerEmployee()" action="" class="form">
+            <div class="fields">
+                <label for="name">Nome</label>
+            <input type="text"id="name" formControlName="name" placeholder="">
+            </div>
+            <div class="fields">
+                <label for="name">E-mail</label>
+                <input type="text"id="email" formControlName="email" placeholder="">
+            </div>
+            <div class="fields">
+                <label for="cpf">CPF</label>
+                <input type="number"id="cpf" maxlength="11" formControlName="cpf" placeholder="Apenas Números">
+            </div>
+            <div class="fields">
+                <label for="cpf">RG</label>
+                <input type="text"id="rg" formControlName="rg" placeholder="">
+            </div>
+            <div class="fields">
+                <label for="birth">Data Nasc.</label>
+                <input type="text" maxlength="10" id="birth" formControlName="birth" placeholder="dd/mm/aaaa">
+            </div>
+            <div class="fields">
+                <label for="commission">Comissao</label>
+                <input type="text"id="comissao" formControlName="commission" placeholder="%">
+            </div>
+            <div class="fields">
+                <label for="whats">WhatsApp</label>
+                <input type="text"id="whats" formControlName="whats" placeholder="">
+            </div>
+            <div class="fields">
+                <label for="phone">Telefone</label>
+                <input type="text"id="personal" formControlName="personal" placeholder="">
+            </div>
+            <div class="fields">
+                <label for="role">Cargo</label>
+                <select id="cargo" formControlName="role" placeholder="" style="width: 150px;">
+                    <option value="ADMIN">Administrador</option>
+                    <option value="USER">Usuário</option>
+                </select>
+            </div>
+            <div class="fields">
+                <label for="password">Senha</label>
+                <input type="password" id="password" formControlName="password" placeholder="Senha">
+            </div>
+            
+            </form>
+            <button type="submit" (click)="registerEmployee()">Adicionar</button>
+
+    </div>
+
+</div>
