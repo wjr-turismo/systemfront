@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { customerData } from 'src/app/models/customerData';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -8,18 +9,30 @@ import { customerData } from 'src/app/models/customerData';
 })
 export class CustomerListComponent implements OnInit {
 
-  customers!: customerData[] | any
+  customers!: customerData[] |any
   customer!: customerData | any
 
   isTableShown:boolean=true
 
   buttonText:string =  "Adicionar Cliente"
 
-  constructor() { }
+  constructor(private service: CustomerService) { }
 
   ngOnInit(): void {
+
+    this.getCustomers()
   }
 
+
+  getCustomers(){
+    this.service.getCustomers().subscribe((response)=>{
+      console.log(response)
+      this.customers = response
+
+
+      
+    })
+  }
 
   toogle(){
     this.isTableShown = !this.isTableShown
