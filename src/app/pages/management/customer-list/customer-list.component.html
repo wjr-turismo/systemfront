@@ -1,0 +1,34 @@
+<div class="customer-list-container">
+
+
+    <div class="content">
+        <div class="tabs-management">
+            <button (click)="toogle()" >{{buttonText}}</button>
+        </div>
+    
+        <div class="table-customer-list" *ngIf="isTableShown==true">
+        <table>
+            <thead>
+                <td>Nome</td>
+                <td>Email</td>
+                <td>WhatsApp</td>
+                <td>Cargo</td>
+            </thead>
+            <tbody *ngFor="let i of customers">
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone[0].whats}}</td>
+                <td>{{i.role}}</td>
+    
+            </tbody>
+        </table>
+        </div>
+    
+        <div class="customer-form" *ngIf="isTableShown==false">
+            <app-customer-form></app-customer-form>
+        </div>
+    
+    </div>
+    
+    </div>
+    
