@@ -13,7 +13,7 @@ export class CustomerListComponent implements OnInit {
 
   isTableShown:boolean=true
 
-  buttonText:string =  "Adicionar Funcionários"
+  buttonText:string =  "Adicionar Cliente"
 
   constructor() { }
 
@@ -25,9 +25,9 @@ export class CustomerListComponent implements OnInit {
     this.isTableShown = !this.isTableShown
 
     if(!this.isTableShown){
-      this.buttonText = "Listar Funcionários"
+      this.buttonText = "Listar Clientes"
     }else{
-      this.buttonText = "Adicionar Funcionários"
+      this.buttonText = "Adicionar Cliente"
     }
   }
 
