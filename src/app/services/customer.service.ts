@@ -10,25 +10,35 @@ import { Observable, catchError } from 'rxjs';
 export class CustomerService {
 
   baseUrl!:string
-  customers!: customerData[]
-  customer!: customerData
+  customers!: customerData[] |any
+  customer!: customerData | any
 
 
   constructor(private http:HttpClient) {
       this.baseUrl = environment.baseUrl
    }
 
-   getCustomers():Observable<customerData[]>{
+   getCustomers():Observable<customerData>{
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-      console.log(`${this.baseUrl}/customer`)
-      return this.http.get<customerData[]>(`${this.baseUrl}/customer`,{headers}).pipe(
-        catchError((err:any , caught: Observable<customerData[]>) => {
+    this.customers = this.http.get<customerData>(`${this.baseUrl}/customer`,{headers}).pipe(
+        catchError((err:any , caught: Observable<customerData>) => {
           console.log(err)
           return caught
         }
 
       ))
+        return this.customers
+   }
 
+   addCustomer(customer:customerData): Observable<customerData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    this.customer = this.http.post<customerData>(`${this.baseUrl}/customer`,customer,{headers}).pipe(
+      catchError((err:any, caught: Observable<customerData>) => {
+                            console.log(err)
+                            return caught
+                      }) 
+                      )
+                    return this.customer
    }
 
 
