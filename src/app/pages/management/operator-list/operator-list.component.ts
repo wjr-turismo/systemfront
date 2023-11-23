@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { operatorData } from 'src/app/models/operatorData';
+import { OperatorService } from 'src/app/services/operator.service';
 
 @Component({
   selector: 'app-operator-list',
@@ -10,13 +11,14 @@ export class OperatorListComponent implements OnInit {
 
   isTableShown:boolean = true
 
-  operators!: operatorData[]
+  operators!: operatorData[] |any
 
   buttonText:string = "Adicionar Operadora"
 
-  constructor() { }
+  constructor(private service: OperatorService) { }
 
   ngOnInit(): void {
+    this.getOperators()
   }
 
 
@@ -29,5 +31,15 @@ export class OperatorListComponent implements OnInit {
       this.buttonText = "Adicionar Operadora"
     }
   }
+
+  getOperators(){
+
+    this.service.getOperators().subscribe((response) => {
+      this.operators = response
+      console.log(response)
+    })
+
+  }
+
 
 }
