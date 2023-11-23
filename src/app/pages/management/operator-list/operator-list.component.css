@@ -31,3 +31,8 @@ thead{
     font-weight: 700;
     background-color: gray;
 }
+
+td{
+    padding: 0.5rem 0.5rem;
+    border: #1B5693 solid 1px
+}
