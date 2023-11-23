@@ -9,15 +9,26 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 80%;
+    width: 60%;
 }
 
 input{
     width: 150px;
 }
 
+.main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dependents{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .form{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
@@ -25,7 +36,7 @@ input{
     display: flex;
     flex-direction: column;
     padding-right: 0.5rem;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin: auto;
 }
 
