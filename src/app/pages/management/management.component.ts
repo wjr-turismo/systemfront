@@ -9,6 +9,7 @@ export class ManagementComponent implements OnInit {
   user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
   isEmployeeShown:boolean = false
   isCustomerShown:boolean = true
+  isOperatorShown:boolean = false
 
   
 
@@ -23,10 +24,20 @@ export class ManagementComponent implements OnInit {
       case "cus":
         this.isCustomerShown = true
         this.isEmployeeShown= false
+        this.isOperatorShown= false
         break
+
       case "empl":
-       this.isCustomerShown = false
-        this.isEmployeeShown= true
+        this.isCustomerShown = false
+        this.isEmployeeShown = true
+        this.isOperatorShown = false
+        break
+
+      case "oper":
+        this.isCustomerShown = false
+        this.isEmployeeShown = false
+        this.isOperatorShown = true
+
     }
     
 
