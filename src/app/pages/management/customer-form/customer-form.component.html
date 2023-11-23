@@ -1,66 +1,67 @@
 <div class="customer-form-cotainer">
 
     <div class="formCard-customer">
-           <h2 style="margin-bottom: 1rem;">Adicionar Funcionário</h2>
+           <h2 style="margin-bottom: 1rem;">Adicionar Cliente</h2>
             <form [formGroup]="customerForm" (submit)="registercustomer()" action="" class="form">
-            <div class="fields">
-                <label for="name">Nome</label>
-            <input type="text"id="name" formControlName="name" placeholder="">
-            </div>
-            <div class="fields">
-                <label for="name">E-mail</label>
-                <input type="text"id="email" formControlName="email" placeholder="">
-            </div>
-            <div class="fields">
-                <label for="cpf">CPF</label>
-                <input type="number"id="cpf" maxlength="11" formControlName="cpf" placeholder="Apenas Números">
-            </div>
-            <div class="fields">
-                <label for="cpf">RG</label>
-                <input type="text"id="rg" formControlName="rg" placeholder="">
-            </div>
-            <div class="fields">
-                <label for="birth">Data Nasc.</label>
-                <input type="text" maxlength="10" id="birth" formControlName="birth" placeholder="dd/mm/aaaa">
-            </div>
-            <div class="fields">
-                <label for="places">Distino Viagens</label>
-                <input type="text"id="places" formControlName="places" placeholder="%">
-            </div>
-            <div class="fields">
-                <label for="tripDates">Data Viagens</label>
-                <input type="tripDates" id="tripDates" formControlName="tripDates" placeholder="">
-            </div>
-            <div class="fields">
-                <label for="whats">WhatsApp</label>
-                <input type="text"id="whats" formControlName="whats" placeholder="">
-            </div>
-            <div class="fields">
-                <label for="phone">Telefone</label>
-                <input type="text"id="personal" formControlName="personal" placeholder="">
-            </div>
+                <div class="main">
+                    <div class="fields">
+                        <label for="name">Nome</label>
+                    <input type="text"id="name" formControlName="name" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="name">E-mail</label>
+                        <input type="text"id="email" formControlName="email" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="cpf">CPF</label>
+                        <input type="number"id="cpf" maxlength="11" formControlName="cpf" placeholder="Apenas Números">
+                    </div>
+                    <div class="fields">
+                        <label for="cpf">RG</label>
+                        <input type="text"id="rg" formControlName="rg" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="birth">Data Nasc.</label>
+                        <input type="text" maxlength="10" id="birth" formControlName="birth" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div class="fields">
+                        <label for="places">Distino Viagens</label>
+                        <input type="text"id="places" formControlName="places" placeholder="%">
+                    </div>
+                    <div class="fields">
+                        <label for="tripDates">Data Viagens</label>
+                        <input type="tripDates" id="tripDates" formControlName="tripDates" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="whats">WhatsApp</label>
+                        <input type="text"id="whats" formControlName="whats" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="phone">Telefone</label>
+                        <input type="text"id="personal" formControlName="personal" placeholder="">
+                    </div>
         
-            </form>
-            <hr>
-            <h2 style="margin-top: 1rem;">Dependentes</h2>
-            <form action="" [formGroup]="customerForm" (submit)="registercustomer()" action="" class="form">
-
-            <div class="fields">
-                <label for="name">Nome</label>
-                <input type="text"id="personal" formControlName="namedep1" placeholder="">
-            </div>
-            <div class="fields">
-                <label for="descriptiondep1">Descrição</label>
-                <input type="text"id="descriptiondep1" formControlName="descriptiondep1" placeholder="">
-            </div>
-            <div class="fields">
-                <label for="cpf">CPF</label>
-                <input type="number"id="cpf" formControlName="cpfdep1" placeholder="Apenas Números">
-            </div>
-               <div class="fields">
-                <label for="rgdep1">RG</label>
-                <input type="text"id="rgdep1" formControlName="rgdep1" placeholder="">
-            </div>
+                </div>
+                <hr style="margin: 1rem;">
+                <h4 style="margin: auto;">Dependente</h4>
+                <div class="dependents">
+                    <div class="fields">
+                        <label for="name">Nome</label>
+                        <input type="text"id="personal" formControlName="namedep1" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="descriptiondep1">Descrição</label>
+                        <input type="text"id="descriptiondep1" formControlName="descriptiondep1" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="cpf">CPF</label>
+                        <input type="number"id="cpf" formControlName="cpfdep1" placeholder="Apenas Números">
+                    </div>
+                       <div class="fields">
+                        <label for="rgdep1">RG</label>
+                        <input type="text"id="rgdep1" formControlName="rgdep1" placeholder="">
+                    </div>
+                </div>
 
             </form>
             
