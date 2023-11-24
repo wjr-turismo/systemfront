@@ -1,17 +1,78 @@
 <app-menu [userLogged]="user"></app-menu>
 
-<div class="employee-cotainer">
+<div class="employee-container" *ngIf="isDisable==true">
 
     <div class="formCard-employee">
            <h2 style="margin-bottom: 1rem;">Funcionário</h2>
             <form [formGroup]="employeeForm" (submit)="registerEmployee()" action="" class="form">
             <div class="fields">
                 <label for="name">Nome</label>
-            <input type="text"id="name" formControlName="name" [placeholder]="employee.name">
+            <input type="text"id="name" disabled="true" [placeholder]="employee.name">
             </div>
             <div class="fields">
                 <label for="name">E-mail</label>
-                <input type="text"id="email" formControlName="email" [placeholder]="employee.email">
+                <input type="text"id="email" disabled="true" [placeholder]="employee.email">
+            </div>
+            <div class="fields">
+                <label for="cpf">CPF</label>
+                <input type="number"id="cpf" disabled="true" [placeholder]="employee.cpf">
+            </div>
+            <div class="fields">
+                <label for="cpf">RG</label>
+                <input type="text"id="rg" disabled="true" [placeholder]="employee.rg">
+            </div>
+            <div class="fields">
+                <label for="birth">Data Nasc.</label>
+                <input type="text"  id="birth" disabled="true" [placeholder]="employee.birth">
+            </div>
+            <div class="fields">
+                <label for="commission">Comissao</label>
+                <input type="text"id="comissao" disabled="true" [placeholder]="employee.commission">
+            </div>
+            <div class="fields">
+                <label for="whats">WhatsApp</label>
+                <input type="text"id="whats" disabled="true" [placeholder]="employee.phone[0].whats">
+            </div>
+            <div class="fields">
+                <label for="phone">Telefone</label>
+                <input type="text"id="personal" disabled="true" [placeholder]="employee.phone[0].personal">
+            </div>
+            <div class="fields">
+                <label for="role">Cargo</label>
+                <select id="cargo" disabled="true" style="width: 150px;">
+                    <option value="ADMIN">Administrador</option>
+                    <option value="USER">Usuário</option>
+                </select>
+            </div>
+            <div class="fields">
+                <label for="password">Senha</label>
+                <input type="password" id="password" disabled="true" placeholder="Senha">
+            </div>
+            
+            </form>
+            <div class="buttons">
+                <button type="submit" (click)="editEmployee()">Editar</button>
+                <button type="submit" (click)="registerEmployee()">Excluir</button>
+                <button type="submit" (click)="registerEmployee()">Salvar</button>
+
+            </div>
+
+    </div>
+
+</div>
+
+<div class="employee-container" *ngIf="isDisable==false">
+
+    <div class="formCard-employee">
+           <h2 style="margin-bottom: 1rem;">Funcionário</h2>
+            <form [formGroup]="employeeForm" (submit)="registerEmployee()" action="" class="form">
+            <div class="fields">
+                <label for="name">Nome</label>
+            <input type="text"id="name" formControlName="name" [value]="employee.name">
+            </div>
+            <div class="fields">
+                <label for="name">E-mail</label>
+                <input type="text"id="email" formControlName="email" [placeholder]="employee.email" [value]="employee.email">
             </div>
             <div class="fields">
                 <label for="cpf">CPF</label>
@@ -50,7 +111,12 @@
             </div>
             
             </form>
-            <button type="submit" (click)="registerEmployee()">Adicionar</button>
+            <div class="buttons">
+                <button type="submit" (click)="editEmployee()">Editar</button>
+                <button type="submit" (click)="registerEmployee()">Excluir</button>
+                <button type="submit" (click)="registerEmployee()">Salvar</button>
+
+            </div>
 
     </div>
 
