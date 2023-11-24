@@ -18,6 +18,7 @@ export class SellsComponent implements OnInit {
   constructor(private service: SellService) { }
 
   ngOnInit(): void {
+    this.getSells()
   }
 
 
@@ -34,8 +35,9 @@ export class SellsComponent implements OnInit {
         this.totalRAV += response[i].rav;
         this.totalCommission += response[i].commission;
         
+        console.log(response[i].sellAmount)
       }
-    
+      
 
     })
 
