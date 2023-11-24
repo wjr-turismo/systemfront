@@ -18,6 +18,7 @@ import { CustomerListComponent } from './pages/management/customer-list/customer
 import { CustomerFormComponent } from './pages/management/customer-form/customer-form.component';
 import { OperatorListComponent } from './pages/management/operator-list/operator-list.component';
 import { OperatorFormComponent } from './pages/management/operator-form/operator-form.component';
+import { SellComponent } from './pages/sell/sell.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { OperatorFormComponent } from './pages/management/operator-form/operator
     CustomerFormComponent,
     OperatorListComponent,
     OperatorFormComponent,
+    SellComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,10 +43,11 @@ import { OperatorFormComponent } from './pages/management/operator-form/operator
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path:'customer',component: CustomerComponent,canActivate:[AuthGuardService]},
-      {path:'homesystem',component:HomesystemComponent,canActivate:[AuthGuardService]},
-      {path:'management',component:ManagementComponent,canActivate:[AuthGuardService]},
-      {path:'login',component: LoginComponent}
+      {path:'customer', component: CustomerComponent,canActivate:[AuthGuardService]},
+      {path:'homesystem', component: HomesystemComponent,canActivate:[AuthGuardService]},
+      {path:'management', component: ManagementComponent,canActivate:[AuthGuardService]},
+      {path:'sell', component: SellComponent, canActivate:[AuthGuardService]},
+      {path:'login', component: LoginComponent}
     ])
 
   ],
