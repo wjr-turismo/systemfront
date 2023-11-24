@@ -26,7 +26,7 @@ export class AllSellsComponent implements OnInit {
 
 
   getSells(){
-    this.service.getSells().subscribe((response) => {
+    this.service.getAllSells().subscribe((response) => {
 
       console.log(`RESPONSE: ${response}`)
 
