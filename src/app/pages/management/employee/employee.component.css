@@ -1,0 +1,35 @@
+.formCard-employee{
+    padding: 2rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    margin:auto;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 60%;
+}
+
+input{
+    width: 150px;
+}
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fields{
+    display: flex;
+    flex-direction: column;
+    padding-right: 0.5rem;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+
+button{
+    margin-top: 1rem;
+}
