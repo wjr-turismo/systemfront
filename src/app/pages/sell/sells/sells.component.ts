@@ -37,11 +37,13 @@ export class SellsComponent implements OnInit {
         
         console.log(response[i].sellAmount)
       }
-      
-
     })
-
   }
+
+  print(a:any){
+    console.log(a)
+  }
+
 
 
 }
