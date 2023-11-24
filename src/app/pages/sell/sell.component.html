@@ -23,6 +23,18 @@
             <li>Todas Vendas</li>
         </a>
         </ul>
-</div>
+    </div>
+
+    <div class="content-management"*ngIf="addSellIsShown==true">
+        <app-add-sell></app-add-sell>
+    </div>
+    <div class="content-management" *ngIf="sellsIsShown==true">
+       <app-sells></app-sells>
+    </div>
+    <div class="content-management" *ngIf="allSellsIsShown==true">
+        <app-all-sells></app-all-sells>
+     </div>
+
+
 
 </div>
