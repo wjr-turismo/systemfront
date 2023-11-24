@@ -34,6 +34,24 @@ export class EmployeeService {
 
   }
 
+  getEmployee(cpf:number):Observable<EmployeeData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+
+    this.employees = this.http.get<EmployeeData>(`${this.baseUrl}/employee/${cpf}`,{headers}).pipe(
+      catchError((err:any,caught:Observable<EmployeeData>) => {
+
+        console.log(err)
+        return caught
+
+      })
+    )
+    return this.employees
+
+  }
+
+
+
+
   addEmployee(employee:EmployeeData):Observable<EmployeeData>{
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     this.employee = this.http.post<EmployeeData>(`${this.baseUrl}/employee`,employee, {headers}).pipe(
