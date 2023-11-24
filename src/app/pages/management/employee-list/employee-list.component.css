@@ -1,6 +1,4 @@
-.table-employee-list > *{
-    padding: 1rem;
-}
+
 
 .content{
 
@@ -20,7 +18,6 @@ button{
     border: solid black 1px;
     border-radius: 1rem;
     background-color: #1B5693;
-
 }
 
 button:hover{
@@ -29,15 +26,28 @@ button:hover{
 
 thead{
     font-weight: 700;
-    background-color: gray;
+    background-color: #1B5693;
+    color: white;
 }
 
 td{
     padding: 0.5rem 0.5rem;
-    border: #1B5693 solid 1px;
+    
+}
+
+tbody:nth-child(even) {
+    background-color: rgb(206, 203, 203);
 }
 
 tbody:hover{
     cursor: pointer;
     background-color: #4484BF;
+    color: white;
+}
+
+table{
+    margin-top: 1rem;
+    border: #90171B solid 1px;
+    border-radius: 1rem;
+    padding: 0.5rem;
 }
