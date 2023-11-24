@@ -19,6 +19,9 @@ import { CustomerFormComponent } from './pages/management/customer-form/customer
 import { OperatorListComponent } from './pages/management/operator-list/operator-list.component';
 import { OperatorFormComponent } from './pages/management/operator-form/operator-form.component';
 import { SellComponent } from './pages/sell/sell.component';
+import { AddSellComponent } from './pages/sell/add-sell/add-sell.component';
+import { SellsComponent } from './pages/sell/sells/sells.component';
+import { AllSellsComponent } from './pages/sell/all-sells/all-sells.component';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { SellComponent } from './pages/sell/sell.component';
     OperatorListComponent,
     OperatorFormComponent,
     SellComponent,
+    AddSellComponent,
+    SellsComponent,
+    AllSellsComponent,
   ],
   imports: [
     BrowserModule,
