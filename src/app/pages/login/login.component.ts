@@ -55,13 +55,15 @@ export class LoginComponent implements OnInit {
           name: response.name,
           role: response.role,
           token: response.token,
-          loggedIn : response.loggedIn
+          loggedIn : response.loggedIn,
+          email: response.email
         }
 
         if(this.loginResponse.token.split(".")[0]== this.sct){
           localStorage.setItem('token',this.loginResponse.token)
           localStorage.setItem('user',this.loginResponse.name)
           localStorage.setItem('role',this.loginResponse.role)
+          localStorage.setItem('email',this.loginResponse.email)
           //this.guard.canActivate(this.loginResponse.loggedIn)
           window.location.assign('/homesystem')
         }
