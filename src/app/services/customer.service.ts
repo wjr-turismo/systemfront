@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { customerData } from '../models/customerData'
 import { Observable, catchError } from 'rxjs';
+import { AuthGuardService } from './auth-guard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CustomerService {
   customer!: customerData | any
 
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private guard: AuthGuardService) {
       this.baseUrl = environment.baseUrl
    }
 
@@ -23,6 +24,12 @@ export class CustomerService {
     this.customers = this.http.get<customerData>(`${this.baseUrl}/customer`,{headers}).pipe(
         catchError((err:any , caught: Observable<customerData>) => {
           console.log(err)
+
+                if(err.status==403){
+          localStorage.clear()
+          this.guard.canActivate()
+        }
+
           return caught
         }
 

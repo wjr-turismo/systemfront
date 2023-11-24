@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { EmployeeData } from '../models/employeeData'
 import { environment } from 'src/environments/environment';
 import { Observable, catchError } from 'rxjs';
+import { AuthGuardService } from './auth-guard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class EmployeeService {
   employee!: EmployeeData | any
   baseUrl!:string
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private guard: AuthGuardService) { 
 
     this.baseUrl = environment.baseUrl
 
@@ -26,6 +27,12 @@ export class EmployeeService {
       catchError((err:any,caught:Observable<EmployeeData>) => {
 
         console.log(err)
+
+        if(err.status==403){
+          localStorage.clear()
+          this.guard.canActivate()
+        }
+
         return caught
 
       })
@@ -41,6 +48,10 @@ export class EmployeeService {
       catchError((err:any,caught:Observable<EmployeeData>) => {
 
         console.log(err)
+        if(err.status==403){
+          localStorage.clear()
+          this.guard.canActivate()
+        }
         return caught
 
       })

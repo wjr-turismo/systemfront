@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { operatorData } from '../models/operatorData';
 import { environment } from 'src/environments/environment';
+import { AuthGuardService } from './auth-guard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class OperatorService {
   operator!: operatorData | any
   baseUrl!: string
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private guard: AuthGuardService) { 
 
     this.baseUrl = environment.baseUrl
 
@@ -26,6 +27,10 @@ export class OperatorService {
     this.operators = this.http.get<operatorData>(`${this.baseUrl}/operator`,{headers}).pipe(
       catchError((err:any,caught:Observable<operatorData>) => {
           console.log(err)
+          if(err.status==403){
+            localStorage.clear()
+            this.guard.canActivate()
+          }
           return caught
       })
     )
