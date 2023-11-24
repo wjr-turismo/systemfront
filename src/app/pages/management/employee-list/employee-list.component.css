@@ -34,5 +34,10 @@ thead{
 
 td{
     padding: 0.5rem 0.5rem;
-    border: #1B5693 solid 1px
+    border: #1B5693 solid 1px;
+}
+
+tbody:hover{
+    cursor: pointer;
+    background-color: #4484BF;
 }
