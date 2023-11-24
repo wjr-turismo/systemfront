@@ -5,7 +5,7 @@ import {RouterModule } from '@angular/router'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomerComponent } from './pages/customer/customer.component';
+import { CustomerComponent } from './pages/management/customer/customer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -22,6 +22,7 @@ import { SellComponent } from './pages/sell/sell.component';
 import { AddSellComponent } from './pages/sell/add-sell/add-sell.component';
 import { SellsComponent } from './pages/sell/sells/sells.component';
 import { AllSellsComponent } from './pages/sell/all-sells/all-sells.component';
+import { EmployeeComponent } from './pages/management/employee/employee.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AllSellsComponent } from './pages/sell/all-sells/all-sells.component';
     AddSellComponent,
     SellsComponent,
     AllSellsComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ import { AllSellsComponent } from './pages/sell/all-sells/all-sells.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path:'customer', component: CustomerComponent,canActivate:[AuthGuardService]},
+      {path:'employee', component: EmployeeComponent, canActivate:[AuthGuardService]},
       {path:'homesystem', component: HomesystemComponent,canActivate:[AuthGuardService]},
       {path:'management', component: ManagementComponent,canActivate:[AuthGuardService]},
       {path:'sell', component: SellComponent, canActivate:[AuthGuardService]},
