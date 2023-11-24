@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service'
 import { EmployeeData } from 'src/app/models/employeeData';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-employee-list',
@@ -44,6 +45,7 @@ export class EmployeeListComponent implements OnInit {
 
   print(a:any){
     console.log(a)
+    environment.idAux  = a
   }
 
 

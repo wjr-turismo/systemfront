@@ -14,7 +14,9 @@
             <td>WhatsApp</td>
             <td>Cargo</td>
         </thead>
-        <tbody *ngFor="let i of employees" (click)="print(i.email)">
+        <tbody *ngFor="let i of employees" 
+        routerLink="/employee"
+        (click)="print(i.cpf)">
             
                 <td>{{i.name}}</td>
                 <td>{{i.email}}</td>
