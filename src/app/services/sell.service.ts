@@ -17,7 +17,7 @@ export class SellService {
   }
 
 
-  getSells():Observable<SellData[]>{
+  getAllSells():Observable<SellData[]>{
 
     const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
     this.sells = this.http.get<SellData[]>(`${this.baseurl}/sell`,{headers}).pipe(
@@ -28,6 +28,21 @@ export class SellService {
     )
        return this.sells
   }
+
+  getSells():Observable<SellData[]>{
+
+    const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+    this.sells = this.http.get<SellData[]>(`${this.baseurl}/sell/${localStorage.getItem('email')}`,{headers}).pipe(
+      catchError((err:any,caught:Observable<SellData[]>) => {
+        console.log(err)
+        return caught
+    })
+    )
+       return this.sells
+  }
+
+
+
 
   addSell(sell:SellData):Observable<SellData>{
     const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
