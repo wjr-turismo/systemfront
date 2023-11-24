@@ -7,17 +7,17 @@
     <div class="options-container-menu">
         <ul class="options-list-menu">      
         <a 
-        (click)="toogle('cus')"
+        (click)="toogle('sell')"
         >
             <li>Venda</li>
         </a>
         <a 
-        (click)="toogle('empl')"
+        (click)="toogle('sells')"
         >
             <li>Minhas Vendas</li>
         </a>        
         <a 
-        (click)="toogle('oper')"
+        (click)="toogle('allsells')"
         *ngIf="user.role=='admin'"
         >
             <li>Todas Vendas</li>
