@@ -42,6 +42,9 @@ export class EmployeeListComponent implements OnInit {
     }
   }
 
+  print(a:any){
+    console.log(a)
+  }
 
 
 }
