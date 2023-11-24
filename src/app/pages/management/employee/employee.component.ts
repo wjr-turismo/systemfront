@@ -14,21 +14,21 @@ export class EmployeeComponent implements OnInit {
   user = {name:localStorage.getItem('user'),role:localStorage.getItem('role'),email:localStorage.getItem('email')}
 
   isDisable: boolean = true
+  employee!: EmployeeData | any
+
 
   employeeForm = new FormGroup({
-    name :  new FormControl({value:'',disabled:this.isDisable},  [Validators.required]),
-    cpf: new FormControl({value:null,disabled:this.isDisable},[Validators.required,Validators.maxLength(11)]),
-    rg :  new FormControl({value:'',disabled:this.isDisable}),
-    birth :  new FormControl({value:'',disabled:this.isDisable}) ,
-    password :  new FormControl({value:'',disabled:this.isDisable},Validators.required),
-    role :  new FormControl({value:null,disabled:this.isDisable},Validators.required) ,
-    commission : new FormControl({value:null,disabled:this.isDisable},Validators.required),
-    whats :  new FormControl({value:'',disabled:this.isDisable},Validators.required) ,
-    personal :  new FormControl({value:'',disabled:this.isDisable}),
-    email :  new FormControl({value:'',disabled:this.isDisable}, [Validators.required, Validators.email]) 
+    name :  new FormControl('',[Validators.required]),
+    cpf: new FormControl(null,[Validators.required,Validators.maxLength(11)]),
+    rg :  new FormControl(''),
+    birth :  new FormControl('') ,
+    password :  new FormControl('',Validators.required),
+    role :  new FormControl('',Validators.required) ,
+    commission : new FormControl(null,Validators.required),
+    whats :  new FormControl('',Validators.required) ,
+    personal :  new FormControl(''),
+    email :  new FormControl('', [Validators.required, Validators.email]) 
   })
-
-  employee!: EmployeeData | any
 
   
 
@@ -36,7 +36,8 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getEmployee()
+    this.getEmployee() 
+    
 
   }
 
@@ -73,13 +74,27 @@ export class EmployeeComponent implements OnInit {
 
   getEmployee(){
     this.service.getEmployee(environment.idAux).subscribe((response) => {
-      console.log(response)
       this.employee = response
-
-
     })
 
 
   }
 
+  editEmployee(){
+    this.isDisable = false
+    //location.reload()
+
+    this.employeeForm.controls.name.setValue(this.employee.name)
+    this.employeeForm.controls.cpf.setValue(this.employee.cpf)
+    this.employeeForm.controls.rg.setValue(this.employee.rg)  
+    this.employeeForm.controls.birth.setValue(this.employee.birth)
+    this.employeeForm.controls.role.setValue(this.employee.role)
+    this.employeeForm.controls.commission.setValue(this.employee.commission)
+    this.employeeForm.controls.whats.setValue(this.employee.phone[0].whats)
+    this.employeeForm.controls.personal.setValue(this.employee.phone[0].personal)
+    this.employeeForm.controls.email.setValue(this.employee.email)
+    
+    
+    
+  }
 }
