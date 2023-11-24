@@ -1,1 +1,34 @@
-<p>sells works!</p>
+<div class="sell-list-container">
+
+
+    <div class="content">
+    
+        <div class="table-sell-list">
+        <table>
+            <thead>
+                <td>Operadora</td>
+                <td>Reserva</td>
+                <td>Valor</td>
+                <td>RAV</td>
+                <td>Comissão</td>
+            </thead>
+            <tbody *ngFor="let i of sells" (click)="print(i.employeeEmail)">       
+                    <td>{{i.operator}}</td>
+                    <td>{{i.bookingNumber}}</td>
+                    <td> R${{i.sellAmount | number:'1.2-2':'br'}}</td>
+                    <td>R${{i.rav | number:'':'br'}}</td>
+                    <td>R${{i.commission | number:'1.2-2':'br'}}</td>
+            </tbody>
+            <td style="font-weight: 600;">Total</td>
+            <td></td>
+            <td>R${{totalSells | number:'1.2-2':'br'}}</td>
+            <td>R${{totalRAV | number:'1.2-2':'br'}}</td>
+            <td>R${{totalCommission | number:'1.2-2':'br'}}</td>
+    
+        </table>
+        </div>
+    
+    </div>
+    
+    </div>
+    
