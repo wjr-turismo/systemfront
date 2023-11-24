@@ -1,0 +1,15 @@
+<app-menu [userLogged]="user"></app-menu>
+<p>customer works!</p>
+
+<table>
+    <thead>
+        <td>Nome</td>
+        <td>Email</td>
+    </thead>
+    <tbody *ngFor="let i of customers">
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+    </tbody>
+</table>
+
+<h1>Bem vindo, {{user.name}}</h1>
