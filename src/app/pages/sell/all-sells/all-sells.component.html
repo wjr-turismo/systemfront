@@ -12,7 +12,7 @@
                 <td>RAV</td>
                 <td>Comissão</td>
             </thead>
-            <tbody *ngFor="let i of sells" (click)="print(i.employeeEmail)">       
+            <tbody *ngFor="let i of sells" (click)="print(i.id)">       
                     <td>{{i.operator}}</td>
                     <td>{{i.bookingNumber}}</td>
                     <td> R${{i.sellAmount | number:'1.2-2':'br'}}</td>
