@@ -1,1 +1,27 @@
-<p>all-sells works!</p>
+<div class="sell-list-container">
+
+
+    <div class="content">
+    
+        <div class="table-sell-list">
+        <table>
+            <thead>
+                <td>Nome</td>
+                <td>Email</td>
+                <td>WhatsApp</td>
+                <td>Cargo</td>
+            </thead>
+            <tbody *ngFor="let i of sells" (click)="print(i.email)">       
+                    <td>{{i.name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.phone[0].whats}}</td>
+                    <td>{{i.role}}</td>
+            </tbody>
+    
+        </table>
+        </div>
+    
+    </div>
+    
+    </div>
+    
