@@ -17,11 +17,11 @@ export class SellService {
   }
 
 
-  getSells():Observable<SellData>{
+  getSells():Observable<SellData[]>{
 
     const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-    this.sells = this.http.get<SellData>(`${this.baseurl}/sell`,{headers}).pipe(
-      catchError((err:any,caught:Observable<SellData>) => {
+    this.sells = this.http.get<SellData[]>(`${this.baseurl}/sell`,{headers}).pipe(
+      catchError((err:any,caught:Observable<SellData[]>) => {
         console.log(err)
         return caught
     })
