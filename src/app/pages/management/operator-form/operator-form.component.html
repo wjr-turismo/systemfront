@@ -1,1 +1,37 @@
-<p>operator-form works!</p>
+<div class="operator-form-cotainer">
+
+    <div class="formCard-operator">
+           <h2 style="margin-bottom: 1rem;">Adicionar Operadora</h2>
+            <form [formGroup]="operatorForm" (submit)="registeroperator()" action="" class="form">
+                <div class="main">
+                    <div class="fields">
+                        <label for="name">Nome</label>
+                    <input type="text"id="name" formControlName="name" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="rz">Razão Social</label>
+                        <input type="text"id="rz" formControlName="companyName" placeholder="">
+                    </div>        
+                </div>
+                <hr style="margin: 1rem;">
+                <h4 style="margin: auto;">Representante</h4>
+                <div class="dependents">
+                    <div class="fields">
+                        <label for="repname">Nome</label>
+                        <input type="text"id="repname" formControlName="representativeName">
+                    </div>
+                    <div class="fields">
+                        <label for="erpemail">E-mail</label>
+                        <input type="text"id="repemail" formControlName="representativeEmail">
+                    </div>
+                    <div class="fields">
+                        <label for="rephone">Telefone</label>
+                        <input type="text"id="repphone" formControlName="representativeEmail">
+                    </div>
+                </div>
+            </form>
+            <button type="submit" (click)="registeroperator()">Adicionar</button>
+
+    </div>
+
+</div>

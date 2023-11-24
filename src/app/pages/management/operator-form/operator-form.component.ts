@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-operator-form',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperatorFormComponent implements OnInit {
 
+  operatorForm= new FormGroup({
+    name :  new FormControl('',[Validators.required]),
+    companyName: new FormControl(''),
+    representativeName: new FormControl(''),
+    representativeEmail: new FormControl(''),
+    representativePhone: new FormControl('')
+  })
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+  registeroperator(){
+    
   }
 
 }
