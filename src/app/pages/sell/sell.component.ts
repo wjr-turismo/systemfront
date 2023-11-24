@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
-  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
+  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role'),email:localStorage.getItem('email')}
 
   addSellIsShown:boolean = true
   allSellsIsShown:boolean = false
