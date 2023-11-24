@@ -1,1 +1,28 @@
-<p>sell works!</p>
+<app-menu [userLogged]="user"></app-menu>
+
+
+<div class="sell-container">
+
+
+    <div class="options-container-menu">
+        <ul class="options-list-menu">      
+        <a 
+        (click)="toogle('cus')"
+        >
+            <li>Venda</li>
+        </a>
+        <a 
+        (click)="toogle('empl')"
+        >
+            <li>Minhas Vendas</li>
+        </a>        
+        <a 
+        (click)="toogle('oper')"
+        *ngIf="user.role=='admin'"
+        >
+            <li>Todas Vendas</li>
+        </a>
+        </ul>
+</div>
+
+</div>

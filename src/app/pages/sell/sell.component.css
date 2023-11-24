@@ -1,0 +1,26 @@
+.sell-container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.options-container-menu > *{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    padding-top: 0.5rem;
+}
+
+a{
+    text-decoration: none;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+a:hover{
+font-weight: 600;
+}
