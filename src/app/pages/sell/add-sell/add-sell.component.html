@@ -1,1 +1,41 @@
-<p>add-sell works!</p>
+<div class="sell-form-cotainer">
+
+    <div class="formCard-sell">
+           <h2 style="margin-bottom: 1rem;">Adicionar Venda</h2>
+            <form [formGroup]="sellForm" (submit)="registersell()" action="" class="form">
+                <div class="main">
+                    <div class="fields">
+                        <label for="operator">Operadora</label>
+                        <select id="operator" formControlName="operator" style="width: 150px;">
+                            <option value="Azul">Azul Viagens</option>
+                            <option value="Reserva Fácil">Reserva Fácil</option>
+                        </select>
+                    </div>
+                    <div class="fields">
+                        <label for="bookingNumber">Reserva</label>
+                        <input type="text"id="bookingNumber" formControlName="bookingNumber">
+                    </div>
+                    <div class="fields">
+                        <label for="sellAmount">Venda</label>
+                        <input type="number"id="sellAmount" placeholder="R$" formControlName="sellAmount" >
+                    </div>
+                    <div class="fields">
+                        <label for="rav">RAV</label>
+                        <input type="number"id="rav" placeholder="R$" formControlName="rav">
+                    </div>
+                    <div class="fields">
+                        <label for="overBonus">Over Bon.</label>
+                        <input type="number" placeholder="R$" id="overBonus" formControlName="overBonus">
+                    </div>
+                   
+                </div>
+
+            </form>
+            
+            
+            
+            <button type="submit" (click)="registersell()">Adicionar</button>
+
+    </div>
+
+</div>
