@@ -23,6 +23,7 @@ a{
 }
 a:hover{
 font-weight: 600;
+color: #90171B;
 }
 
 .tabs-management>*{
