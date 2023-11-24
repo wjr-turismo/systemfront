@@ -32,7 +32,7 @@ export class HomesystemComponent implements OnInit {
     console.log(left)
 
 
-    let idletime = 60*60*1000
+    let idletime = 15*60*1000
     window.onload = (()=> this.resetTimer(idletime))
     document.onmousemove = (()=> this.resetTimer(idletime))
     document.onkeyup = (()=> this.resetTimer(idletime))
