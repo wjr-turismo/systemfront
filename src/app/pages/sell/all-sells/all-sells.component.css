@@ -1,0 +1,31 @@
+.table-sell-list > *{
+    padding: 1rem;
+}
+
+.content{
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sell-list-container > table{
+    border-color: solid black 2px;
+}
+
+
+thead{
+    font-weight: 700;
+    background-color: gray;
+}
+
+td{
+    padding: 0.5rem 0.5rem;
+    border: #1B5693 solid 1px;
+}
+
+tbody:hover{
+    cursor: pointer;
+    background-color: #4484BF;
+}
