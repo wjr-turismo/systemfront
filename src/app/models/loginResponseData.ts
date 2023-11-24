@@ -2,5 +2,6 @@ export interface LoginResponseData {
     name: string,
     token: string,
     role: string,
-    loggedIn: boolean
+    loggedIn: boolean,
+    email: string
 }
