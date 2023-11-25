@@ -39,7 +39,7 @@
             </div>
             <div class="fields">
                 <label for="role">Cargo</label>
-                <select id="cargo" disabled="true" style="width: 150px;">
+                <select id="cargo" disabled="true" style="width: 150px;" [value]="employee.role">
                     <option value="ADMIN">Administrador</option>
                     <option value="USER">Usuário</option>
                 </select>
