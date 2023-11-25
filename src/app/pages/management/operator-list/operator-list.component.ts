@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { operatorData } from 'src/app/models/operatorData';
 import { OperatorService } from 'src/app/services/operator.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-operator-list',
@@ -39,6 +40,11 @@ export class OperatorListComponent implements OnInit {
       console.log(response)
     })
 
+  }
+
+  print(a:number){
+    console.log(a)
+    environment.idAux = a
   }
 
 

@@ -14,12 +14,13 @@
                 <td>Nome Rep.</td>
                 <td>Telefone Rep.</td>
             </thead>
-            <tbody *ngFor="let i of operators">
+            <tbody *ngFor="let i of operators" 
+            routerLink="/operator"
+            (click)="print(i.id)">
                 <td>{{i.name}}</td>
                 <td>{{i.companyName}}</td>
                 <td>{{i.representativeName}}</td>
                 <td>{{i.representativePhone}}</td>
-    
             </tbody>
         </table>
         </div>
