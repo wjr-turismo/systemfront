@@ -1,0 +1,86 @@
+
+<app-menu [userLogged]="user" ></app-menu>
+
+
+<div class="operator-cotainer">
+
+    <div class="formCard-operator" *ngIf="isDisable==true">
+           <h2 style="margin-bottom: 1rem;">Adicionar Operadora</h2>
+            <form action="" class="form">
+                <div class="main">
+                    <div class="fields">
+                        <label for="name">Nome</label>
+                    <input type="text"id="name" disabled="true" placeholder="">
+                    </div>
+                    <div class="fields">
+                        <label for="rz">Razão Social</label>
+                        <input type="text"id="rz" disabled="true" placeholder="">
+                    </div>        
+                </div>
+                <hr style="margin: 1rem;">
+                <h4 style="margin: auto;">Representante</h4>
+                <div class="dependents">
+                    <div class="fields">
+                        <label for="repname">Nome</label>
+                        <input type="text"id="repname" disabled="true">
+                    </div>
+                    <div class="fields">
+                        <label for="erpemail">E-mail</label>
+                        <input type="text"id="repemail"  disabled="true">
+                    </div>
+                    <div class="fields">
+                        <label for="rephone">Telefone</label>
+                        <input type="text"id="repphone" disabled="true">
+                    </div>
+                </div>
+            </form>
+            <div class="buttons">
+                <button type="submit" (click)="editOperator()">Editar</button>
+                <button type="submit" (click)="registerOperator()">Excluir</button>
+                <button type="submit" (click)="registerOperator()">Salvar</button>
+
+            </div>
+
+    </div>
+
+
+    <div class="formCard-operator" *ngIf="isDisable==false">
+        <h2 style="margin-bottom: 1rem;">Adicionar Operadora</h2>
+         <form [formGroup]="operatorForm" (submit)="registerOperator()" action="" class="form">
+             <div class="main">
+                 <div class="fields">
+                     <label for="name">Nome</label>
+                 <input type="text"id="name" formControlName="name" placeholder="">
+                 </div>
+                 <div class="fields">
+                     <label for="rz">Razão Social</label>
+                     <input type="text"id="rz" formControlName="companyName" placeholder="">
+                 </div>        
+             </div>
+             <hr style="margin: 1rem;">
+             <h4 style="margin: auto;">Representante</h4>
+             <div class="dependents">
+                 <div class="fields">
+                     <label for="repname">Nome</label>
+                     <input type="text"id="repname" formControlName="representativeName">
+                 </div>
+                 <div class="fields">
+                     <label for="erpemail">E-mail</label>
+                     <input type="text"id="repemail" formControlName="representativeEmail">
+                 </div>
+                 <div class="fields">
+                     <label for="rephone">Telefone</label>
+                     <input type="text"id="repphone" formControlName="representativePhone">
+                 </div>
+             </div>
+         </form>
+         
+         <div class="buttons">
+            <button type="submit" (click)="editOperator()">Editar</button>
+            <button type="submit" (click)="registerOperator()">Excluir</button>
+            <button type="submit" (click)="registerOperator()">Salvar</button>
+        </div>
+
+ </div>
+
+</div>
