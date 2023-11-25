@@ -23,6 +23,7 @@ import { AddSellComponent } from './pages/sell/add-sell/add-sell.component';
 import { SellsComponent } from './pages/sell/sells/sells.component';
 import { AllSellsComponent } from './pages/sell/all-sells/all-sells.component';
 import { EmployeeComponent } from './pages/management/employee/employee.component';
+import { OperatorComponent } from './pages/management/operator/operator.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { EmployeeComponent } from './pages/management/employee/employee.componen
     SellsComponent,
     AllSellsComponent,
     EmployeeComponent,
+    OperatorComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { EmployeeComponent } from './pages/management/employee/employee.componen
       {path:'customer', component: CustomerComponent,canActivate:[AuthGuardService]},
       {path:'employee', component: EmployeeComponent, canActivate:[AuthGuardService]},
       {path:'homesystem', component: HomesystemComponent,canActivate:[AuthGuardService]},
+      {path:'operator', component: OperatorComponent, canActivate: [AuthGuardService]},
       {path:'management', component: ManagementComponent,canActivate:[AuthGuardService]},
       {path:'sell', component: SellComponent, canActivate:[AuthGuardService]},
       {path:'login', component: LoginComponent}
