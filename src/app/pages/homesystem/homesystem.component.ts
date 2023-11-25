@@ -16,7 +16,14 @@ export class HomesystemComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("asd")
+    var timeOut = 7*60*60*1000
+
+    console.log(timeOut)
+    this.time = setTimeout(() => {
+      localStorage.clear()
+      this.guard.canActivate()
+      
+    },timeOut)
 
     window.onload = (() => this.idleLogout())
   }
