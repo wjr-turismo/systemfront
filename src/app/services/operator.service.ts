@@ -37,6 +37,17 @@ export class OperatorService {
         return this.operators
   }
 
+  getOperator(id:number):Observable<operatorData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    this.operator = this.http.get<operatorData>(`${this.baseUrl}/operator/getoperator/${id}`, { headers }).pipe(
+      catchError((err:any, caught: Observable<operatorData>) => {
+        return caught
+
+      })
+    )
+      return this.operator
+  }
+
   addOperator(operator:operatorData):Observable<operatorData>{
 
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
