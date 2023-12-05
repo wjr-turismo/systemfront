@@ -41,7 +41,7 @@ export class OperatorFormComponent implements OnInit {
         console.log(`RESPONSE: ${response}`)
     })
 
-
+    this.operatorForm.reset()
   }
 
 }
