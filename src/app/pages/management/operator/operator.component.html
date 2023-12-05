@@ -5,16 +5,16 @@
 <div class="operator-cotainer">
 
     <div class="formCard-operator" *ngIf="isDisable==true">
-           <h2 style="margin-bottom: 1rem;">Adicionar Operadora</h2>
+           <h2 style="margin-bottom: 1rem;">Operadora</h2>
             <form action="" class="form">
                 <div class="main">
                     <div class="fields">
                         <label for="name">Nome</label>
-                    <input type="text"id="name" disabled="true" placeholder="">
+                    <input type="text"id="name" disabled="true" [placeholder]="operator.name">
                     </div>
                     <div class="fields">
                         <label for="rz">Razão Social</label>
-                        <input type="text"id="rz" disabled="true" placeholder="">
+                        <input type="text"id="rz" disabled="true" [placeholder]="operator.companyName">
                     </div>        
                 </div>
                 <hr style="margin: 1rem;">
@@ -22,35 +22,33 @@
                 <div class="dependents">
                     <div class="fields">
                         <label for="repname">Nome</label>
-                        <input type="text"id="repname" disabled="true">
+                        <input type="text"id="repname" disabled="true" [placeholder]="operator.representativeName">
                     </div>
                     <div class="fields">
                         <label for="erpemail">E-mail</label>
-                        <input type="text"id="repemail"  disabled="true">
+                        <input type="text"id="repemail"  disabled="true" [placeholder]="operator.representativeEmail">
                     </div>
                     <div class="fields">
                         <label for="rephone">Telefone</label>
-                        <input type="text"id="repphone" disabled="true">
+                        <input type="text"id="repphone" disabled="true" [placeholder]="operator.representativePhone">
                     </div>
                 </div>
             </form>
             <div class="buttons">
                 <button type="submit" (click)="editOperator()">Editar</button>
                 <button type="submit" (click)="registerOperator()">Excluir</button>
-                <button type="submit" (click)="registerOperator()">Salvar</button>
-
             </div>
 
     </div>
 
 
     <div class="formCard-operator" *ngIf="isDisable==false">
-        <h2 style="margin-bottom: 1rem;">Adicionar Operadora</h2>
+        <h2 style="margin-bottom: 1rem;">Editar Operadora</h2>
          <form [formGroup]="operatorForm" (submit)="registerOperator()" action="" class="form">
              <div class="main">
                  <div class="fields">
                      <label for="name">Nome</label>
-                 <input type="text"id="name" formControlName="name" placeholder="">
+                 <input type="text"id="name" formControlName="name">
                  </div>
                  <div class="fields">
                      <label for="rz">Razão Social</label>
@@ -76,9 +74,8 @@
          </form>
          
          <div class="buttons">
-            <button type="submit" (click)="editOperator()">Editar</button>
-            <button type="submit" (click)="registerOperator()">Excluir</button>
             <button type="submit" (click)="registerOperator()">Salvar</button>
+            <button type="submit" (click)="disable()" >Cancelar</button>
         </div>
 
  </div>
