@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { operatorData } from 'src/app/models/operatorData';
 import { SellData } from 'src/app/models/sellData';
+import { OperatorService } from 'src/app/services/operator.service';
 import { SellService } from 'src/app/services/sell.service';
 
 @Component({
@@ -19,11 +21,13 @@ export class AddSellComponent implements OnInit {
   })
 
   sell: SellData | any
+  operator!: operatorData | any
 
 
-  constructor(private service: SellService) { }
+  constructor(private service: SellService, private operatorService: OperatorService) { }
 
   ngOnInit(): void {
+    this.getOperators()
   }
 
 
@@ -50,6 +54,14 @@ export class AddSellComponent implements OnInit {
 
 
 
+  }
+
+  getOperators(){
+    this.operatorService.getOperators().subscribe((response) => {
+
+      console.log(response)
+
+    })
   }
 
 }
