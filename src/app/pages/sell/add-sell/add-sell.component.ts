@@ -21,7 +21,7 @@ export class AddSellComponent implements OnInit {
   })
 
   sell: SellData | any
-  operator!: operatorData | any
+  operators!: operatorData | any
 
 
   constructor(private service: SellService, private operatorService: OperatorService) { }
@@ -60,7 +60,10 @@ export class AddSellComponent implements OnInit {
     this.operatorService.getOperators().subscribe((response) => {
 
       console.log(response)
+      this.operators = response
+      console.log(this.operators)
 
+      
     })
   }
 

@@ -7,8 +7,7 @@
                     <div class="fields">
                         <label for="operator">Operadora</label>
                         <select id="operator" formControlName="operator" style="width: 150px;">
-                            <option value="Azul">Azul Viagens</option>
-                            <option value="Reserva Fácil">Reserva Fácil</option>
+                            <option *ngFor="let i of operators" [ngValue]="i.name">{{i.name}}</option>
                         </select>
                     </div>
                     <div class="fields">
