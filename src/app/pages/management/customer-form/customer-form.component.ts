@@ -70,6 +70,8 @@ export class CustomerFormComponent implements OnInit {
       this.customer = response
     })
     console.log(`RETURN: ${this.customer}`)
+
+    this.customerForm.reset()
     
 
   }

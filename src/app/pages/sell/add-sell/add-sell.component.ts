@@ -53,6 +53,7 @@ export class AddSellComponent implements OnInit {
     })
 
 
+    this.sellForm.reset()
 
   }
 

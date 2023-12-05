@@ -58,6 +58,7 @@ export class EmployeeFormComponent implements OnInit {
     console.log(this.employeeForm)
     console.log(`Whats: ${this.employeeForm.controls.whats.value}`)
     console.log(this.employee)
+    this.employeeForm.reset()
 
   }
 }
