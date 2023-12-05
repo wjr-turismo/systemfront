@@ -97,4 +97,8 @@ export class EmployeeComponent implements OnInit {
     
     
   }
+
+  disable(){
+    this.isDisable = true
+  }
 }
