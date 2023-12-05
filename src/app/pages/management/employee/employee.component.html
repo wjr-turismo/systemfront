@@ -53,8 +53,6 @@
             <div class="buttons">
                 <button type="submit" (click)="editEmployee()">Editar</button>
                 <button type="submit" (click)="registerEmployee()">Excluir</button>
-                <button type="submit" (click)="registerEmployee()">Salvar</button>
-
             </div>
 
     </div>
@@ -64,7 +62,7 @@
 <div class="employee-container" *ngIf="isDisable==false">
 
     <div class="formCard-employee">
-           <h2 style="margin-bottom: 1rem;">Funcionário</h2>
+           <h2 style="margin-bottom: 1rem;">Editar Funcionário</h2>
             <form [formGroup]="employeeForm" (submit)="registerEmployee()" action="" class="form">
             <div class="fields">
                 <label for="name">Nome</label>
@@ -112,10 +110,9 @@
             
             </form>
             <div class="buttons">
-                <button type="submit" (click)="editEmployee()">Editar</button>
-                <button type="submit" (click)="registerEmployee()">Excluir</button>
+                
                 <button type="submit" (click)="registerEmployee()">Salvar</button>
-
+                <button type="submit" (click)="disable()">Cancelar</button>
             </div>
 
     </div>
