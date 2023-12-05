@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { operatorData } from 'src/app/models/operatorData';
 import { OperatorService } from 'src/app/services/operator.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-operator',
@@ -27,6 +28,7 @@ export class OperatorComponent implements OnInit {
   constructor(private service: OperatorService) { }
 
   ngOnInit(): void {
+    this.getOperator()
   }
 
 
@@ -48,9 +50,26 @@ export class OperatorComponent implements OnInit {
 
   }
 
+  getOperator(){
+    console.log(environment.idAux)
+    this.service.getOperator(environment.idAux).subscribe((response) => {
+      console.log(`response: ${response.name}`)
+      this.operator = response
+    })
+  }
+
   editOperator(){
     this.isDisable = false
 
+    this.operatorForm.controls.name.setValue(this.operator.name)
+    this.operatorForm.controls.companyName.setValue(this.operator.companyName)
+    this.operatorForm.controls.representativeName.setValue(this.operator.representativeName)
+    this.operatorForm.controls.representativeEmail.setValue(this.operator.representativeEmail)
+    this.operatorForm.controls.representativePhone.setValue(this.operator.representativePhone)
+  }
+
+  disable(){
+    this.isDisable = true
   }
 
 }
