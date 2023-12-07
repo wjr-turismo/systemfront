@@ -28,7 +28,10 @@ export class OperatorComponent implements OnInit {
   constructor(private service: OperatorService) { }
 
   ngOnInit(): void {
-    this.getOperator()
+
+
+    if(environment.idAux!=0) {this.getOperator()}
+    
   }
 
 
@@ -43,6 +46,7 @@ export class OperatorComponent implements OnInit {
     }
 
     console.log(this.operator)
+    
     this.service.addOperator(this.operator).subscribe((response) =>{
         console.log(`RESPONSE: ${response}`)
     })
@@ -72,4 +76,23 @@ export class OperatorComponent implements OnInit {
     this.isDisable = true
   }
 
+  putOperator(){
+
+    this.operator = {
+      name: this.operatorForm.controls.name.value,
+      companyName: this.operatorForm.controls.companyName.value,
+      representativeName: this.operatorForm.controls.representativeName.value,
+      representativeEmail: this.operatorForm.controls.representativeEmail.value,
+      representativePhone: this.operatorForm.controls.representativePhone.value
+    }
+
+    console.log(this.operator)
+    
+    if(environment.idAux!=0){
+      this.service.putOperator(this.operator,environment.idAux).subscribe((response) =>{
+        console.log(`RESPONSE: ${response}`)
+    })
+    }
+
+  }
 }
