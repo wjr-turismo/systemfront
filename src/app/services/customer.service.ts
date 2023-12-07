@@ -37,6 +37,24 @@ export class CustomerService {
         return this.customers
    }
 
+   getCustomer(cpf:number):Observable<customerData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    this.customer = this.http.get<customerData>(`${this.baseUrl}/customer/${cpf}`,{headers}).pipe(
+        catchError((err:any , caught: Observable<customerData>) => {
+          console.log(err)
+
+          if(err.status==403){
+          localStorage.clear()
+          this.guard.canActivate()
+        }
+
+          return caught
+        }
+
+      ))
+        return this.customer
+   }
+
    addCustomer(customer:customerData): Observable<customerData>{
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     this.customer = this.http.post<customerData>(`${this.baseUrl}/customer`,customer,{headers}).pipe(
