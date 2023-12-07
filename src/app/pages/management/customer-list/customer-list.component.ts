@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { customerData } from 'src/app/models/customerData';
 import { CustomerService } from 'src/app/services/customer.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-customer-list',
@@ -42,6 +43,11 @@ export class CustomerListComponent implements OnInit {
     }else{
       this.buttonText = "Adicionar Cliente"
     }
+  }
+
+  print(a:any){
+    console.log(a)
+    environment.idAux  = a
   }
 
 
