@@ -41,7 +41,7 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
 
-   //this.getCustomers()
+   this.getCustomer()
 
   }
 
@@ -85,19 +85,19 @@ export class CustomerComponent implements OnInit {
   }
 
 
-  /*getCustomers(){
-    this.service.getCustomers().subscribe((customers) => {
+  getCustomer(){
+    this.service.getCustomer(environment.idAux).subscribe((customer) => {
 
-      this.customers = customers
+      this.customer= customer
     
-      console.log(customers[0].name)
+      console.log(customer.name)
 
-      console.log(customers[0].dependents[0])
-      console.log(customers[0].dependents[0].name)
+      console.log(customer.dependents[0])
+      console.log(customer.dependents[0].name)
 
 
     })
-  }*/
+  }
 
   editCustomer(){
     this.isDisable = false
