@@ -75,5 +75,16 @@ export class EmployeeService {
         return this.employee
   }
 
+  putEmployee(newEmployee: EmployeeData, id:number): Observable<EmployeeData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    this.employee = this.http.put<EmployeeData>(`${this.baseUrl}/employee/${id}`,newEmployee,{headers}).pipe(
+      catchError((err:any, caught:Observable<EmployeeData>) => {
+        console.log(err)
+        return caught
+      })
+    )
+
+    return this.employee
+  }
 
 }
