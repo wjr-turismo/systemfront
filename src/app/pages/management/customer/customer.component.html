@@ -1,6 +1,6 @@
 <app-menu [userLogged]="user"></app-menu>
 
-<div class="customer-container"*ngIf="isDisable==true">
+<div class="customer-container" *ngIf="isDisable==true">
 
     <div class="formCard-customer">
            <h2 style="margin-bottom: 1rem;">Cliente</h2>
@@ -8,39 +8,39 @@
                 <div class="main">
                     <div class="fields">
                         <label for="name">Nome</label>
-                    <input type="text"id="name" formControlName="name" placeholder="">
+                    <input type="text"id="name" disabled="true" [placeholder]="customer.name">
                     </div>
                     <div class="fields">
                         <label for="name">E-mail</label>
-                        <input type="text"id="email" formControlName="email" placeholder="">
+                        <input type="text"id="email"  disabled="true" [placeholder]="customer.email">
                     </div>
                     <div class="fields">
                         <label for="cpf">CPF</label>
-                        <input type="number"id="cpf" maxlength="11" formControlName="cpf" placeholder="Apenas Números">
+                        <input type="number"id="cpf" maxlength="11" disabled="true" [placeholder]="customer.cpf">
                     </div>
                     <div class="fields">
                         <label for="cpf">RG</label>
-                        <input type="text"id="rg" formControlName="rg" placeholder="">
+                        <input type="text"id="rg" disabled="true" [placeholder]="customer.rg">
                     </div>
                     <div class="fields">
                         <label for="birth">Data Nasc.</label>
-                        <input type="text" maxlength="10" id="birth" formControlName="birth" placeholder="dd/mm/aaaa">
+                        <input type="text" maxlength="10" id="birth" disabled="true" [placeholder]="customer.birth">
                     </div>
                     <div class="fields">
                         <label for="places">Destino Viagens</label>
-                        <input type="text"id="places" formControlName="places">
+                        <input type="text"id="places" disabled="true" [placeholder]="customer.places">
                     </div>
                     <div class="fields">
                         <label for="tripDates">Data Viagens</label>
-                        <input type="tripDates" id="tripDates" formControlName="tripDates" placeholder="">
+                        <input type="tripDates" id="tripDates" disabled="true" [placeholder]="customer.tripDates">
                     </div>
                     <div class="fields">
                         <label for="whats">WhatsApp</label>
-                        <input type="text"id="whats" formControlName="whats" placeholder="">
+                        <input type="text"id="whats" disabled="true" [placeholder]="customer.phone[0].whats">
                     </div>
                     <div class="fields">
                         <label for="phone">Telefone</label>
-                        <input type="text"id="personal" formControlName="personal" placeholder="">
+                        <input type="text"id="personal" disabled="true" [placeholder]="customer.phone[0].personal">
                     </div>
         
                 </div>
@@ -49,19 +49,19 @@
                 <div class="dependents">
                     <div class="fields">
                         <label for="name">Nome</label>
-                        <input type="text"id="personal" formControlName="namedep1" placeholder="">
+                        <input type="text"id="namedep1" disabled="true" [placeholder]="customer.dependents[0].name">
                     </div>
                     <div class="fields">
                         <label for="descriptiondep1">Descrição</label>
-                        <input type="text"id="descriptiondep1" formControlName="descriptiondep1" placeholder="">
+                        <input type="text"id="descriptiondep1" disabled="true" [placeholder]="customer.dependents[0].description">
                     </div>
                     <div class="fields">
                         <label for="cpf">CPF</label>
-                        <input type="number"id="cpf" formControlName="cpfdep1" placeholder="Apenas Números">
+                        <input type="number"id="cpf" disabled="true" [placeholder]="customer.dependents[0].cpf">
                     </div>
                        <div class="fields">
                         <label for="rgdep1">RG</label>
-                        <input type="text"id="rgdep1" formControlName="rgdep1" placeholder="">
+                        <input type="text"id="rgdep1" disabled="true" [placeholder]="customer.dependents[0].rg">
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
 <div class="customer-container"*ngIf="isDisable==false">
 
     <div class="formCard-customer">
-           <h2 style="margin-bottom: 1rem;">Cliente</h2>
+           <h2 style="margin-bottom: 1rem;">Editar Cliente</h2>
             <form [formGroup]="customerForm" (submit)="registercustomer()" action="" class="form">
                 <div class="main">
                     <div class="fields">
