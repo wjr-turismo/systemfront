@@ -27,6 +27,8 @@ export class CustomerComponent implements OnInit {
     cpfdep1: new FormControl(null)
   })
 
+  isDisable: boolean = true
+
   customer!: customerData|any
 
   customers!: customerData[]
@@ -96,9 +98,32 @@ export class CustomerComponent implements OnInit {
 
     })
   }*/
+
+  editCustomer(){
+    this.isDisable = false
+    
+    this.customerForm.controls.name.setValue(this.customer.name)
+    this.customerForm.controls.cpf.setValue(this.customer.cpf)
+    this.customerForm.controls.rg.setValue(this.customer.rg)
+    this.customerForm.controls.birth.setValue(this.customer.birth)
+    this.customerForm.controls.email.setValue(this.customer.email)
+    this.customerForm.controls.places.setValue(this.customer.places)
+    this.customerForm.controls.tripDates.setValue(this.customer.tripDates)
+    this.customerForm.controls.namedep1.setValue(this.customer.namedep1)
+    this.customerForm.controls.descriptiondep1.setValue(this.customer.descriptiondep1)
+    this.customerForm.controls.rgdep1.setValue(this.customer.rgdep1)
+    this.customerForm.controls.cpfdep1.setValue(this.customer.cpfdep1)
+    this.customerForm.controls.whats.setValue(this.customer.whats)
+    this.customerForm.controls.personal.setValue(this.customer.personal)
+       
+  }
+
+  disable(){
+    this.isDisable = true
+  }
   
 
-      }
+}
 
 
   
