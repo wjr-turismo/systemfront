@@ -109,12 +109,12 @@ export class CustomerComponent implements OnInit {
     this.customerForm.controls.email.setValue(this.customer.email)
     this.customerForm.controls.places.setValue(this.customer.places)
     this.customerForm.controls.tripDates.setValue(this.customer.tripDates)
-    this.customerForm.controls.namedep1.setValue(this.customer.namedep1)
-    this.customerForm.controls.descriptiondep1.setValue(this.customer.descriptiondep1)
-    this.customerForm.controls.rgdep1.setValue(this.customer.rgdep1)
-    this.customerForm.controls.cpfdep1.setValue(this.customer.cpfdep1)
-    this.customerForm.controls.whats.setValue(this.customer.whats)
-    this.customerForm.controls.personal.setValue(this.customer.personal)
+    this.customerForm.controls.namedep1.setValue(this.customer.dependents[0].name)
+    this.customerForm.controls.descriptiondep1.setValue(this.customer.dependents[0].description)
+    this.customerForm.controls.rgdep1.setValue(this.customer.dependents[0].rg)
+    this.customerForm.controls.cpfdep1.setValue(this.customer.dependents[0].cpf)
+    this.customerForm.controls.whats.setValue(this.customer.phone[0].whats)
+    this.customerForm.controls.personal.setValue(this.customer.phone[0].personal)
        
   }
 
