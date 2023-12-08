@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeData } from 'src/app/models/employeeData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { environment } from 'src/environments/environment';
 
@@ -32,11 +33,11 @@ export class EmployeeComponent implements OnInit {
 
   
 
-  constructor(private service: EmployeeService) { }
+  constructor(private service: EmployeeService, private guard: AuthGuardService) { }
 
   ngOnInit(): void {
 
-    this.getEmployee() 
+   if(environment.idAux!=0){ this.getEmployee() }
     
 
   }
@@ -65,11 +66,6 @@ export class EmployeeComponent implements OnInit {
     })
     
 
-    console.log("IMPRIMINDO")
-    console.log(this.employeeForm)
-    console.log(`Whats: ${this.employeeForm.controls.whats.value}`)
-    console.log(this.employee)
-
   }
 
   getEmployee(){
@@ -93,9 +89,48 @@ export class EmployeeComponent implements OnInit {
     this.employeeForm.controls.whats.setValue(this.employee.phone[0].whats)
     this.employeeForm.controls.personal.setValue(this.employee.phone[0].personal)
     this.employeeForm.controls.email.setValue(this.employee.email)
+    this.employeeForm.controls.password.setValue(this.employee.password)
     
     
     
+  }
+
+  putEmployee(){
+
+    this.employee = {
+      name :  this.employeeForm.controls.name.value,
+      cpf : this.employeeForm.controls.cpf.value,
+      rg :  this.employeeForm.controls.rg.value,
+      birth :  this.employeeForm.controls.birth.value,
+      password :  this.employeeForm.controls.password.value,
+      role :  this.employeeForm.controls.role.value,
+      commission : this.employeeForm.controls.commission.value,
+      phone : [
+       {
+          whats :  this.employeeForm.controls.whats.value,
+          personal : this.employeeForm.controls.personal.value
+       }
+     ],
+      email :  this.employeeForm.controls.email.value 
+    }
+
+    console.log(this.employee)
+    this.service.putEmployee(this.employee,environment.idAux).subscribe((response) => {
+      if(this.employee.role == "ADMIN"){
+        localStorage.clear()
+        this.guard.canActivate()
+    }
+    })
+
+
+ 
+
+ 
+    
+
+ 
+    
+
   }
 
   disable(){
