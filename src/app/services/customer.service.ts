@@ -39,7 +39,7 @@ export class CustomerService {
 
    getCustomer(cpf:number):Observable<customerData>{
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-    this.customer = this.http.get<customerData>(`${this.baseUrl}/customer/${cpf}`,{headers}).pipe(
+    this.customer = this.http.get<customerData>(`${this.baseUrl}/customer/${cpf}`,{headers},).pipe(
         catchError((err:any , caught: Observable<customerData>) => {
           console.log(err)
 
