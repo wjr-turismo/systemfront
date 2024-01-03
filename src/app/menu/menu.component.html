@@ -15,8 +15,7 @@
         </a>
             <a routerLink="/management" 
             routerLinkActive="page_activated"
-            ariaCurrentWhenActive="page" mouse
-            *ngIf="userLogged.role=='admin'">
+            ariaCurrentWhenActive="page" mouse>
             <li>Gerenciar</li>
         </a>
             <a routerLink="/customer" (click)="logout()"><li>logout</li></a>
