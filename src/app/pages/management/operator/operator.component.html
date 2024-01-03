@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </form>
-            <div class="buttons">
+            <div class="buttons" *ngIf="user.role=='admin'">
                 <button type="submit" (click)="editOperator()">Editar</button>
                 <button type="submit" (click)="registerOperator()">Excluir</button>
             </div>
