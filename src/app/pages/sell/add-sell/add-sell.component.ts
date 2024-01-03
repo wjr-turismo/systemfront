@@ -34,7 +34,7 @@ export class AddSellComponent implements OnInit {
   registersell(){
     
     this.sell = {
-      employeeName: localStorage.getItem('name'),
+      employeeName: localStorage.getItem('user'),
       employeeEmail: localStorage.getItem('email'),
       operator: this.sellForm.controls.operator.value,
       bookingNumber: this.sellForm.controls.bookingNumber.value,
