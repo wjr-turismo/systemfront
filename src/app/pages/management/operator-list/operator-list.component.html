@@ -2,7 +2,7 @@
 
 
     <div class="content">
-        <div class="tabs-management">
+        <div class="tabs-management" *ngIf="user.role=='admin'">
             <button (click)="toogle()" >{{buttonText}}</button>
         </div>
     
