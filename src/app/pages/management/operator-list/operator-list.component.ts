@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class OperatorListComponent implements OnInit {
 
+  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
+
   isTableShown:boolean = true
 
   operators!: operatorData[] |any
