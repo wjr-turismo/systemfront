@@ -11,6 +11,7 @@
             </a>
             <a 
             (click)="toogle('empl')"
+            *ngIf="user.role=='admin'"
             >
                 <li>Funcionários</li>
             </a>        
