@@ -8,5 +8,6 @@ export interface SellData {
     commission: number,
     overBonus: number,
     sellerBonus: number,
-    managerBonus: number
+    managerBonus: number,
+    date: Date
 }

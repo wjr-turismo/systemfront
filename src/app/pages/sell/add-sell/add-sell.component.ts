@@ -28,6 +28,7 @@ export class AddSellComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOperators()
+    console.log(Date())
   }
 
 
@@ -43,10 +44,12 @@ export class AddSellComponent implements OnInit {
       commission: null,
       overBonus: this.sellForm.controls.overBonus.value,
       sellerBonus: null,
-      managerBonus: null
+      managerBonus: null,
+      date: new Date()
     }
     console.log(this.sellForm)
     console.log(`Sell: ${this.sell}`)
+    console.log(`Sell: ${this.sell.date}`)
 
     this.service.addSell(this.sell).subscribe((response) => {
       console.log(response)
