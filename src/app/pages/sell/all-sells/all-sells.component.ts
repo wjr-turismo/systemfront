@@ -102,6 +102,9 @@ export class AllSellsComponent implements OnInit {
       console.log(sell)
   }
 
+  clean(){
+    this.sellsFiltered = this.sells
+  }
 
 
 }
