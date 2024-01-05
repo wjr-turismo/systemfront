@@ -1,6 +1,13 @@
 <div class="sell-list-container">
 
 
+    <input type="date" name="" id="" [(ngModel)]="dateFrom">
+    <input type="date" name="" id="" [(ngModel)]="dateTo">
+
+    <p>{{dateFrom}}</p>
+
+    <button type="button" (click)="dateFilter()">Printa</button>
+
     <div class="content">
     
         <div class="table-sell-list">
@@ -12,7 +19,7 @@
                 <td>RAV</td>
                 <td>Comissão</td>
             </thead>
-            <tbody *ngFor="let i of sells" (click)="print(i.employeeEmail)">       
+            <tbody *ngFor="let i of sellsFiltered" (click)="selectSell(i.id)">       
                     <td>{{i.operator}}</td>
                     <td>{{i.bookingNumber}}</td>
                     <td> R${{i.sellAmount | number:'1.2-2':'br'}}</td>
