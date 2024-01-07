@@ -1,13 +1,21 @@
 <div class="allsells-container">
 
-    <div class="filter-allsells">
-        <input type="date" name="" id="" [(ngModel)]="dateFrom">
-        <input type="date" name="" id="" [(ngModel)]="dateTo">
+
+    <div class="filter-allsells" style="margin-top: 2rem; border-right: solid gray 1px;">
+        <div class="filter-date-allsells">
+            <span>Inicial:</span>
+            <input type="date" name="" id="" [(ngModel)]="dateFrom">
+        </div>
+        <div class="filter-date-allsells">
+            <span>Final:</span>
+            <input type="date" name="" id="" [(ngModel)]="dateTo">
+        </div>
     
-        <p>{{dateFrom}}</p>
+        <div class="filter-buttons-allsells">
+            <button type="button" (click)="dateFilter()">Filtrar</button>
+            <button type="button" (click)="clean()">Limpar</button>
+        </div>
     
-        <button type="button" (click)="dateFilter()">Printa</button>
-        <button type="button" (click)="clean()">Clear</button>
     </div>
 
 

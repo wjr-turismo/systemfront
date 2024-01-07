@@ -7,6 +7,29 @@
     align-items: center;
 }
 
+.allsells-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: top;
+    gap: 1rem;
+}
+
+.filter-allsells{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-date-allsells{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.filter-buttons-allsells > button{
+    margin: 0.5rem;
+}
+
 .allsells-container > table{
     border-color: solid black 2px;
 }

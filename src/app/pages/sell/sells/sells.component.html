@@ -1,17 +1,24 @@
 <div class="sell-container">
 
 
-<div class="filter-sell">
-    <input type="date" name="" id="" [(ngModel)]="dateFrom">
-    <input type="date" name="" id="" [(ngModel)]="dateTo">
+    <div class="filter-sell" style="margin-top: 2rem; border-right: solid gray 1px;">
+        <div class="filter-date-sell">
+            <span>Inicial:</span>
+            <input type="date" name="" id="" [(ngModel)]="dateFrom">
+        </div>
+        <div class="filter-date-sell">
+            <span>Final:</span>
+            <input type="date" name="" id="" [(ngModel)]="dateTo">
+        </div>
+    
+        <div class="filter-buttons-sell">
+            <button type="button" (click)="dateFilter()">Filtrar</button>
+            <button type="button" (click)="clean()">Limpar</button>
+        </div>
+    
+    </div>
 
-    <p>{{dateFrom}}</p>
-
-    <button type="button" (click)="dateFilter()">Printa</button>
-    <button type="button" (click)="clean()">Clear</button>
-</div>
-
-    <div class="content">
+    <div class="content" >
     
         <div class="table-sell-list">
         <table>
@@ -40,5 +47,5 @@
     
     </div>
     
-    </div>
+</div>
     
