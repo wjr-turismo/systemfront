@@ -3,6 +3,8 @@ import { SellData } from 'src/app/models/sellData';
 import { SellService } from 'src/app/services/sell.service';
 import { registerLocaleData } from '@angular/common'
 import localeBr from '@angular/common/locales/br'
+import { EmployeeService } from 'src/app/services/employee.service';
+import { EmployeeData } from 'src/app/models/employeeData';
 registerLocaleData(localeBr,'br')
 
 @Component({
@@ -18,14 +20,18 @@ export class AllSellsComponent implements OnInit {
   sells!: SellData[] | any
   sellsFiltered!: SellData[] | any
 
+  employees!:EmployeeData[] |any
+  employee:string = ""
+
   totalSells:number = 0
   totalRAV:number = 0
   totalCommission:number = 0
 
-  constructor(private service: SellService) { }
+  constructor(private service: SellService, private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
     this.getSells()
+    this.getEmployees()
   }
 
 
@@ -45,9 +51,19 @@ export class AllSellsComponent implements OnInit {
     })
   }
 
+  getEmployees(){
+    this.employeeService.getEmployees().subscribe((employess) => {
+
+      this.employees = employess
+      console.log(employess)
+
+    })
+  }
 
   dateFilter(){
     
+    console.log(`Employee: ${this.employee}`)
+
     this.sellsFiltered = []
     
     if(this.dateFrom!=null && this.dateTo!=null){
@@ -64,12 +80,19 @@ export class AllSellsComponent implements OnInit {
     var day = new Date(Date.parse(`${this.sells[i].date}`))
 
     if(day >= from && day<= to){
-      
-      this.sellsFiltered.push(this.sells[i])
-    
-      this.totalSells += this.sells[i].sellAmount;
-      this.totalRAV += this.sells[i].rav;
-      
+
+      if(this.employee != ""){
+        if(this.employee == this.sells[i].employeeName){
+          this.sellsFiltered.push(this.sells[i])
+          this.totalSells += this.sells[i].sellAmount;
+          this.totalRAV += this.sells[i].rav;
+        }
+      }else{
+        this.sellsFiltered.push(this.sells[i])
+        this.totalSells += this.sells[i].sellAmount;
+        this.totalRAV += this.sells[i].rav;
+      }
+
     }
 
    }

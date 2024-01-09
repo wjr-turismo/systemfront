@@ -26,6 +26,12 @@
     padding: 0.5rem;
 }
 
+.filter-employee-allsells {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
 .filter-buttons-allsells > button{
     margin: 0.5rem;
 }

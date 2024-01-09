@@ -10,6 +10,13 @@
             <span>Final:</span>
             <input type="date" name="" id="" [(ngModel)]="dateTo">
         </div>
+        <div class="filter-employee-allsells">
+            <span>Colaborador:</span>
+            <input list="employee" name="myBrowser" [(ngModel)]="employee">
+                <datalist id="employee">
+                    <option *ngFor="let i of employees" [value]="i.name">
+                </datalist>
+        </div>
     
         <div class="filter-buttons-allsells">
             <button type="button" (click)="dateFilter()">Filtrar</button>
@@ -46,7 +53,7 @@
             <td>R${{totalCommission | number:'1.2-2':'br'}}</td>
     
         </table>
-        </div>
+    </div>
     
     </div>
     
