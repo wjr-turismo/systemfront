@@ -87,4 +87,15 @@ export class EmployeeService {
     return this.employee
   }
 
+  deleteEmployee(cpf:number): Observable<EmployeeData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    this.employee = this.http.delete<EmployeeData>(`${this.baseUrl}/employee/${cpf}`,{headers}).pipe(
+      catchError((err:any, caught: Observable<EmployeeData>) => {
+        console.log(err)
+        return caught
+      })
+    )
+    return this.employee
+  }
+
 }
