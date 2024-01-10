@@ -120,20 +120,21 @@ export class EmployeeComponent implements OnInit {
         localStorage.clear()
         this.guard.canActivate()
     }
-    })
-
-
- 
-
- 
-    
-
- 
-    
+    }) 
 
   }
 
   disable(){
     this.isDisable = true
+  }
+
+  deleteEmployee(id:number){
+   
+   console.log(id)
+  this.service.deleteEmployee(id).subscribe((response) => {
+    alert(`${response.name} foi removida`)
+    window.location.assign('management')
+  })
+
   }
 }
