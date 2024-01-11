@@ -118,6 +118,16 @@ export class CustomerComponent implements OnInit {
        
   }
 
+  deleteCustomer(id:number){
+    this.service.deleteCustomer(id).subscribe((response) => {
+      this.customer = response
+      console.log(this.customer)
+      alert(`Cliente ${this.customer.name} foi removido(a)`)
+      window.location.assign('management')
+      
+    })
+  }
+
   disable(){
     this.isDisable = true
   }
