@@ -95,4 +95,14 @@ export class OperatorComponent implements OnInit {
     }
 
   }
+
+  deleteOperator(id:number){
+    console.log(id)
+
+    this.service.deleteOperator(id).subscribe((response) => {
+      alert(` Operadora ${response.name} removida`)
+      window.location.assign('management')
+      
+    })
+  }
 }

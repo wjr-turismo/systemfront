@@ -75,5 +75,18 @@ export class OperatorService {
     return this.operator
   }
 
+  deleteOperator(id:number):Observable<operatorData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    this.operator = this.http.delete<operatorData>(`${this.baseUrl}/operator/${id}`,{headers}).pipe(
+
+
+      catchError((err:any, caught:Observable<operatorData>)=> {
+        console.log(err)
+        return caught
+      })
+    )
+    return this.operator
+  }
+
 
 }
