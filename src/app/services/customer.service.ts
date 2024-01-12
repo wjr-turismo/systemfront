@@ -66,6 +66,18 @@ export class CustomerService {
                     return this.customer
    }
 
+   putCustomer(customer: customerData,id:number): Observable<customerData>{
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}`}
+    this.customer = this.http.put<customerData>(`${this.baseUrl}/customer/${id}`,customer,{headers}).pipe(
+      catchError((err:any, caught: Observable<customerData>) => {
+        console.log(err)
+        return caught
+      })
+    )
+    return this.customer
+   }
+
+
    deleteCustomer(id:number): Observable<customerData>{
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     this.customer = this.http.delete<customerData>(`${this.baseUrl}/customer/${id}`,{headers}).pipe(

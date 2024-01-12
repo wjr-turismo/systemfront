@@ -118,6 +118,40 @@ export class CustomerComponent implements OnInit {
        
   }
 
+  putCustomer(){
+    this.customer = {
+      name: this.customerForm.controls.name.value,
+      cpf: this.customerForm.controls.cpf.value,
+      rg: this.customerForm.controls.rg.value,
+      birth: this.customerForm.controls.birth.value,
+      email: this.customerForm.controls.email.value,
+      places: this.customerForm.controls.places.value,
+      tripDates: this.customerForm.controls.tripDates.value,
+      dependents: [
+        {
+          name: this.customerForm.controls.namedep1.value,
+          description: this.customerForm.controls.descriptiondep1.value,
+          rg: this.customerForm.controls.rgdep1.value,
+          cpf: this.customerForm.controls.cpfdep1.value
+        }
+      ],
+      phone: [
+        {
+          whats: this.customerForm.controls.whats.value,
+          personal: this.customerForm.controls.personal.value
+        }
+      ]
+    }
+
+    this.service.putCustomer(this.customer,environment.idAux).subscribe((response)=>{
+      this.customer = response
+      alert(`Dados de ${this.customer.name} foram atualizados.`)
+      window.location.assign('management')
+    })
+
+
+  }
+
   deleteCustomer(id:number){
     this.service.deleteCustomer(id).subscribe((response) => {
       this.customer = response
