@@ -15,7 +15,7 @@
             </thead>
             <tbody *ngFor="let i of customers"
             routerLink="/customer"
-            (click)="print(i.cpf)"
+            (click)="print(i.id)"
             >
                 <td>{{i.name}}</td>
                 <td>{{i.email}}</td>
