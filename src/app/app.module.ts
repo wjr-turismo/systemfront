@@ -54,15 +54,6 @@ import { OperatorComponent } from './pages/management/operator/operator.componen
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot([
-      {path:'customer', component: CustomerComponent,canActivate:[AuthGuardService]},
-      {path:'employee', component: EmployeeComponent, canActivate:[AuthGuardService]},
-      {path:'homesystem', component: HomesystemComponent,canActivate:[AuthGuardService]},
-      {path:'operator', component: OperatorComponent, canActivate: [AuthGuardService]},
-      {path:'management', component: ManagementComponent,canActivate:[AuthGuardService]},
-      {path:'sell', component: SellComponent, canActivate:[AuthGuardService]},
-      {path:'login', component: LoginComponent}
-    ])
 
   ],
   providers: [],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginData } from 'src/app/models/loginData';
 import { LoginResponseData } from 'src/app/models/loginResponseData';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   }) 
 
-  constructor(private service:LoginService, private guard: AuthGuardService) {
+  constructor(private service:LoginService, private guard: AuthGuardService, private router: Router) {
     this.sct = environment.sct
 
     this.loginForm.valueChanges.subscribe((values)=> {
@@ -65,7 +66,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role',this.loginResponse.role)
           localStorage.setItem('email',this.loginResponse.email)
           //this.guard.canActivate(this.loginResponse.loggedIn)
-          window.location.assign('/homesystem')
+          //window.location.assign('/homesystem')
+          this.router.navigate(['homesystem'])
         }
         console.log(this.loginResponse)
 
