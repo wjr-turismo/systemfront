@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EmployeeData } from 'src/app/models/employeeData';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -25,7 +26,7 @@ export class EmployeeFormComponent implements OnInit {
 
   employee!: EmployeeData | any
 
-  constructor(private service: EmployeeService) { }
+  constructor(private service: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -50,14 +51,10 @@ export class EmployeeFormComponent implements OnInit {
     }
     
     this.service.addEmployee(this.employee).subscribe((response) => {
-      console.log(`Response: ${response.name}`)
+      alert(` Funcionário ${response.name} cadastrado com sucesso!`)
+      this.router.navigate(['management'])
     })
     
-
-    console.log("IMPRIMINDO")
-    console.log(this.employeeForm)
-    console.log(`Whats: ${this.employeeForm.controls.whats.value}`)
-    console.log(this.employee)
     this.employeeForm.reset()
 
   }

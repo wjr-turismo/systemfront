@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { operatorData } from 'src/app/models/operatorData';
 import { OperatorService } from 'src/app/services/operator.service';
 
@@ -20,7 +21,7 @@ export class OperatorFormComponent implements OnInit {
     representativePhone: new FormControl('')
   })
 
-  constructor(private service: OperatorService) { }
+  constructor(private service: OperatorService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,9 +37,10 @@ export class OperatorFormComponent implements OnInit {
       representativePhone: this.operatorForm.controls.representativePhone.value
     }
 
-    console.log(this.operator)
+    
     this.service.addOperator(this.operator).subscribe((response) =>{
-        console.log(`RESPONSE: ${response}`)
+      alert(` Operadora ${response.name} cadastrada com sucesso!`)
+      this.router.navigate(['management'])
     })
 
     this.operatorForm.reset()

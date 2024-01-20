@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { customerData } from 'src/app/models/customerData';
 import { CustomerService } from 'src/app/services/customer.service';
 
@@ -28,7 +29,7 @@ export class CustomerFormComponent implements OnInit {
 
   customer!: customerData|any
 
-  constructor(private service: CustomerService) { }
+  constructor(private service: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,7 +37,7 @@ export class CustomerFormComponent implements OnInit {
 
   registercustomer(){
 
-    console.log(this.customerForm)
+    
 
     this.customer = {
       name: this.customerForm.controls.name.value,
@@ -62,14 +63,14 @@ export class CustomerFormComponent implements OnInit {
       ]
     }
 
-    console.log(` CUSTOMER:  ${this.customer}`)
-    console.log(`${this.customerForm.controls.name.value}`)
 
     this.service.addCustomer(this.customer).subscribe((response) => {
-      console.log(`Response: ${response}`)
+      
       this.customer = response
+      alert(`Cliente ${this.customer.name} cadastrado com sucesso!`)
+      this.router.navigate(['management'])
     })
-    console.log(`RETURN: ${this.customer}`)
+    
 
     this.customerForm.reset()
     

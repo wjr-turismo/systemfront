@@ -28,7 +28,7 @@ export class AddSellComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOperators()
-    console.log(Date())
+    
   }
 
 
@@ -47,12 +47,10 @@ export class AddSellComponent implements OnInit {
       managerBonus: null,
       date: new Date()
     }
-    console.log(this.sellForm)
-    console.log(`Sell: ${this.sell}`)
-    console.log(`Sell: ${this.sell.date}`)
+
 
     this.service.addSell(this.sell).subscribe((response) => {
-      console.log(response)
+      alert(`Venda cadastrada com sucesso! Obrigado, ${localStorage.getItem('user')}.`)
     })
 
 
@@ -63,9 +61,7 @@ export class AddSellComponent implements OnInit {
   getOperators(){
     this.operatorService.getOperators().subscribe((response) => {
 
-      console.log(response)
       this.operators = response
-      console.log(this.operators)
 
       
     })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { operatorData } from 'src/app/models/operatorData';
 import { OperatorService } from 'src/app/services/operator.service';
 import { environment } from 'src/environments/environment';
@@ -25,7 +26,7 @@ export class OperatorComponent implements OnInit {
     representativePhone: new FormControl('')
   })
 
-  constructor(private service: OperatorService) { }
+  constructor(private service: OperatorService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -45,19 +46,20 @@ export class OperatorComponent implements OnInit {
       representativePhone: this.operatorForm.controls.representativePhone.value
     }
 
-    console.log(this.operator)
+    
     
     this.service.addOperator(this.operator).subscribe((response) =>{
-        console.log(`RESPONSE: ${response}`)
+      alert(` Operadora ${response.name} cadastrada com sucesso!`)
+      this.router.navigate(['management'])
     })
 
 
   }
 
   getOperator(){
-    console.log(environment.idAux)
+  
     this.service.getOperator(environment.idAux).subscribe((response) => {
-      console.log(`response: ${response.name}`)
+      
       this.operator = response
     })
   }
@@ -86,22 +88,23 @@ export class OperatorComponent implements OnInit {
       representativePhone: this.operatorForm.controls.representativePhone.value
     }
 
-    console.log(this.operator)
+    
     
     if(environment.idAux!=0){
       this.service.putOperator(this.operator,environment.idAux).subscribe((response) =>{
-        console.log(`RESPONSE: ${response}`)
+        alert(` Operadora ${response.name} atualizada com sucesso!`)
+        this.router.navigate(['management'])
     })
     }
 
   }
 
   deleteOperator(id:number){
-    console.log(id)
+    
 
     this.service.deleteOperator(id).subscribe((response) => {
-      alert(` Operadora ${response.name} removida`)
-      window.location.assign('management')
+      alert(` Operadora ${response.name} removida com sucesso!`)
+      this.router.navigate(['management'])
       
     })
   }

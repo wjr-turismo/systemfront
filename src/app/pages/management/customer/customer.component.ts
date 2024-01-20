@@ -4,6 +4,7 @@ import { CustomerService } from '../../../services/customer.service'
 import { environment } from 'src/environments/environment';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -37,7 +38,7 @@ export class CustomerComponent implements OnInit {
 
   sct!:string
 
-  constructor(private service: CustomerService) {}
+  constructor(private service: CustomerService, private router: Router) {}
 
   ngOnInit(): void {
 
@@ -46,7 +47,7 @@ export class CustomerComponent implements OnInit {
   }
 
   registercustomer(){
-    console.log(this.customerForm)
+    
 
     this.customer = {
       name: this.customerForm.controls.name.value,
@@ -72,14 +73,13 @@ export class CustomerComponent implements OnInit {
       ]
     }
 
-    console.log(` CUSTOMER:  ${this.customer}`)
-    console.log(`${this.customerForm.controls.name.value}`)
 
     this.service.addCustomer(this.customer).subscribe((response) => {
-      console.log(`Response: ${response}`)
       this.customer = response
+
+      alert(`Cliente ${response.name} cadastrado com sucesso!`)
+      this.router.navigate(['management'])
     })
-    console.log(`RETURN: ${this.customer}`)
 
     this.customerForm.reset()
   }
@@ -89,11 +89,6 @@ export class CustomerComponent implements OnInit {
     this.service.getCustomer(environment.idAux).subscribe((customer) => {
 
       this.customer= customer
-    
-      console.log(customer.name)
-
-      console.log(customer.dependents[0])
-      console.log(customer.dependents[0].name)
 
 
     })
@@ -145,8 +140,8 @@ export class CustomerComponent implements OnInit {
 
     this.service.putCustomer(this.customer,environment.idAux).subscribe((response)=>{
       this.customer = response
-      alert(`Dados de ${this.customer.name} foram atualizados.`)
-      window.location.assign('management')
+      alert(`Cliente ${this.customer.name} atualizado com sucesso!`)
+      this.router.navigate(['management'])
     })
 
 
@@ -155,9 +150,9 @@ export class CustomerComponent implements OnInit {
   deleteCustomer(id:number){
     this.service.deleteCustomer(id).subscribe((response) => {
       this.customer = response
-      console.log(this.customer)
-      alert(`Cliente ${this.customer.name} foi removido(a)`)
-      window.location.assign('management')
+
+      alert(`Cliente ${this.customer.name} removido com sucesso!`)
+      this.router.navigate(['management'])
       
     })
   }

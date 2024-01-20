@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EmployeeData } from 'src/app/models/employeeData';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -33,7 +34,7 @@ export class EmployeeComponent implements OnInit {
 
   
 
-  constructor(private service: EmployeeService, private guard: AuthGuardService) { }
+  constructor(private service: EmployeeService, private guard: AuthGuardService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -62,7 +63,8 @@ export class EmployeeComponent implements OnInit {
     }
     
     this.service.addEmployee(this.employee).subscribe((response) => {
-      console.log(`Response: ${response.name}`)
+      alert(` Funcionário ${response.name} cadastrado com sucesso!`)
+      this.router.navigate(['management'])
     })
     
 
@@ -114,8 +116,11 @@ export class EmployeeComponent implements OnInit {
       email :  this.employeeForm.controls.email.value 
     }
 
-    console.log(this.employee)
+    
     this.service.putEmployee(this.employee,environment.idAux).subscribe((response) => {
+      alert(` Funcionário ${response.name} atualizado com sucesso!`)
+      this.router.navigate(['management'])
+
       if(this.employee.role == "ADMIN"){
         localStorage.clear()
         this.guard.canActivate()
@@ -130,10 +135,10 @@ export class EmployeeComponent implements OnInit {
 
   deleteEmployee(id:number){
    
-   console.log(id)
+   
   this.service.deleteEmployee(id).subscribe((response) => {
-    alert(`${response.name} foi removida`)
-    window.location.assign('management')
+    alert(` Funcionário ${response.name} removido com sucesso!`)
+      this.router.navigate(['management'])
   })
 
   }
