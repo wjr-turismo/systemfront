@@ -41,8 +41,8 @@
             <tbody *ngFor="let i of sellsFiltered" (click)="selectSell(i.id)">       
                     <td>{{i.operator}}</td>
                     <td>{{i.bookingNumber}}</td>
-                    <td> R${{i.sellAmount | number:'1.2-2':'br'}}</td>
-                    <td>R${{i.rav | number:'':'br'}}</td>
+                    <td> R${{i.sellAmount |number:'1.2-2':'br'}}</td>
+                    <td>R${{i.rav | number:'1.2-2':'br'}}</td>
                     <td> </td>
                     <td>{{i.employeeName}}</td>
             </tbody>

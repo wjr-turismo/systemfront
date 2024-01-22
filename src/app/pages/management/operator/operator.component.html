@@ -30,7 +30,7 @@
                     </div>
                     <div class="fields">
                         <label for="rephone">Telefone</label>
-                        <input type="text"id="repphone" disabled="true" [placeholder]="operator.representativePhone">
+                        <input type="text"id="repphone" disabled="true" [placeholder]="operator.representativePhone | mask:'(00) 00000-0000'" mask="(00) 00000-0000">
                     </div>
                 </div>
             </form>
@@ -68,7 +68,7 @@
                  </div>
                  <div class="fields">
                      <label for="rephone">Telefone</label>
-                     <input type="text"id="repphone" formControlName="representativePhone">
+                     <input type="text"id="repphone" formControlName="representativePhone" mask="(00) 00000-0000">
                  </div>
              </div>
          </form>

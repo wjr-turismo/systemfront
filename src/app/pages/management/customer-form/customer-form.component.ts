@@ -13,7 +13,7 @@ export class CustomerFormComponent implements OnInit {
 
   customerForm = new FormGroup({
     name :  new FormControl('',[Validators.required]),
-    cpf: new FormControl(null,[Validators.required,Validators.maxLength(11)]),
+    cpf: new FormControl(null,Validators.required),
     rg :  new FormControl(''),
     birth :  new FormControl('') ,
     email :  new FormControl('', [Validators.required, Validators.email]),

@@ -65,6 +65,10 @@ export class AllSellsComponent implements OnInit {
     console.log(`Employee: ${this.employee}`)
 
     this.sellsFiltered = []
+
+    if(this.dateFrom==null || this.dateTo==null){
+      alert('Selecione as datas para filtrar!')
+    }
     
     if(this.dateFrom!=null && this.dateTo!=null){
       this.totalSells = 0

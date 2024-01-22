@@ -20,7 +20,7 @@
             
                 <td>{{i.name}}</td>
                 <td>{{i.email}}</td>
-                <td>{{i.phone[0].whats}}</td>
+                <td>{{i.phone[0].whats | mask:'(00) 00000-0000'}}</td>
                 <td>{{i.role}}</td>
             
         </tbody>
