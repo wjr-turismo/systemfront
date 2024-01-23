@@ -25,7 +25,7 @@ import { SellsComponent } from './pages/sell/sells/sells.component';
 import { AllSellsComponent } from './pages/sell/all-sells/all-sells.component';
 import { EmployeeComponent } from './pages/management/employee/employee.component';
 import { OperatorComponent } from './pages/management/operator/operator.component';
-import { NgxMaskModule  } from 'ngx-mask'
+import { NgxMaskModule  } from 'ngx-mask';
 
 
 @NgModule({
@@ -47,7 +47,7 @@ import { NgxMaskModule  } from 'ngx-mask'
     SellsComponent,
     AllSellsComponent,
     EmployeeComponent,
-    OperatorComponent,
+    OperatorComponent
   ],
   imports: [
     BrowserModule,
