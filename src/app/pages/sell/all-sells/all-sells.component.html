@@ -35,7 +35,7 @@
                 <td>Reserva</td>
                 <td>Valor</td>
                 <td>RAV</td>
-                <td>Comissão</td>
+                <td>Data</td>
                 <td>Funcionário</td>
             </thead>
             <tbody *ngFor="let i of sellsFiltered" (click)="selectSell(i.id)">       
@@ -43,14 +43,32 @@
                     <td>{{i.bookingNumber}}</td>
                     <td> R${{i.sellAmount |number:'1.2-2':'br'}}</td>
                     <td>R${{i.rav | number:'1.2-2':'br'}}</td>
-                    <td> </td>
+                    <td>{{i.date | date:'dd/MM/y'}} </td>
                     <td>{{i.employeeName}}</td>
             </tbody>
+            
+            <tr>
+                <td><hr></td>
+                <td><hr></td>
+                <td><hr></td>
+                <td><hr></td>
+                <td><hr></td>
+                <td><hr></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="font-weight: 600;">Valor</td>
+                <td style="font-weight: 600;">RAV</td>
+                <td style="font-weight: 600;">Comissão</td>
+            </tr>
+            <tr>
             <td style="font-weight: 600;">Total</td>
             <td></td>
             <td>R${{totalSells | number:'1.2-2':'br'}}</td>
             <td>R${{totalRAV | number:'1.2-2':'br'}}</td>
             <td>R${{totalCommission | number:'1.2-2':'br'}}</td>
+            </tr>
     
         </table>
     </div>
