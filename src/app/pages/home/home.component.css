@@ -8,6 +8,9 @@ nav{
     transition: all 1s;
 }
 
+p, h1, span, b {
+    font-family: "Poppins", sans-serif;
+}
 
 .navbg{
     background-color: rgba(240, 248, 255, 0);
@@ -111,4 +114,100 @@ a{
 
 .button-banner button {
     width: 100px;
+    font-weight: bold;
+}
+
+
+#serviços,
+#pacotes,
+#sobre
+{
+    margin: 0 3rem 0;
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.serv-text h1{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 3rem 0 2rem;
+    font-family: "Poppins", sans-serif;
+    animation: fade linear;
+    animation-timeline: view();
+}
+
+@keyframes fade {
+    0%{
+        
+        opacity: 30%;
+        transform: translateY(50%);
+
+        offset-position: 3rem;
+    }
+    85%{
+        
+        opacity: 1;
+        transform: translateY(-50%);
+        offset-position: 0;
+    }
+    
+}
+
+.serv-img{
+    max-width: 50%;
+    overflow: hidden;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    animation: fadeimg linear;
+    animation-timeline: view();
+    
+}
+
+@keyframes fadeimg {
+    0%{
+        transform: translateX(50%);
+        offset-position: 3rem;
+    }
+
+    50%{
+        transform: translateX(0%);
+        offset-position: 0;
+    }
+    
+}
+
+
+.serv-img img{
+    transition: all 1s;
+
+}
+
+.serv-img:hover img {
+    
+    transform: scale(1.1);
+    transition: all 1s;
+}
+
+
+
+.serv-list {
+    border: black solid green;
+    margin: 3rem 0 3rem;
+}
+
+
+.serv-list span{
+    font-size: 26px;
+    font-family: "Poppins", sans-serif;
+}
+
+.serv-list p{
+    font-size: 13px;
+    max-width: 70%;
+    color: rgb(108, 107, 107);
+    padding-top: .5rem;
+    font-family: "Poppins", sans-serif;
 }
