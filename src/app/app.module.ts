@@ -27,7 +27,7 @@ import { EmployeeComponent } from './pages/management/employee/employee.componen
 import { OperatorComponent } from './pages/management/operator/operator.component';
 import { NgxMaskModule  } from 'ngx-mask';
 import { HomeComponent } from './pages/home/home.component';
-import { PacCardComponent } from './home/pac-card/pac-card.component';
+import { PacCardComponent } from './pages/home/pac-card/pac-card.component';
 
 
 @NgModule({
