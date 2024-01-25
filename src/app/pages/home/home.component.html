@@ -28,9 +28,54 @@
 
 
 
-<div id="pacotes" style="margin-bottom: 250px;">
-    <h2 style="margin-top: 50px;">Pacotes</h2>
-    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit facere fugiat debitis est officiis maiores esse quod dicta molestiae perferendis dignissimos deserunt quae, exercitationem id nihil porro asperiores cum deleniti!</span>
+<div id="pacotes">
+    <h1 style="margin-top: 3rem;">Pacotes de Viagens</h1>
+    <div class="pac">
+        <app-pac-card style="transform: translateY(20%);"
+            [srcImg]="'https://s27363.pcdn.co/wp-content/uploads/2023/02/London-Travel-Tips.jpg.optimal.jpg'" 
+            [city]="'Londres'"
+            [pais]="'Reino Unido 🇬🇧'"
+            [price]="'4.500'"
+            [dias]="'5'"
+            [noites]="'6'"
+            [places]="'15'"
+            [atv]="'7'"
+        ></app-pac-card>
+
+        <app-pac-card 
+            [srcImg]="'https://cdn-wordpress-info.futurelearn.com/wp-content/uploads/FL290_Rome_blog_banner-606x303.jpg.optimal.jpg'" 
+            [city]="'Roma'"
+            [pais]="'Itália 🇮🇹'"
+            [price]="'3.500'"
+            [dias]="'3'"
+            [noites]="'4'"
+            [places]="'55'"
+            [atv]="'3'"
+        ></app-pac-card>
+
+        <app-pac-card style="transform: translateY(20%);"
+            [srcImg]="'https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2021/08/49598_FB709B6C2250A9FB-1.jpg?w=1220&h=674&crop=1'" 
+            [city]="'Machu Picchu'"
+            [pais]="'Peru 🇵🇪'"
+            [price]="'3.500'"
+            [dias]="'3'"
+            [noites]="'4'"
+            [places]="'55'"
+            [atv]="'3'"
+        ></app-pac-card>
+
+        <app-pac-card
+            [srcImg]="'https://static.ffx.io/images/$zoom_0.158%2C$multiply_0.7725%2C$ratio_1.5%2C$width_756%2C$x_0%2C$y_0/t_crop_custom/q_86%2Cf_auto/4744c85d0438f5051be63aeef005728d8318a45f'" 
+            [city]="'Edimburgo'"
+            [pais]="'Escócia 🏴󠁧󠁢󠁳󠁣󠁴󠁿'"
+            [price]="'5.500'"
+            [dias]="'6'"
+            [noites]="'7'"
+            [places]="'13'"
+            [atv]="'7'"
+        ></app-pac-card>
+
+    </div>
 </div>
 
 <div id="serviços" style="margin-bottom: 250px;" >

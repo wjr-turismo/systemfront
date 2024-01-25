@@ -124,10 +124,29 @@ a{
 {
     margin: 0 3rem 0;
     display: flex;
-    align-items: center;
-    
-    
+    align-items: center;     
 }
+
+#pacotes{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+#pacotes h1{
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    animation: fade linear;
+    animation-timeline: view();
+}
+
+.pac{
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
 
 .serv-text h1{
     font-size: 40px;
@@ -142,14 +161,14 @@ a{
     0%{
         
         opacity: 30%;
-        transform: translateY(50%);
+        transform: translateY(100%);
 
         offset-position: 3rem;
     }
     85%{
         
         opacity: 1;
-        transform: translateY(-50%);
+        transform: translateY(0%);
         offset-position: 0;
     }
     
