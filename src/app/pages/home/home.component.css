@@ -122,7 +122,7 @@ a{
 #pacotes,
 #sobre
 {
-    margin: 0 3rem 0;
+    margin: 0 3rem 5rem 3rem;
     display: flex;
     align-items: center;     
 }
@@ -130,7 +130,7 @@ a{
 #pacotes{
     display: flex;
     flex-direction: column;
-    margin-bottom: 3rem;
+    
 }
 
 #pacotes h1{
