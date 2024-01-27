@@ -28,6 +28,7 @@ import { OperatorComponent } from './pages/management/operator/operator.componen
 import { NgxMaskModule  } from 'ngx-mask';
 import { HomeComponent } from './pages/home/home.component';
 import { PacCardComponent } from './pages/home/pac-card/pac-card.component';
+import { PackageListComponent } from './pages/management/package-list/package-list.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { PacCardComponent } from './pages/home/pac-card/pac-card.component';
     EmployeeComponent,
     OperatorComponent,
     HomeComponent,
-    PacCardComponent
+    PacCardComponent,
+    PackageListComponent
   ],
   imports: [
     BrowserModule,
