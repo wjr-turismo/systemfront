@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PackagesService } from 'src/app/services/packages.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,14 @@ export class HomeComponent implements OnInit {
   
   nav_var=true
 
-  constructor() { 
+  packages!:any
+
+  constructor(private service: PackagesService) { 
     window.addEventListener("scroll",this.bg)
   }
 
   ngOnInit(): void {
+    this.getPackages()
   }
 
   bg(){
@@ -32,5 +36,11 @@ export class HomeComponent implements OnInit {
 
   }
 
+  getPackages(){
+    this.service.getPackages().subscribe((response) => {
+      this.packages = response;
+      console.log(this.packages);
+    })
+  }
 
 }
