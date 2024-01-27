@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pac-card',
@@ -13,7 +14,7 @@ export class PacCardComponent implements OnInit {
   @Input() price!:string
   @Input() dias!:string
   @Input() noites!:string
-  @Input() places!:string
+  @Input() monthTrip!:string
   @Input() atv!:string
 
   constructor() { }
