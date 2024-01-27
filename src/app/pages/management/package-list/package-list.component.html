@@ -1,0 +1,16 @@
+<div class="package-list-container">
+
+    <table>
+        <thead>
+            <td> Imagem</td>
+            <td>Cidade</td>
+        </thead>
+        <tbody *ngFor="let i of packages">
+            <td><img [src]="i.imageLink" alt=""></td>
+            <td>{{i.city}}</td>
+        </tbody>
+    </table>
+
+
+
+</div>

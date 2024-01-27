@@ -1,0 +1,32 @@
+
+thead{
+    font-weight: 700;
+    background-color: #1B5693;
+    color: white;
+}
+
+td{
+    padding: 0.5rem 0.5rem;
+    
+}
+
+tbody:nth-child(even) {
+    background-color: rgb(206, 203, 203);
+}
+
+tbody:hover{
+    cursor: pointer;
+    background-color: #4484BF;
+    color: white;
+}
+
+table{
+    margin-top: 1rem;
+    border: #90171B solid 1px;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+img{
+    width: 150px;
+}

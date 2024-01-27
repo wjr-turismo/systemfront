@@ -10,6 +10,7 @@ export class ManagementComponent implements OnInit {
   isEmployeeShown:boolean = false
   isCustomerShown:boolean = true
   isOperatorShown:boolean = false
+  isPackagesShown:boolean = false
 
   
 
@@ -25,18 +26,28 @@ export class ManagementComponent implements OnInit {
         this.isCustomerShown = true
         this.isEmployeeShown= false
         this.isOperatorShown= false
+        this.isPackagesShown = false
         break
 
       case "empl":
         this.isCustomerShown = false
         this.isEmployeeShown = true
         this.isOperatorShown = false
+        this.isPackagesShown = false
         break
 
       case "oper":
         this.isCustomerShown = false
         this.isEmployeeShown = false
         this.isOperatorShown = true
+        this.isPackagesShown = false
+        break
+      
+      case "pack":
+        this.isCustomerShown = false
+        this.isEmployeeShown = false
+        this.isOperatorShown = false
+        this.isPackagesShown = true
 
     }
     
