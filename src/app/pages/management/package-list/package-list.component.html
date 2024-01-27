@@ -6,8 +6,10 @@
             <td>Cidade</td>
         </thead>
         <tbody *ngFor="let i of packages">
-            <td><img [src]="i.imageLink" alt=""></td>
-            <td>{{i.city}}</td>
+            <tr (click)="selected(i.id)">
+                <td><img [src]="i.imageLink" alt=""></td>
+                <td>{{i.city}}</td>
+            </tr>
         </tbody>
     </table>
 
