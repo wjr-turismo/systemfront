@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PackagesService } from 'src/app/services/packages.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-package-list',
@@ -25,6 +26,15 @@ export class PackageListComponent implements OnInit {
 
 
     })
+  }
+
+  selected(id:number){
+    
+    console.log(id)
+    environment.idAux = id;
+
+    window.location.assign('pack')
+
   }
 
 }
