@@ -20,6 +20,11 @@
             >
                 <li>Operadoras</li>
             </a>
+            <a 
+            (click)="toogle('pack')"
+            >
+                <li>Pacotes</li>
+            </a>
             </ul>
     </div>
 
@@ -32,6 +37,9 @@
     </div>
     <div class="content-management" *ngIf="isOperatorShown==true">
         <app-operator-list></app-operator-list>
+     </div>
+     <div class="content-management" *ngIf="isPackagesShown==true">
+        <app-package-list></app-package-list>
      </div>
 </div>
 
