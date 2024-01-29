@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class PackagesService {
 
   packages: any
+  package:any
   baseUrl!:string
 
   constructor(private http: HttpClient) {
@@ -27,6 +28,16 @@ export class PackagesService {
       )
       return this.packages;
      
+    }
+
+    getPackage():Observable<any>{
+      this.package = this.http.get<any>(`${this.baseUrl}/pacs/${environment.idAux}`).pipe(
+        catchError((err:any, caught: Observable<any>) => {
+          console.log(err);
+          return caught;
+        })
+      )
+      return this.package
     }
 
   addPackage(pack:any):Observable<any>{
