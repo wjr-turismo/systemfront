@@ -32,8 +32,7 @@ export class PackageListComponent implements OnInit {
     
     console.log(id)
     environment.idAux = id;
-
-    window.location.assign('pack')
+    environment.pack = this.packages[id-1];
 
   }
 

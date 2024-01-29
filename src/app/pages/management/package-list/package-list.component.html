@@ -6,7 +6,7 @@
             <td>Cidade</td>
         </thead>
         <tbody *ngFor="let i of packages">
-            <tr (click)="selected(i.id)">
+            <tr (click)="selected(i.id)" routerLink="/pack">
                 <td><img [src]="i.imageLink" alt=""></td>
                 <td>{{i.city}}</td>
             </tr>
