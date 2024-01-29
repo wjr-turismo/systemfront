@@ -32,7 +32,6 @@ export class PackageListComponent implements OnInit {
     
     console.log(id)
     environment.idAux = id;
-    environment.pack = this.packages[id-1];
 
   }
 
