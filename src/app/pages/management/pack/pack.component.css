@@ -1,0 +1,46 @@
+.formCard-pack{
+    padding: 2rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    margin:auto;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 60%;
+}
+
+input{
+    width: 150px;
+}
+
+.main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dependents{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.fields{
+    display: flex;
+    flex-direction: column;
+    padding-right: 0.5rem;
+    justify-content: space-around;
+    margin: auto;
+}
+
+
+button{
+    margin-top: 1rem;
+}

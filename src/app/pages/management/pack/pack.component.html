@@ -1,0 +1,97 @@
+
+<app-menu [userLogged]="user" ></app-menu>
+
+
+<div class="operator-cotainer">
+
+    <div class="formCard-pack" *ngIf="isDisable==true">
+           <h2 style="margin-bottom: 1rem;">Pacote</h2>
+            <form action="" class="form">
+                <div class="main">
+                    <div class="fields">
+                        <label for="name">Cidade</label>
+                    <input type="text"id="name" disabled="true" [placeholder]="pack.city">
+                    </div>
+                    <div class="fields">
+                        <label for="rz">País</label>
+                        <input type="text"id="rz" disabled="true" [placeholder]="pack.country">
+                    </div>
+                    <div class="fields">
+                        <label for="rz">Preço</label>
+                        <input type="text"id="rz" disabled="true" [placeholder]="pack.price">
+                    </div>   
+                    <div class="fields">
+                        <label for="rz">N. Dias</label>
+                        <input type="text"id="rz" disabled="true" [placeholder]="pack.days">
+                    </div>   
+                    <div class="fields">
+                        <label for="rz">N. Noites</label>
+                        <input type="text"id="rz" disabled="true" [placeholder]="pack.nights">
+                    </div>     
+                    <div class="fields">
+                        <label for="rz">Mês/Ano</label>
+                        <input type="text"id="rz" disabled="true" [placeholder]="pack.monthTrip">
+                    </div> 
+                    <div class="fields">
+                        <label for="rz">N. Atividades</label>
+                        <input type="text"id="rz" disabled="true" [placeholder]="pack.activities">
+                    </div>     
+                    <div class="fields">
+                        <label for="rz">Imagem Url</label>
+                        <input type="text"id="rz" disabled="true" [placeholder]="pack.imageLink">
+                    </div>  
+                </div>
+               
+            </form>
+            <div class="buttons" *ngIf="user.role=='admin'">
+                <button type="submit" (click)="editPack()">Editar</button>
+            </div>
+
+    </div>
+    <div class="formCard-pack" *ngIf="isDisable==false">
+        <h2 style="margin-bottom: 1rem;">Editar Pacote</h2>
+         <form [formGroup]="packForm" (submit)="putPack()" action="" class="form">
+            <div class="main">
+                <div class="fields">
+                    <label for="name">Cidade</label>
+                <input type="text"id="name" formControlName="city" [placeholder]="pack.city">
+                </div>
+                <div class="fields">
+                    <label for="rz">País</label>
+                    <input type="text"id="rz" formControlName="country" [placeholder]="pack.country">
+                </div>
+                <div class="fields">
+                    <label for="rz">Preço</label>
+                    <input type="text"id="rz" formControlName="price" [placeholder]="pack.price">
+                </div>   
+                <div class="fields">
+                    <label for="rz">N. Dias</label>
+                    <input type="text"id="rz" formControlName="days" [placeholder]="pack.days">
+                </div>   
+                <div class="fields">
+                    <label for="rz">N. Noites</label>
+                    <input type="text"id="rz"  formControlName="nights" [placeholder]="pack.nights">
+                </div>     
+                <div class="fields">
+                    <label for="rz">Mês/Ano</label>
+                    <input type="text"id="rz" formControlName="monthTrip" [placeholder]="pack.monthTrip">
+                </div> 
+                <div class="fields">
+                    <label for="rz">N. Atividades</label>
+                    <input type="text"id="rz"  formControlName="activities" [placeholder]="pack.activities">
+                </div>     
+                <div class="fields">
+                    <label for="rz">Imagem Url</label>
+                    <input type="text"id="rz" formControlName="imageLink" [placeholder]="pack.imageLink">
+                </div>  
+            </div>
+         </form>
+         
+         <div class="buttons">
+            <button type="submit" (click)="putPack()" routerLink="/management">Salvar</button>
+            <button type="submit" (click)="disable()" routerLink="/management">Cancelar</button>
+        </div>
+
+ </div>
+
+</div>
