@@ -30,7 +30,7 @@ export class PackComponent implements OnInit {
   
 
   constructor(private service: PackagesService, private router: Router) {
-    this.pack = environment.pack;
+    
    }
 
   ngOnInit(): void {
@@ -63,6 +63,12 @@ export class PackComponent implements OnInit {
     }
 
 
+  }
+
+  getPack(){
+    this.service.getPackage().subscribe((response) => {
+      this.pack = response;
+    })
   }
 
 
