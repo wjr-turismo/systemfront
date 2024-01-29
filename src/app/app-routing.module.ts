@@ -9,6 +9,7 @@ import { OperatorComponent } from './pages/management/operator/operator.componen
 import { SellComponent } from './pages/sell/sell.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
+import { PackComponent } from './pages/management/pack/pack.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'operator', component: OperatorComponent, canActivate: [AuthGuardService]},
   {path:'management', component: ManagementComponent,canActivate:[AuthGuardService]},
   {path:'sell', component: SellComponent, canActivate:[AuthGuardService]},
+  {path:'pack', component: PackComponent, canActivate: [AuthGuardService]},
   {path:'login', component: LoginComponent}
 ];
 

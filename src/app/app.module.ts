@@ -29,6 +29,7 @@ import { NgxMaskModule  } from 'ngx-mask';
 import { HomeComponent } from './pages/home/home.component';
 import { PacCardComponent } from './pages/home/pac-card/pac-card.component';
 import { PackageListComponent } from './pages/management/package-list/package-list.component';
+import { PackComponent } from './pages/management/pack/pack.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { PackageListComponent } from './pages/management/package-list/package-li
     OperatorComponent,
     HomeComponent,
     PacCardComponent,
-    PackageListComponent
+    PackageListComponent,
+    PackComponent
   ],
   imports: [
     BrowserModule,
