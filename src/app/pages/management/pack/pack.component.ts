@@ -34,6 +34,7 @@ export class PackComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getPack();
   }
 
   putPack(){
