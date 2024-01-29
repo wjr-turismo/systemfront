@@ -31,9 +31,11 @@ export class PackagesService {
     }
 
     getPackage():Observable<any>{
-      this.package = this.http.get<any>(`${this.baseUrl}/pacs/${environment.idAux}`).pipe(
+    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+
+      this.package = this.http.get<any>(`${this.baseUrl}/pacs/${environment.idAux}`,{headers}).pipe(
         catchError((err:any, caught: Observable<any>) => {
-          
+
           console.log(err);
           return caught;
         })
