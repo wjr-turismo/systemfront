@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080',
   sct: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
-  idAux: 0
+  idAux: 0,
+  pack: null
 };
 
 /*
