@@ -33,6 +33,7 @@ export class PackagesService {
     getPackage():Observable<any>{
       this.package = this.http.get<any>(`${this.baseUrl}/pacs/${environment.idAux}`).pipe(
         catchError((err:any, caught: Observable<any>) => {
+          
           console.log(err);
           return caught;
         })
