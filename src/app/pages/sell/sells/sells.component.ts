@@ -39,7 +39,7 @@ export class SellsComponent implements OnInit {
         this.totalRAV += response[i].rav;
         console.log(new Date(Date.parse(`${response[i].date}`)))
       }
-      this.calcCommission(this.totalRAV)
+      this.calcCommission(this.totalSells)
     })
 
   }
@@ -72,26 +72,28 @@ export class SellsComponent implements OnInit {
 
    }
 
-   this.calcCommission(this.totalRAV)
+   this.calcCommission(this.totalSells)
 
   }
 
-  calcCommission(rav:number){
-    if(rav>=4000 && rav<6000){
-      this.totalCommission = rav*0.04;
+  calcCommission(totsells:number){
+    if(totsells>=40000 && totsells<60000){
+      this.totalCommission = this.totalRAV*0.04;
       console.log('4%')
      }
-     else if(rav>=6000 && rav<8000){
-      this.totalCommission = rav*0.06;
+     else if(totsells>=60000 && totsells<80000){
+      this.totalCommission = this.totalRAV*0.06;
       console.log('6%')
      }
-     else if(rav>=8000 && rav<10000){
-      this.totalCommission = rav*0.08;
+     else if(totsells>=80000 && totsells<100000){
+      this.totalCommission = this.totalRAV*0.08;
       console.log('8%')
      }
-     else if(rav>=10000){
-      this.totalCommission = rav*0.10;
+     else if(totsells>=100000){
+      this.totalCommission = this.totalRAV*0.10;
       console.log('10%')
+     }else{
+      this.totalCommission=0;
      }
   
   }
