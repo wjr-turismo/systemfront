@@ -26,10 +26,6 @@
                 <input type="text"  id="birth" disabled="true" [placeholder]="employee.birth | mask: '00/00/0000'">
             </div>
             <div class="fields">
-                <label for="commission">Comissao</label>
-                <input type="text"id="comissao" disabled="true" [placeholder]="employee.commission">
-            </div>
-            <div class="fields">
                 <label for="whats">WhatsApp</label>
                 <input type="text"id="whats" disabled="true" [placeholder]="employee.phone[0].whats | mask: '(00) 00000-0000' ">
             </div>
@@ -83,10 +79,6 @@
             <div class="fields">
                 <label for="birth">Data Nasc.</label>
                 <input type="text" id="birth" formControlName="birth" [placeholder]="employee.birth" mask="00/00/0000">
-            </div>
-            <div class="fields">
-                <label for="commission">Comissao</label>
-                <input type="text"id="comissao" formControlName="commission" [placeholder]="employee.commission">
             </div>
             <div class="fields">
                 <label for="whats">WhatsApp</label>
