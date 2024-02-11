@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { operatorData } from 'src/app/models/operatorData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { OperatorService } from 'src/app/services/operator.service';
 import { environment } from 'src/environments/environment';
 
@@ -10,6 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class OperatorListComponent implements OnInit {
 
+  exp:any
+
   user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
 
   isTableShown:boolean = true
@@ -18,10 +21,23 @@ export class OperatorListComponent implements OnInit {
 
   buttonText:string = "Adicionar Operadora"
 
-  constructor(private service: OperatorService) { }
+  constructor(private service: OperatorService, private guard: AuthGuardService) {
+
+    this.exp = new Date(environment.expDate);
+
+   }
 
   ngOnInit(): void {
-    this.getOperators()
+
+    if (this.exp < new Date()) {
+      console.log("AAAA")
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getOperators()
+    }
+
+
   }
 
 

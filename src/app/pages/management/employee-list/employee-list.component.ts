@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service'
 import { EmployeeData } from 'src/app/models/employeeData';
 import { environment } from 'src/environments/environment';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -10,6 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class EmployeeListComponent implements OnInit {
 
+  exp:any
+
   employees!:EmployeeData[] |any
 
   isTableShown:boolean=true
@@ -17,10 +20,23 @@ export class EmployeeListComponent implements OnInit {
   buttonText:string =  "Adicionar Funcionário"
 
 
-  constructor(private service:EmployeeService) { }
+  constructor(private service:EmployeeService, private guard: AuthGuardService) {
+
+    this.exp = new Date(environment.expDate)
+
+   }
 
   ngOnInit(): void {
-    this.getEmployees()
+
+    if (this.exp < new Date()) {
+      console.log("AAAA")
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getEmployees()
+    }
+
+
 
   }
 

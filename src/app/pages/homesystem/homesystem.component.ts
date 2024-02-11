@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-homesystem',
@@ -17,6 +18,16 @@ export class HomesystemComponent implements OnInit {
   ngOnInit(): void {
 
     var timeOut = 7*60*60*1000
+
+    console.log(`Experitation: ${environment.expDate}`)
+
+    var exp = new Date(environment.expDate);
+    console.log(`Experitation: ${exp}`)
+
+    console.log(`New Date: ${new Date()} `)
+
+   console.log(`CALC: ${exp < new Date()}`)
+
 
     console.log(timeOut)
     this.time = setTimeout(() => {

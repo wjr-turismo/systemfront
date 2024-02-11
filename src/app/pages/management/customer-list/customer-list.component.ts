@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { customerData } from 'src/app/models/customerData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { environment } from 'src/environments/environment';
 
@@ -15,13 +16,28 @@ export class CustomerListComponent implements OnInit {
 
   isTableShown:boolean=true
 
+  exp:any
+
   buttonText:string =  "Adicionar Cliente"
 
-  constructor(private service: CustomerService) { }
+  constructor(private service: CustomerService, private guard: AuthGuardService) {
+    this.exp = new Date(environment.expDate);
+   }
 
   ngOnInit(): void {
 
-    this.getCustomers()
+    console.log(this.exp > new Date())
+    
+    if (this.exp < new Date()) {
+      console.log("AAAA")
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getCustomers()
+    }
+
+
+    
   }
 
 

@@ -57,7 +57,8 @@ export class LoginComponent implements OnInit {
           role: response.role,
           token: response.token,
           loggedIn : response.loggedIn,
-          email: response.email
+          email: response.email,
+          expDate: response.expDate
         }
 
         if(this.loginResponse.token.split(".")[0]== this.sct){
@@ -65,6 +66,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user',this.loginResponse.name)
           localStorage.setItem('role',this.loginResponse.role)
           localStorage.setItem('email',this.loginResponse.email)
+
+          environment.expDate = this.loginResponse.expDate;
+
           //this.guard.canActivate(this.loginResponse.loggedIn)
           //window.location.assign('/homesystem')
           this.router.navigate(['homesystem'])

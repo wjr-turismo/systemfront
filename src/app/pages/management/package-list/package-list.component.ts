@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { PackagesService } from 'src/app/services/packages.service';
 import { environment } from 'src/environments/environment';
 
@@ -9,12 +10,26 @@ import { environment } from 'src/environments/environment';
 })
 export class PackageListComponent implements OnInit {
 
+  exp:any
   packages!: any
 
-  constructor(private service: PackagesService) { }
+  constructor(private service: PackagesService, private guard: AuthGuardService) { 
+
+    this.exp = new Date(environment.baseUrl);
+
+  }
 
   ngOnInit(): void {
-    this.getPackages()
+
+    if (this.exp < new Date()) {
+      console.log("AAAA")
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getPackages()
+    }
+
+    
   }
 
 
