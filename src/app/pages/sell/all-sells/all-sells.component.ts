@@ -5,6 +5,8 @@ import { registerLocaleData } from '@angular/common'
 import localeBr from '@angular/common/locales/br'
 import { EmployeeService } from 'src/app/services/employee.service';
 import { EmployeeData } from 'src/app/models/employeeData';
+import { environment } from 'src/environments/environment';
+import { DatesFilterRequest } from 'src/app/models/DatesFilterRequest';
 registerLocaleData(localeBr,'br')
 
 @Component({
@@ -14,18 +16,24 @@ registerLocaleData(localeBr,'br')
 })
 export class AllSellsComponent implements OnInit {
 
-  dateFrom!: Date
-  dateTo!: Date
+  dateFrom: string = `${environment.year}-${environment.month}-01`
+  dateTo: string = `${environment.year}-${environment.month}-${environment.day}`
 
-  sells!: SellData[] | any
-  sellsFiltered!: SellData[] | any
+  sells: SellData[]  = []
+  sellsFiltered: SellData[] = []
+
+  sella:any[] = []
 
   employees!:EmployeeData[] |any
-  employee:string = ""
+  employee!:any
 
   totalSells:number = 0
   totalRAV:number = 0
   totalCommission:number = 0
+
+  page:number = 0;
+
+  isMoreShown:boolean = true
 
   constructor(private service: SellService, private employeeService: EmployeeService) { }
 
@@ -36,19 +44,29 @@ export class AllSellsComponent implements OnInit {
 
 
   getSells(){
-    this.service.getAllSells().subscribe((response) => {
 
-      this.sells = response
-      this.sellsFiltered  = response
+    this.service.getAllSells(this.page).subscribe((response) => {
 
-      for (let i = 0; i < response.length; i++) {
-        this.totalSells += response[i].sellAmount;
-        this.totalRAV += response[i].rav;
+      
+
+      response.forEach((a) => {
+        this.sells.push(a)
+        this.sellsFiltered.push(a);
+        
+      })
+     // this.sellsFiltered = response
+
+
+      if(Object.keys(response).length != 0){
+        this.page += 1;
+      }else{
+        alert('Todos os dados foram carregados')
       }
 
-      this.calcCommission(this.totalSells)
+      //this.sellsFiltered = this.sellsFiltered.sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     
     })
+
   }
 
   getEmployees(){
@@ -62,12 +80,14 @@ export class AllSellsComponent implements OnInit {
 
   dateFilter(){
     
-    console.log(`Employee: ${this.employee}`)
+    this.isMoreShown = false;
+    console.log(`SELECTED: ${this.employee}`)
 
-    this.sellsFiltered = []
+    //this.sellsFiltered = []
 
-    if(this.dateFrom==null || this.dateTo==null){
+    if(this.dateFrom==null || this.dateTo==null || this.employee==null){
       alert('Selecione as datas para filtrar!')
+      return
     }
     
     if(this.dateFrom!=null && this.dateTo!=null){
@@ -76,11 +96,32 @@ export class AllSellsComponent implements OnInit {
      this.totalCommission = 0
     }
 
-    let from = new Date(Date.parse(`${this.dateFrom}T01:00:00.023-03:00`))
-    let to = new Date(Date.parse(`${this.dateTo}T23:00:00.023-03:00`))
+    var from = new Date(Date.parse(`${this.dateFrom}T01:00:00.023-03:00`));
+    var to = new Date(Date.parse(`${this.dateTo}T23:00:00.023-03:00`));
+
+    var dates: DatesFilterRequest = {startDate:from, endDate:to};
+
+    console.log(`FROM: ${from}`)
+    console.log(`TO: ${to}`)
+    console.log(`EMAIL: ${this.employee}`)
+
+    console.log(dates);
+
+     this.service.getSellsFiltered(dates,this.employee).subscribe((response) => {
+      console.log("RESPOSTA FILTRADA:")
+      console.log(response)
+
+      this.sellsFiltered = response.sells;
+      this.totalSells = response.totalSells;
+      this.totalRAV = response.totalRAV;
+
+      this.calcCommission(this.totalSells);
+    })
 
 
-   for (let i = 0; i < this.sells.length; i++) {
+    
+
+   /*for (let i = 0; i < this.sells.length; i++) {
     var day = new Date(Date.parse(`${this.sells[i].date}`))
 
     if(day >= from && day<= to){
@@ -101,7 +142,7 @@ export class AllSellsComponent implements OnInit {
 
    }
 
-   this.calcCommission(this.totalSells)
+   this.calcCommission(this.totalSells)*/
 
   }
 
@@ -133,7 +174,17 @@ export class AllSellsComponent implements OnInit {
   }
 
   clean(){
-    this.sellsFiltered = this.sells
+    
+    this.sellsFiltered = [];
+    this.employee = null;
+    this.page = 0;
+    this.totalSells = 0;
+    this.totalRAV = 0;
+    this.totalCommission = 0;
+    console.log(`Page: ${this.page}`);
+    this.isMoreShown=true;
+    this.getSells();
+    
   }
 
 
