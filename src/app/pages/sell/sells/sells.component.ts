@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DatesFilterRequest } from 'src/app/models/DatesFilterRequest';
 import { SellData } from 'src/app/models/sellData';
 import { SellService } from 'src/app/services/sell.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sells',
@@ -9,8 +11,14 @@ import { SellService } from 'src/app/services/sell.service';
 })
 export class SellsComponent implements OnInit {
 
-  dateFrom!: Date
-  dateTo!: Date
+  
+  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role'),email:localStorage.getItem('email')}
+
+  
+  dateFrom: string = `${environment.year}-${environment.month}-01`
+  dateTo: string = `${environment.year}-${environment.month}-${environment.day}`
+
+  datesFilter!: DatesFilterRequest
   sells!: SellData[] | any
   sellsFiltered!: SellData[] | any
 
@@ -21,7 +29,13 @@ export class SellsComponent implements OnInit {
   constructor(private service: SellService) { }
 
   ngOnInit(): void {
-    this.getSells()
+    //this.getSells()
+    this.dateFilter()
+    
+    console.log(`From: ${this.dateFrom}`)
+    console.log(`To: ${this.dateTo}`)
+
+
   }
 
 
@@ -32,33 +46,45 @@ export class SellsComponent implements OnInit {
       console.log(`RESPONSE: ${response}`)
 
       this.sells = response
-      this.sellsFiltered  = response
+      
 
       for (let i = 0; i < response.length; i++) {
         this.totalSells += response[i].sellAmount;
         this.totalRAV += response[i].rav;
         console.log(new Date(Date.parse(`${response[i].date}`)))
       }
-      this.calcCommission(this.totalSells)
+      
     })
 
   }
 
   dateFilter(){
-    
-    this.sellsFiltered = []
-    
-    if(this.dateFrom!=null && this.dateTo!=null){
-      this.totalSells = 0
-     this.totalRAV = 0
-     this.totalCommission = 0
-    }
 
-    let from = new Date(Date.parse(`${this.dateFrom}T01:00:00.023-03:00`))
-    let to = new Date(Date.parse(`${this.dateTo}T23:00:00.023-03:00`))
+    var from = new Date(Date.parse(`${this.dateFrom}T01:00:00.023-03:00`));
+    var to = new Date(Date.parse(`${this.dateTo}T23:00:00.023-03:00`));
+
+    var dates: DatesFilterRequest = {startDate:from, endDate:to};
+
+    console.log(`FROM: ${from}`)
+    console.log(`TO: ${to}`)
+    console.log(`EMAIL: ${environment.email}`)
+
+    console.log(dates);
+
+    this.service.getSellsFiltered(dates,environment.email).subscribe((response) => {
+      console.log("RESPOSTA FILTRADA:")
+      console.log(response)
+
+      this.sellsFiltered = response.sells;
+      this.totalSells = response.totalSells;
+      this.totalRAV = response.totalRAV;
+
+      this.calcCommission(this.totalSells);
+    })
 
 
-   for (let i = 0; i < this.sells.length; i++) {
+
+   /*for (let i = 0; i < this.sells.length; i++) {
     var day = new Date(Date.parse(`${this.sells[i].date}`))
 
     if(day >= from && day<= to){
@@ -72,7 +98,8 @@ export class SellsComponent implements OnInit {
 
    }
 
-   this.calcCommission(this.totalSells)
+   this.calcCommission(this.totalSells)*/
+
 
   }
 

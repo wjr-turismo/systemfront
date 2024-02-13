@@ -1,4 +1,5 @@
 export interface SellData {
+    id: number,
     employeeName: string,
     employeeEmail: string,
     operator: string,

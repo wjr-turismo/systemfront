@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user',this.loginResponse.name)
           localStorage.setItem('role',this.loginResponse.role)
           localStorage.setItem('email',this.loginResponse.email)
+          environment.email = this.loginResponse.email;
 
           environment.expDate = this.loginResponse.expDate;
 

@@ -22,6 +22,7 @@
             </a>
             <a 
             (click)="toogle('pack')"
+            *ngIf="user.role=='admin'"
             >
                 <li>Pacotes</li>
             </a>

@@ -12,10 +12,15 @@
         </div>
         <div class="filter-employee-allsells">
             <span>Colaborador:</span>
-            <input list="employee" name="myBrowser" [(ngModel)]="employee">
+           <!-- <input list="employee" name="myBrowser" [(ngModel)]="employee">
                 <datalist id="employee">
-                    <option *ngFor="let i of employees" [value]="i.name">
-                </datalist>
+                    <option *ngFor="let i of employees" [value]="i.email">{{i.name}}</option>
+                </datalist> -->
+            <select id="operator" [(ngModel)]="employee">
+                <option value="Todos" >Todos</option>
+                <option *ngFor="let i of employees" [ngValue]="i.email">{{i.name}}</option>
+            </select>
+
         </div>
     
         <div class="filter-buttons-allsells">
@@ -72,8 +77,12 @@
     
         </table>
     </div>
+
+    <button *ngIf="isMoreShown==true" type="button" (click)="getSells()" >Carregar Mais</button>
     
     </div>
+
+    
     
     </div>
     

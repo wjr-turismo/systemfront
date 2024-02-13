@@ -19,15 +19,7 @@ export class HomesystemComponent implements OnInit {
 
     var timeOut = 7*60*60*1000
 
-    console.log(`Experitation: ${environment.expDate}`)
-
-    var exp = new Date(environment.expDate);
-    console.log(`Experitation: ${exp}`)
-
-    console.log(`New Date: ${new Date()} `)
-
-   console.log(`CALC: ${exp < new Date()}`)
-
+    this.getDate()
 
     console.log(timeOut)
     this.time = setTimeout(() => {
@@ -70,5 +62,22 @@ export class HomesystemComponent implements OnInit {
 
 
   }
+
+  getDate(){
+    var dateToday = new Date(Date.now());
+
+    var year = dateToday.getFullYear();
+    var month = dateToday.getMonth()+1;
+    var day = dateToday.getDate();
+
+    
+    environment.day= day.toString().padStart(2, '0');
+    environment.month = month.toString().padStart(2, '0');;
+    environment.year = year.toString();
+
+    console.log(`${day}-${month}-${year}`);
+
+  }
+
 
 }

@@ -4,6 +4,7 @@ import { SellData } from '../models/sellData';
 import { Observable, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthGuardService } from './auth-guard.service';
+import { DatesFilterRequest } from '../models/DatesFilterRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,17 @@ export class SellService {
   sells!: SellData[] | any
   baseurl!: string
 
+  responseFiltered:any
+
   constructor(private http: HttpClient, private guard: AuthGuardService) { 
     this.baseurl = environment.baseUrl
   }
 
 
-  getAllSells():Observable<SellData[]>{
+  getAllSells(page:number):Observable<SellData[]>{
 
     const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-    this.sells = this.http.get<SellData[]>(`${this.baseurl}/sell`,{headers}).pipe(
+    this.sells = this.http.get<SellData[]>(`${this.baseurl}/sell?page=${page}&size=4`,{headers}).pipe(
       catchError((err:any,caught:Observable<SellData[]>) => {
         console.log(err)
 
@@ -64,5 +67,31 @@ export class SellService {
        return this.sells
   }
 
+getSellsFiltered(dates:DatesFilterRequest,email:string):Observable<any>{
+  const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+  this.responseFiltered = this.http.post(`${this.baseurl}/sell/filter/email/${email}`,dates,{headers}).pipe(
+    catchError( (err:any, caught:Observable<any>) => {
+        console.log(err);
+        return caught;
+    } )
+  )
+
+  return this.responseFiltered;
+}
+
+
+getAllSellsByDates(dates:DatesFilterRequest):Observable<any>{
+  const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+
+  this.responseFiltered = this.http.post(`${this.baseurl}/sell/filter/dates`,dates,{headers}).pipe(
+    catchError( (err:any, caught: Observable<any>) => {
+      console.log(err);
+      return caught;
+    })
+  )
+
+  return this.responseFiltered;
+
+}
 
 }
