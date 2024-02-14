@@ -16,8 +16,9 @@
                 <datalist id="employee">
                     <option *ngFor="let i of employees" [value]="i.email">{{i.name}}</option>
                 </datalist> -->
-            <select id="operator" [(ngModel)]="employee">
-                <option value="Todos" >Todos</option>
+            <select id="operator" [(ngModel)]="employee" select>
+                <option value="none" selected disabled hidden>Selecione</option> 
+                <option value="Todos">Todos</option>
                 <option *ngFor="let i of employees" [ngValue]="i.email">{{i.name}}</option>
             </select>
 

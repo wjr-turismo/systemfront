@@ -25,7 +25,7 @@ export class AllSellsComponent implements OnInit {
   sella:any[] = []
 
   employees!:EmployeeData[] |any
-  employee!:any
+  employee:any
 
   totalSells:number = 0
   totalRAV:number = 0
@@ -86,7 +86,7 @@ export class AllSellsComponent implements OnInit {
     //this.sellsFiltered = []
 
     if(this.dateFrom==null || this.dateTo==null || this.employee==null){
-      alert('Selecione as datas para filtrar!')
+      alert('Selecione as datas e colaborador para filtrar!')
       return
     }
     
@@ -107,16 +107,35 @@ export class AllSellsComponent implements OnInit {
 
     console.log(dates);
 
-     this.service.getSellsFiltered(dates,this.employee).subscribe((response) => {
-      console.log("RESPOSTA FILTRADA:")
-      console.log(response)
+    
 
-      this.sellsFiltered = response.sells;
-      this.totalSells = response.totalSells;
-      this.totalRAV = response.totalRAV;
+    if(this.employee=="Todos"){
 
-      this.calcCommission(this.totalSells);
-    })
+      this.service.getAllSellsByDates(dates).subscribe((response) => {
+        console.log("RESPOSTA FILTRADA Todos:")
+        console.log(response)
+  
+        this.sellsFiltered = response.sells;
+        this.totalSells = response.totalSells;
+        this.totalRAV = response.totalRAV;
+  
+        this.calcCommission(this.totalSells);
+      })
+
+    }else{
+      this.service.getSellsFiltered(dates,this.employee).subscribe((response) => {
+        console.log("RESPOSTA FILTRADA:")
+        console.log(response)
+  
+        this.sellsFiltered = response.sells;
+        this.totalSells = response.totalSells;
+        this.totalRAV = response.totalRAV;
+  
+        this.calcCommission(this.totalSells);
+      })
+
+    }
+
 
 
     
