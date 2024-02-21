@@ -29,7 +29,6 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.exp < new Date()) {
-      console.log("AAAA")
       localStorage.clear();
       this.guard.canActivate();
     }else{
@@ -44,7 +43,6 @@ export class EmployeeListComponent implements OnInit {
     this.service.getEmployees().subscribe((employess) => {
 
       this.employees = employess
-      console.log(employess)
 
     })
   }
@@ -60,7 +58,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   print(a:any){
-    console.log(a)
+
     environment.idAux  = a
   }
 

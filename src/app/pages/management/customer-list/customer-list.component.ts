@@ -29,7 +29,6 @@ export class CustomerListComponent implements OnInit {
     console.log(this.exp > new Date())
     
     if (this.exp < new Date()) {
-      console.log("AAAA")
       localStorage.clear();
       this.guard.canActivate();
     }else{

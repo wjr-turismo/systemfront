@@ -22,7 +22,7 @@ export class PackageListComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.exp < new Date()) {
-      console.log("AAAA")
+      
       localStorage.clear();
       this.guard.canActivate();
     }else{
@@ -37,7 +37,7 @@ export class PackageListComponent implements OnInit {
     this.service.getPackages().subscribe((response) => {
 
       this.packages = response;
-      console.log(this.packages);
+      
 
 
     })

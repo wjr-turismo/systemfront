@@ -30,12 +30,6 @@ export class LoginComponent implements OnInit {
   constructor(private service:LoginService, private guard: AuthGuardService, private router: Router) {
     this.sct = environment.sct
 
-    this.loginForm.valueChanges.subscribe((values)=> {
-      console.log(values)
-      console.log(values.password)
-      this.login = values
-      console.log(`login atualizando ${this.login}`)
-    })
    }
 
   ngOnInit(): void {
@@ -74,15 +68,8 @@ export class LoginComponent implements OnInit {
           //window.location.assign('/homesystem')
           this.router.navigate(['homesystem'])
         }
-        console.log(this.loginResponse)
-
-        console.log(response.token.split(".")[0])
 
     })
   }
 
-  print(){
-    
-    
- }
 }

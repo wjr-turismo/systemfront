@@ -30,7 +30,7 @@ export class OperatorListComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.exp < new Date()) {
-      console.log("AAAA")
+      
       localStorage.clear();
       this.guard.canActivate();
     }else{
@@ -55,13 +55,13 @@ export class OperatorListComponent implements OnInit {
 
     this.service.getOperators().subscribe((response) => {
       this.operators = response
-      console.log(response)
+      
     })
 
   }
 
   print(a:number){
-    console.log(a)
+    
     environment.idAux = a
   }
 

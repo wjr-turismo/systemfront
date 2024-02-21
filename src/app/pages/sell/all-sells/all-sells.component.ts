@@ -81,7 +81,7 @@ export class AllSellsComponent implements OnInit {
   dateFilter(){
     
     this.isMoreShown = false;
-    console.log(`SELECTED: ${this.employee}`)
+    
 
     //this.sellsFiltered = []
 
@@ -101,19 +101,12 @@ export class AllSellsComponent implements OnInit {
 
     var dates: DatesFilterRequest = {startDate:from, endDate:to};
 
-    console.log(`FROM: ${from}`)
-    console.log(`TO: ${to}`)
-    console.log(`EMAIL: ${this.employee}`)
-
-    console.log(dates);
-
     
 
     if(this.employee=="Todos"){
 
       this.service.getAllSellsByDates(dates).subscribe((response) => {
-        console.log("RESPOSTA FILTRADA Todos:")
-        console.log(response)
+
   
         this.sellsFiltered = response.sells;
         this.totalSells = response.totalSells;
@@ -124,8 +117,7 @@ export class AllSellsComponent implements OnInit {
 
     }else{
       this.service.getSellsFiltered(dates,this.employee).subscribe((response) => {
-        console.log("RESPOSTA FILTRADA:")
-        console.log(response)
+
   
         this.sellsFiltered = response.sells;
         this.totalSells = response.totalSells;
@@ -135,33 +127,6 @@ export class AllSellsComponent implements OnInit {
       })
 
     }
-
-
-
-    
-
-   /*for (let i = 0; i < this.sells.length; i++) {
-    var day = new Date(Date.parse(`${this.sells[i].date}`))
-
-    if(day >= from && day<= to){
-
-      if(this.employee != ""){
-        if(this.employee == this.sells[i].employeeName){
-          this.sellsFiltered.push(this.sells[i])
-          this.totalSells += this.sells[i].sellAmount;
-          this.totalRAV += this.sells[i].rav;
-        }
-      }else{
-        this.sellsFiltered.push(this.sells[i])
-        this.totalSells += this.sells[i].sellAmount;
-        this.totalRAV += this.sells[i].rav;
-      }
-
-    }
-
-   }
-
-   this.calcCommission(this.totalSells)*/
 
   }
 
@@ -200,7 +165,7 @@ export class AllSellsComponent implements OnInit {
     this.totalSells = 0;
     this.totalRAV = 0;
     this.totalCommission = 0;
-    console.log(`Page: ${this.page}`);
+    
     this.isMoreShown=true;
     this.getSells();
     

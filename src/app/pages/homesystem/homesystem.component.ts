@@ -50,7 +50,6 @@ export class HomesystemComponent implements OnInit {
 
   resetTimer(out:number){
 
-    console.log("Reseting Timer")
     let timer = clearTimeout(this.time)
   
       this.time = setTimeout(() => {
@@ -74,8 +73,6 @@ export class HomesystemComponent implements OnInit {
     environment.day= day.toString().padStart(2, '0');
     environment.month = month.toString().padStart(2, '0');;
     environment.year = year.toString();
-
-    console.log(`${day}-${month}-${year}`);
 
   }
 

@@ -58,7 +58,7 @@ export class PackComponent implements OnInit {
         this.router.navigate(['management'])
         
         this.pack = response;
-        console.log(response);
+        
       })
 
     }
