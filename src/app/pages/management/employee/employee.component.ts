@@ -33,12 +33,23 @@ export class EmployeeComponent implements OnInit {
   })
 
   
+  exp:any
+  constructor(private service: EmployeeService, private guard: AuthGuardService, private router: Router) { 
+    this.exp = new Date(environment.expDate);
 
-  constructor(private service: EmployeeService, private guard: AuthGuardService, private router: Router) { }
+  }
 
   ngOnInit(): void {
 
-   if(environment.idAux!=0){ this.getEmployee() }
+   if(environment.idAux!=0){ 
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getEmployee() 
+    }
+    
+  }
     
 
   }
@@ -61,6 +72,8 @@ export class EmployeeComponent implements OnInit {
      ],
       email :  this.employeeForm.controls.email.value 
     }
+
+    this.check()
     
     this.service.addEmployee(this.employee).subscribe((response) => {
       alert(` Funcionário ${response.name} cadastrado com sucesso!`)
@@ -71,6 +84,9 @@ export class EmployeeComponent implements OnInit {
   }
 
   getEmployee(){
+    
+    this.check()
+
     this.service.getEmployee(environment.idAux).subscribe((response) => {
       this.employee = response
     })
@@ -116,6 +132,7 @@ export class EmployeeComponent implements OnInit {
       email :  this.employeeForm.controls.email.value 
     }
 
+    this.check()
     
     this.service.putEmployee(this.employee,environment.idAux).subscribe((response) => {
       alert(` Funcionário ${response.name} atualizado com sucesso!`)
@@ -135,6 +152,7 @@ export class EmployeeComponent implements OnInit {
 
   deleteEmployee(id:number){
    
+    this.check()
    
   this.service.deleteEmployee(id).subscribe((response) => {
     alert(` Funcionário ${response.name} removido com sucesso!`)
@@ -142,4 +160,13 @@ export class EmployeeComponent implements OnInit {
   })
 
   }
+
+  check(){
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
+  }
 }
+

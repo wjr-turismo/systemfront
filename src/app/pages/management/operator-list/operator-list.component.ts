@@ -53,6 +53,12 @@ export class OperatorListComponent implements OnInit {
 
   getOperators(){
 
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
+    
     this.service.getOperators().subscribe((response) => {
       this.operators = response
       

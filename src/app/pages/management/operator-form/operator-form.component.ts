@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { operatorData } from 'src/app/models/operatorData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { OperatorService } from 'src/app/services/operator.service';
 
 @Component({
@@ -21,7 +22,9 @@ export class OperatorFormComponent implements OnInit {
     representativePhone: new FormControl('')
   })
 
-  constructor(private service: OperatorService, private router: Router) { }
+  exp:any
+
+  constructor(private service: OperatorService, private router: Router, private guard: AuthGuardService) { }
 
   ngOnInit(): void {
   }
@@ -37,6 +40,11 @@ export class OperatorFormComponent implements OnInit {
       representativePhone: this.operatorForm.controls.representativePhone.value
     }
 
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
     
     this.service.addOperator(this.operator).subscribe((response) =>{
       alert(` Operadora ${response.name} cadastrada com sucesso!`)

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { PackagesService } from 'src/app/services/packages.service';
 import { environment } from 'src/environments/environment';
 
@@ -28,13 +29,20 @@ export class PackComponent implements OnInit {
   })
 
   
-
-  constructor(private service: PackagesService, private router: Router) {
-    
+  exp:any 
+  constructor(private service: PackagesService, private router: Router, private guard: AuthGuardService) {
+    this.exp = environment.expDate
    }
 
   ngOnInit(): void {
-    this.getPack();
+
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getPack()
+    }
+
   }
 
   putPack(){
@@ -50,6 +58,12 @@ export class PackComponent implements OnInit {
       imageLink: this.packForm.controls.imageLink.value
 
     }
+
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    } 
 
     if(environment.idAux!=0){
       this.service.putPackage(this.pack,environment.idAux).subscribe((response) => {

@@ -7,6 +7,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { EmployeeData } from 'src/app/models/employeeData';
 import { environment } from 'src/environments/environment';
 import { DatesFilterRequest } from 'src/app/models/DatesFilterRequest';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 registerLocaleData(localeBr,'br')
 
 @Component({
@@ -35,15 +36,30 @@ export class AllSellsComponent implements OnInit {
 
   isMoreShown:boolean = true
 
-  constructor(private service: SellService, private employeeService: EmployeeService) { }
+  exp:any
+
+  constructor(private service: SellService, private employeeService: EmployeeService, private guard: AuthGuardService) { }
 
   ngOnInit(): void {
-    this.getSells()
-    this.getEmployees()
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getSells()
+      this.getEmployees()
+    }
+
+
   }
 
 
   getSells(){
+
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
 
     this.service.getAllSells(this.page).subscribe((response) => {
 
@@ -70,6 +86,12 @@ export class AllSellsComponent implements OnInit {
   }
 
   getEmployees(){
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
+
     this.employeeService.getEmployees().subscribe((employess) => {
 
       this.employees = employess
@@ -101,6 +123,11 @@ export class AllSellsComponent implements OnInit {
 
     var dates: DatesFilterRequest = {startDate:from, endDate:to};
 
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
     
 
     if(this.employee=="Todos"){

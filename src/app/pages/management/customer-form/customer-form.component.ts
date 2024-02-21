@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { customerData } from 'src/app/models/customerData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-customer-form',
@@ -27,9 +29,14 @@ export class CustomerFormComponent implements OnInit {
     cpfdep1: new FormControl(null)
   })
 
+  exp:any
+
   customer!: customerData|any
 
-  constructor(private service: CustomerService, private router: Router) { }
+  constructor(private service: CustomerService, private router: Router, private guard: AuthGuardService) { 
+    this.exp = new Date(environment.expDate);
+
+  }
 
   ngOnInit(): void {
   }
@@ -63,6 +70,11 @@ export class CustomerFormComponent implements OnInit {
       ]
     }
 
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
 
     this.service.addCustomer(this.customer).subscribe((response) => {
       

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeData } from 'src/app/models/employeeData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -26,7 +28,12 @@ export class EmployeeFormComponent implements OnInit {
 
   employee!: EmployeeData | any
 
-  constructor(private service: EmployeeService, private router: Router) { }
+  exp:any
+
+  constructor(private service: EmployeeService, private router: Router, private guard: AuthGuardService) {
+    this.exp = new Date(environment.expDate);
+
+   }
 
   ngOnInit(): void {
   }
@@ -50,6 +57,13 @@ export class EmployeeFormComponent implements OnInit {
       email :  this.employeeForm.controls.email.value 
     }
     
+
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
+
     this.service.addEmployee(this.employee).subscribe((response) => {
       alert(` Funcionário ${response.name} cadastrado com sucesso!`)
       this.router.navigate(['management'])

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { operatorData } from 'src/app/models/operatorData';
 import { SellData } from 'src/app/models/sellData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { OperatorService } from 'src/app/services/operator.service';
 import { SellService } from 'src/app/services/sell.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-sell',
@@ -23,11 +25,20 @@ export class AddSellComponent implements OnInit {
   sell: SellData | any
   operators!: operatorData | any
 
+  exp:any
 
-  constructor(private service: SellService, private operatorService: OperatorService) { }
+  constructor(private service: SellService, private operatorService: OperatorService, private guard: AuthGuardService) { 
+    this.exp = environment.expDate;
+  }
 
   ngOnInit(): void {
-    this.getOperators()
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getOperators()
+    }
+
     
   }
 
@@ -48,6 +59,11 @@ export class AddSellComponent implements OnInit {
       date: new Date()
     }
 
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
 
     this.service.addSell(this.sell).subscribe((response) => {
       alert(`Venda cadastrada com sucesso! Obrigado, ${localStorage.getItem('user')}.`)

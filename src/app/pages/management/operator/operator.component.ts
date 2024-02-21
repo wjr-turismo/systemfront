@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { operatorData } from 'src/app/models/operatorData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { OperatorService } from 'src/app/services/operator.service';
 import { environment } from 'src/environments/environment';
 
@@ -26,12 +27,24 @@ export class OperatorComponent implements OnInit {
     representativePhone: new FormControl('')
   })
 
-  constructor(private service: OperatorService, private router: Router) { }
+  exp:any
+  constructor(private service: OperatorService, private router: Router, private guard: AuthGuardService) {
+    this.exp = environment.expDate;
+   }
 
   ngOnInit(): void {
 
 
-    if(environment.idAux!=0) {this.getOperator()}
+    if(environment.idAux!=0) {
+    
+      if (this.exp < new Date()) {
+        localStorage.clear();
+        this.guard.canActivate();
+      }else{
+        this.getOperator()
+      }
+    
+    }
     
   }
 
@@ -46,7 +59,7 @@ export class OperatorComponent implements OnInit {
       representativePhone: this.operatorForm.controls.representativePhone.value
     }
 
-    
+    this.check()
     
     this.service.addOperator(this.operator).subscribe((response) =>{
       alert(` Operadora ${response.name} cadastrada com sucesso!`)
@@ -89,7 +102,8 @@ export class OperatorComponent implements OnInit {
     }
 
     
-    
+    this.check()
+
     if(environment.idAux!=0){
       this.service.putOperator(this.operator,environment.idAux).subscribe((response) =>{
         alert(` Operadora ${response.name} atualizada com sucesso!`)
@@ -101,11 +115,20 @@ export class OperatorComponent implements OnInit {
 
   deleteOperator(id:number){
     
-
+    this.check()
+    
     this.service.deleteOperator(id).subscribe((response) => {
       alert(` Operadora ${response.name} removida com sucesso!`)
       this.router.navigate(['management'])
       
     })
+  }
+
+  check(){
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
   }
 }

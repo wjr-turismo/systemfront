@@ -33,16 +33,28 @@ export class CustomerComponent implements OnInit {
   customer!: customerData|any
 
   customers!: customerData[]
+
+  exp:any
+
   
   user = {name:localStorage.getItem('user'),role:localStorage.getItem('role'),email:localStorage.getItem('email')}
 
   sct!:string
 
-  constructor(private service: CustomerService, private router: Router) {}
+  constructor(private service: CustomerService, private router: Router, private guard: AuthGuardService) {
+    this.exp = new Date(environment.expDate);
+
+  }
 
   ngOnInit(): void {
 
-   this.getCustomer()
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+    }else{
+      this.getCustomer()
+    }
+
 
   }
 
@@ -73,6 +85,11 @@ export class CustomerComponent implements OnInit {
       ]
     }
 
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
 
     this.service.addCustomer(this.customer).subscribe((response) => {
       this.customer = response
@@ -137,7 +154,11 @@ export class CustomerComponent implements OnInit {
         }
       ]
     }
-
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
     this.service.putCustomer(this.customer,environment.idAux).subscribe((response)=>{
       this.customer = response
       alert(`Cliente ${this.customer.name} atualizado com sucesso!`)
@@ -148,6 +169,13 @@ export class CustomerComponent implements OnInit {
   }
 
   deleteCustomer(id:number){
+
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
+    
     this.service.deleteCustomer(id).subscribe((response) => {
       this.customer = response
 
