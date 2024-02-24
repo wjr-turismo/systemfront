@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid) return alert(`Verifique seu email e senha`);
 
     this.login = {
-      "email":this.loginForm.value.email,
+      "email":this.loginForm.value.email?.toLowerCase(),
       "password":this.loginForm.value.password
     }
 
@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
           token: response.token,
           loggedIn : response.loggedIn,
           email: response.email,
-          expDate: response.expDate
+          expDate: response.expDate,
+          id: response.id
         }
 
         if(this.loginResponse.token.split(".")[0]== this.sct){
@@ -60,6 +61,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user',this.loginResponse.name)
           localStorage.setItem('role',this.loginResponse.role)
           localStorage.setItem('email',this.loginResponse.email)
+          localStorage.setItem('id',String(this.loginResponse.id))
           environment.email = this.loginResponse.email;
 
           environment.expDate = this.loginResponse.expDate;

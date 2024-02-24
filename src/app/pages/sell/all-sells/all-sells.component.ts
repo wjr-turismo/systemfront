@@ -4,7 +4,7 @@ import { SellService } from 'src/app/services/sell.service';
 import { registerLocaleData } from '@angular/common'
 import localeBr from '@angular/common/locales/br'
 import { EmployeeService } from 'src/app/services/employee.service';
-import { EmployeeData } from 'src/app/models/employeeData';
+import { EmployeeData, EmployeesResponse } from 'src/app/models/employeeData';
 import { environment } from 'src/environments/environment';
 import { DatesFilterRequest } from 'src/app/models/DatesFilterRequest';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
@@ -25,16 +25,18 @@ export class AllSellsComponent implements OnInit {
 
   sella:any[] = []
 
-  employees!:EmployeeData[] |any
-  employee:any
+  employees!:EmployeesResponse[]
+  employeeId:any
 
   totalSells:number = 0
   totalRAV:number = 0
   totalCommission:number = 0
 
   page:number = 0;
+  pagefilter:number = 0
 
   isMoreShown:boolean = true
+  isMoreFilteredShown:boolean = false
 
   exp:any
 
@@ -64,16 +66,18 @@ export class AllSellsComponent implements OnInit {
     this.service.getAllSells(this.page).subscribe((response) => {
 
       
+      console.log("RESPONSE SIZE: " + Object.keys(response.sells).length )
 
-      response.forEach((a) => {
-        this.sells.push(a)
-        this.sellsFiltered.push(a);
+
+      if(Object.keys(response.sells).length != 0){
         
-      })
-     // this.sellsFiltered = response
+        response.sells.forEach(a => this.sells.push(a));
 
+        this.totalSells += response.totalSells;
+        this.totalRAV += response.totalRAV;
 
-      if(Object.keys(response).length != 0){
+        this.totalCommission = this.calcCommission(this.totalSells);
+
         this.page += 1;
       }else{
         alert('Todos os dados foram carregados')
@@ -95,7 +99,7 @@ export class AllSellsComponent implements OnInit {
     this.employeeService.getEmployees().subscribe((employess) => {
 
       this.employees = employess
-      console.log(employess)
+      
 
     })
   }
@@ -103,25 +107,26 @@ export class AllSellsComponent implements OnInit {
   dateFilter(){
     
     this.isMoreShown = false;
+    this.isMoreFilteredShown = this.check();
+
+    console.log("page " +this.pagefilter)
+
+    console.log(this.employeeId)
     
 
-    //this.sellsFiltered = []
-
-    if(this.dateFrom==null || this.dateTo==null || this.employee==null){
+    if(this.dateFrom==null || this.dateTo==null || this.employeeId==null){
       alert('Selecione as datas e colaborador para filtrar!')
       return
     }
-    
-    if(this.dateFrom!=null && this.dateTo!=null){
-      this.totalSells = 0
-     this.totalRAV = 0
-     this.totalCommission = 0
-    }
 
-    var from = new Date(Date.parse(`${this.dateFrom}T01:00:00.023-03:00`));
+    if(this.pagefilter ==0){
+      this.sells =[]
+    }
+    
+
+    var from = new Date(Date.parse(`${this.dateFrom}T00:00:00.023-03:00`));
     var to = new Date(Date.parse(`${this.dateTo}T23:00:00.023-03:00`));
 
-    var dates: DatesFilterRequest = {startDate:from, endDate:to};
 
     if (this.exp < new Date()) {
       localStorage.clear();
@@ -129,55 +134,71 @@ export class AllSellsComponent implements OnInit {
       return
     }
     
+    var filter!: DatesFilterRequest 
 
-    if(this.employee=="Todos"){
+    if(this.employeeId=="Todos"){
 
-      this.service.getAllSellsByDates(dates).subscribe((response) => {
+    
+      filter = {startDate:from, endDate:to, employeeId: null};
 
+      this.service.getSellsFiltered(filter,this.pagefilter).subscribe((response) => {
+
+        if(Object.keys(response.sells).length != 0){
+        
+          response.sells.forEach(a => this.sells.push(a));
   
-        this.sellsFiltered = response.sells;
-        this.totalSells = response.totalSells;
-        this.totalRAV = response.totalRAV;
+          this.totalSells += response.totalSells;
+          this.totalRAV += response.totalRAV;
   
-        this.calcCommission(this.totalSells);
+          this.totalCommission = this.calcCommission(this.totalSells);
+  
+          this.pagefilter += 1;
+        }else{
+          alert('Todos os dados foram carregados')
+        }
+  
+  
       })
 
     }else{
-      this.service.getSellsFiltered(dates,this.employee).subscribe((response) => {
 
-  
-        this.sellsFiltered = response.sells;
+      filter = {startDate:from, endDate:to, employeeId: this.employeeId};
+
+      this.service.getSellsFiltered(filter,0).subscribe((response) => {
+
+        this.sells = response.sells;
         this.totalSells = response.totalSells;
-        this.totalRAV = response.totalRAV;
+        this.totalRAV = response.totalRAV
   
-        this.calcCommission(this.totalSells);
+        this.totalCommission =  this.calcCommission(this.totalSells);
+
       })
 
     }
 
   }
 
-  calcCommission(totsells:number){
+  calcCommission(totsells:number):number{
     if(totsells>=40000 && totsells<60000){
-      this.totalCommission = this.totalRAV*0.04;
-      console.log('4%')
+      return this.totalRAV*0.04;
+      
      }
      else if(totsells>=60000 && totsells<80000){
-      this.totalCommission = this.totalRAV*0.06;
-      console.log('6%')
+      return this.totalRAV*0.06;
+      
      }
      else if(totsells>=80000 && totsells<100000){
-      this.totalCommission = this.totalRAV*0.08;
-      console.log('8%')
+      return this.totalRAV*0.08;
+      
      }
      else if(totsells>=100000){
-      this.totalCommission = this.totalRAV*0.10;
-      console.log('10%')
+      return this.totalRAV*0.10;
+      
      }else{
-      this.totalCommission=0;
+      return 0;
      }
   
-  
+
   }
 
   selectSell(sell:any){
@@ -186,8 +207,8 @@ export class AllSellsComponent implements OnInit {
 
   clean(){
     
-    this.sellsFiltered = [];
-    this.employee = null;
+    this.sells = [];
+    this.employeeId = null;
     this.page = 0;
     this.totalSells = 0;
     this.totalRAV = 0;
@@ -196,6 +217,27 @@ export class AllSellsComponent implements OnInit {
     this.isMoreShown=true;
     this.getSells();
     
+  }
+
+  check():boolean{
+    if(!this.isMoreShown && this.employeeId=="Todos"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+  eraseFilterPage(){
+    console.log(this.pagefilter)
+    this.pagefilter = 0;
+    console.log(this.pagefilter)
+
+    this.totalSells = 0;
+    this.totalRAV = 0;
+    this.totalCommission = 0;
+
+
   }
 
 

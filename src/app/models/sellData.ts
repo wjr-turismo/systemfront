@@ -1,7 +1,5 @@
 export interface SellData {
-    id: number,
-    employeeName: string,
-    employeeEmail: string,
+    id: any,
     operator: string,
     bookingNumber: string,
     sellAmount: number,
@@ -10,5 +8,17 @@ export interface SellData {
     overBonus: number,
     sellerBonus: number,
     managerBonus: number,
-    date: Date
+    date: Date,
+    empName: string
+}
+
+export interface SellJoinedDataResponse {
+    totalSells: number,
+    totalRAV: number,
+    sells: [SellData]
+}
+
+export interface AddSellRequest{
+    emplId: number,
+    sell: SellData
 }

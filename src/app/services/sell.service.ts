@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SellData } from '../models/sellData';
+import { AddSellRequest, SellData, SellJoinedDataResponse } from '../models/sellData';
 import { Observable, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthGuardService } from './auth-guard.service';
@@ -11,7 +11,7 @@ import { DatesFilterRequest } from '../models/DatesFilterRequest';
 })
 export class SellService {
 
-  sells!: SellData[] | any
+  sells!: SellJoinedDataResponse | any
   baseurl!: string
 
   responseFiltered:any
@@ -21,11 +21,11 @@ export class SellService {
   }
 
 
-  getAllSells(page:number):Observable<SellData[]>{
+  getAllSells(page:number):Observable<SellJoinedDataResponse>{
 
     const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-    this.sells = this.http.get<SellData[]>(`${this.baseurl}/sell?page=${page}&size=4`,{headers}).pipe(
-      catchError((err:any,caught:Observable<SellData[]>) => {
+    this.sells = this.http.get<SellJoinedDataResponse>(`${this.baseurl}/sell?page=${page}&size=5`,{headers}).pipe(
+      catchError((err:any,caught:Observable<SellJoinedDataResponse>) => {
         console.log(err)
 
         if(err.status==403){
@@ -56,10 +56,10 @@ export class SellService {
   }
 
 
-  addSell(sell:SellData):Observable<SellData[]>{
+  addSell(sell:AddSellRequest): Observable<AddSellRequest>{
     const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-    this.sells = this.http.post<SellData[]>(`${this.baseurl}/sell`,sell,{headers}).pipe(
-      catchError((err:any,caught:Observable<SellData[]>) => {
+    this.sells = this.http.post<AddSellRequest>(`${this.baseurl}/sell`,sell,{headers}).pipe(
+      catchError((err:any,caught:Observable<AddSellRequest>) => {
         console.log(err)
         return caught
     })
@@ -67,10 +67,18 @@ export class SellService {
        return this.sells
   }
 
-getSellsFiltered(dates:DatesFilterRequest,email:string):Observable<any>{
+getSellsFiltered(filter:DatesFilterRequest, page:number):Observable<SellJoinedDataResponse>{
+  
   const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-  this.responseFiltered = this.http.post(`${this.baseurl}/sell/filter/email/${email}`,dates,{headers}).pipe(
-    catchError( (err:any, caught:Observable<any>) => {
+
+  var url = `${this.baseurl}/sell/filter`;
+
+  if(filter.employeeId==null && page!=null){
+    url +=`?page=${page}&size=5`
+  }
+
+  this.responseFiltered = this.http.post<SellJoinedDataResponse>(url,filter,{headers}).pipe(
+    catchError( (err:any, caught:Observable<SellJoinedDataResponse>) => {
         console.log(err);
         return caught;
     } )
@@ -80,7 +88,7 @@ getSellsFiltered(dates:DatesFilterRequest,email:string):Observable<any>{
 }
 
 
-getAllSellsByDates(dates:DatesFilterRequest):Observable<any>{
+ /*getAllSellsByDates(dates:DatesFilterRequest):Observable<any>{
   const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
 
   this.responseFiltered = this.http.post(`${this.baseurl}/sell/filter/dates`,dates,{headers}).pipe(
@@ -92,6 +100,6 @@ getAllSellsByDates(dates:DatesFilterRequest):Observable<any>{
 
   return this.responseFiltered;
 
-}
+}*/
 
 }

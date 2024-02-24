@@ -10,13 +10,15 @@ import { environment } from 'src/environments/environment';
 export class HomesystemComponent implements OnInit {
 
   time: any
-  user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
+  user:any = {name:'user',role:'user'} 
 
 
-  constructor(private guard: AuthGuardService) { }
+  constructor(private guard: AuthGuardService) { 
+    this.user={name:'user',role:'user'}
+  }
 
   ngOnInit(): void {
-
+    this.user = {name:localStorage.getItem('user'),role:localStorage.getItem('role')}
     var timeOut = 7*60*60*1000
 
     this.getDate()

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DatesFilterRequest } from 'src/app/models/DatesFilterRequest';
 import { SellData } from 'src/app/models/sellData';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { SellService } from 'src/app/services/sell.service';
 import { environment } from 'src/environments/environment';
 
@@ -26,10 +27,15 @@ export class SellsComponent implements OnInit {
   totalRAV:number = 0
   totalCommission:number = 0
 
-  constructor(private service: SellService) { }
+  page:number = 0;
+  pagefilter:number = 0
+
+  exp:any
+
+  constructor(private service: SellService, private guard: AuthGuardService) { }
 
   ngOnInit(): void {
-    //this.getSells()
+    this.getSells()
     this.dateFilter()
     
     console.log(`From: ${this.dateFrom}`)
@@ -39,7 +45,7 @@ export class SellsComponent implements OnInit {
   }
 
 
-  getSells(){
+  /*getSells(){
 
     this.service.getSells().subscribe((response) => {
 
@@ -56,14 +62,50 @@ export class SellsComponent implements OnInit {
       
     })
 
+  }*/
+
+  getSells(){
+
+    if (this.exp < new Date()) {
+      localStorage.clear();
+      this.guard.canActivate();
+      return
+    }
+
+    this.service.getAllSells(this.page).subscribe((response) => {
+
+      
+      console.log("RESPONSE SIZE: " + Object.keys(response.sells).length )
+
+
+      if(Object.keys(response.sells).length != 0){
+        
+        response.sells.forEach(a => this.sells.push(a));
+
+        this.totalSells += response.totalSells;
+        this.totalRAV += response.totalRAV;
+
+        this.totalCommission = this.calcCommission(this.totalSells);
+
+        this.page += 1;
+      }else{
+        alert('Todos os dados foram carregados')
+      }
+
+      //this.sellsFiltered = this.sellsFiltered.sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    
+    })
+
   }
+
+  
 
   dateFilter(){
 
     var from = new Date(Date.parse(`${this.dateFrom}T01:00:00.023-03:00`));
     var to = new Date(Date.parse(`${this.dateTo}T23:00:00.023-03:00`));
 
-    var dates: DatesFilterRequest = {startDate:from, endDate:to};
+    var dates: DatesFilterRequest = {startDate:from, endDate:to, employeeId: localStorage.getItem('id')};
 
     console.log(`FROM: ${from}`)
     console.log(`TO: ${to}`)
@@ -71,7 +113,7 @@ export class SellsComponent implements OnInit {
 
     console.log(dates);
 
-    this.service.getSellsFiltered(dates,environment.email).subscribe((response) => {
+    this.service.getSellsFiltered(dates,0).subscribe((response) => {
       console.log("RESPOSTA FILTRADA:")
       console.log(response)
 
@@ -79,7 +121,7 @@ export class SellsComponent implements OnInit {
       this.totalSells = response.totalSells;
       this.totalRAV = response.totalRAV;
 
-      this.calcCommission(this.totalSells);
+      this.totalCommission = this.calcCommission(this.totalSells);
     })
 
 
@@ -103,24 +145,24 @@ export class SellsComponent implements OnInit {
 
   }
 
-  calcCommission(totsells:number){
+  calcCommission(totsells:number):number{
     if(totsells>=40000 && totsells<60000){
-      this.totalCommission = this.totalRAV*0.04;
-      console.log('4%')
+      return this.totalRAV*0.04;
+      
      }
      else if(totsells>=60000 && totsells<80000){
-      this.totalCommission = this.totalRAV*0.06;
-      console.log('6%')
+      return this.totalRAV*0.06;
+      
      }
      else if(totsells>=80000 && totsells<100000){
-      this.totalCommission = this.totalRAV*0.08;
-      console.log('8%')
+      return this.totalRAV*0.08;
+      
      }
      else if(totsells>=100000){
-      this.totalCommission = this.totalRAV*0.10;
-      console.log('10%')
+      return this.totalRAV*0.10;
+      
      }else{
-      this.totalCommission=0;
+      return 0;
      }
   
   }

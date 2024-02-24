@@ -4,5 +4,6 @@ export interface LoginResponseData {
     role: string,
     loggedIn: boolean,
     email: string,
-    expDate: number
+    expDate: number,
+    id: number
 }

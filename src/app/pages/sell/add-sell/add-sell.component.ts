@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { operatorData } from 'src/app/models/operatorData';
-import { SellData } from 'src/app/models/sellData';
+import { AddSellRequest, SellData } from 'src/app/models/sellData';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { OperatorService } from 'src/app/services/operator.service';
 import { SellService } from 'src/app/services/sell.service';
@@ -14,15 +14,15 @@ import { environment } from 'src/environments/environment';
 })
 export class AddSellComponent implements OnInit {
   sellForm = new FormGroup({
-    operator: new FormControl(''),
-    bookingNumber: new FormControl(''),
+    operator: new FormControl('',Validators.required),
+    bookingNumber: new FormControl('',Validators.required),
     sellAmount: new FormControl(null,Validators.required),
     rav: new FormControl(null,Validators.required),
     overBonus: new FormControl(null)
 
   })
 
-  sell: SellData | any
+  sell!: AddSellRequest
   operators!: operatorData | any
 
   exp:any
@@ -44,20 +44,30 @@ export class AddSellComponent implements OnInit {
 
 
   registersell(){
+    if(this.sellForm.invalid){
+      alert("Verifique os campos!")
+      return
+    }
     
     this.sell = {
-      employeeName: localStorage.getItem('user'),
-      employeeEmail: localStorage.getItem('email'),
-      operator: this.sellForm.controls.operator.value,
-      bookingNumber: this.sellForm.controls.bookingNumber.value,
-      sellAmount: this.sellForm.controls.sellAmount.value,
-      rav: this.sellForm.controls.rav.value,
-      commission: null,
-      overBonus: this.sellForm.controls.overBonus.value,
-      sellerBonus: null,
-      managerBonus: null,
-      date: new Date()
+      emplId: Number(localStorage.getItem('id')),
+      sell:{
+        id: null,
+        operator: String(this.sellForm.controls.operator.value),
+        bookingNumber: String(this.sellForm.controls.bookingNumber.value),
+        sellAmount: Number(this.sellForm.controls.sellAmount.value),
+        rav: Number(this.sellForm.controls.rav.value),
+        commission: 0,
+        overBonus: Number(this.sellForm.controls.overBonus.value),
+        sellerBonus: 0,
+        managerBonus: 0,
+        date: new Date(),
+        empName: ""      
+      }
+      
     }
+
+    console.log(this.sell);
 
     if (this.exp < new Date()) {
       localStorage.clear();

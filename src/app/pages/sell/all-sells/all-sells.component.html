@@ -4,11 +4,11 @@
     <div class="filter-allsells" style="margin-top: 2rem; border-right: solid gray 1px;">
         <div class="filter-date-allsells">
             <span>Inicial:</span>
-            <input type="date" name="" id="" [(ngModel)]="dateFrom">
+            <input type="date" name="" id="" [(ngModel)]="dateFrom" (change)="eraseFilterPage()">
         </div>
         <div class="filter-date-allsells">
             <span>Final:</span>
-            <input type="date" name="" id="" [(ngModel)]="dateTo">
+            <input type="date" name="" id="" [(ngModel)]="dateTo" (change)="eraseFilterPage()">
         </div>
         <div class="filter-employee-allsells">
             <span>Colaborador:</span>
@@ -16,10 +16,10 @@
                 <datalist id="employee">
                     <option *ngFor="let i of employees" [value]="i.email">{{i.name}}</option>
                 </datalist> -->
-            <select id="operator" [(ngModel)]="employee" select>
+            <select id="operator" [(ngModel)]="employeeId" (change)="eraseFilterPage()" select>
                 <option value="none" selected disabled hidden>Selecione</option> 
                 <option value="Todos">Todos</option>
-                <option *ngFor="let i of employees" [ngValue]="i.email">{{i.name}}</option>
+                <option *ngFor="let i of employees" [ngValue]="i.id">{{i.name}}</option>
             </select>
 
         </div>
@@ -44,13 +44,13 @@
                 <td>Data</td>
                 <td>Funcionário</td>
             </thead>
-            <tbody *ngFor="let i of sellsFiltered" (click)="selectSell(i.id)">       
+            <tbody *ngFor="let i of sells" (click)="selectSell(i.id)">       
                     <td>{{i.operator}}</td>
                     <td>{{i.bookingNumber}}</td>
                     <td> R${{i.sellAmount |number:'1.2-2':'br'}}</td>
                     <td>R${{i.rav | number:'1.2-2':'br'}}</td>
                     <td>{{i.date | date:'dd/MM/y'}} </td>
-                    <td>{{i.employeeName}}</td>
+                    <td>{{i.empName}}</td>
             </tbody>
             
             <tr>
@@ -79,7 +79,8 @@
         </table>
     </div>
 
-    <button *ngIf="isMoreShown==true" type="button" (click)="getSells()" >Carregar Mais</button>
+    <button *ngIf="isMoreShown" type="button" (click)="getSells()" >Carregar Mais</button>
+    <button *ngIf="isMoreFilteredShown" type="button" (click)="dateFilter()" >Carregar Mais</button>
     
     </div>
 
