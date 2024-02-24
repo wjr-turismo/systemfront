@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { EmployeeData } from '../models/employeeData'
+import { EmployeeData, EmployeesResponse } from '../models/employeeData'
 import { environment } from 'src/environments/environment';
 import { Observable, catchError } from 'rxjs';
 import { AuthGuardService } from './auth-guard.service';
@@ -10,7 +10,7 @@ import { AuthGuardService } from './auth-guard.service';
 })
 export class EmployeeService {
 
-  employees: EmployeeData[] | any
+  employees: EmployeesResponse[] | any
   employee!: EmployeeData | any
   baseUrl!:string
 
@@ -20,11 +20,11 @@ export class EmployeeService {
 
   }
 
-  getEmployees():Observable<EmployeeData>{
+  getEmployees():Observable<EmployeesResponse[]>{
     const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
 
-    this.employees = this.http.get<EmployeeData>(`${this.baseUrl}/employee`,{headers}).pipe(
-      catchError((err:any,caught:Observable<EmployeeData>) => {
+    this.employees = this.http.get<EmployeesResponse[]>(`${this.baseUrl}/employee`,{headers}).pipe(
+      catchError((err:any,caught:Observable<EmployeesResponse[]>) => {
 
         console.log(err)
 

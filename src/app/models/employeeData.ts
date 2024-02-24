@@ -14,3 +14,11 @@ export interface EmployeeData {
     ],
      email :  string 
   }
+
+  export interface EmployeesResponse{
+    id: number,
+    name: string, 
+    email: string,  
+    phoneWhats: string, 
+    role: string
+  }

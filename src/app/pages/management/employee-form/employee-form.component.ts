@@ -15,12 +15,12 @@ import { environment } from 'src/environments/environment';
 export class EmployeeFormComponent implements OnInit {
   employeeForm = new FormGroup({
     name :  new FormControl('',[Validators.required]),
-    cpf: new FormControl(null,[Validators.required,Validators.maxLength(11)]),
+    cpf: new FormControl(null,Validators.required),
     rg :  new FormControl(''),
     birth :  new FormControl('') ,
     password :  new FormControl('',Validators.required),
     role :  new FormControl('',Validators.required) ,
-    commission : new FormControl(null,Validators.required),
+    commission : new FormControl(null),
     whats :  new FormControl('',Validators.required) ,
     personal :  new FormControl(''),
     email :  new FormControl('', [Validators.required, Validators.email]) 
@@ -39,6 +39,11 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   registerEmployee(){
+
+    if(this.employeeForm.invalid){
+      alert("Verifique os campos!")
+      return
+    }
 
     this.employee = {
       name :  this.employeeForm.controls.name.value ,

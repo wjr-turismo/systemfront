@@ -24,7 +24,7 @@ export class EmployeeComponent implements OnInit {
     cpf: new FormControl(null,[Validators.required,Validators.maxLength(11)]),
     rg :  new FormControl(''),
     birth :  new FormControl('') ,
-    password :  new FormControl('',Validators.required),
+    password :  new FormControl(null),
     role :  new FormControl('',Validators.required) ,
     commission : new FormControl(null,Validators.required),
     whats :  new FormControl('',Validators.required) ,
@@ -107,30 +107,54 @@ export class EmployeeComponent implements OnInit {
     this.employeeForm.controls.whats.setValue(this.employee.phone[0].whats)
     this.employeeForm.controls.personal.setValue(this.employee.phone[0].personal)
     this.employeeForm.controls.email.setValue(this.employee.email)
-    this.employeeForm.controls.password.setValue(this.employee.password)
+    this.employeeForm.controls.password.setValue(null)
     
     
     
   }
 
   putEmployee(){
+    console.log(this.employeeForm.controls.password.value)
+    console.log(this.employee.password)
 
-    this.employee = {
-      name :  this.employeeForm.controls.name.value,
-      cpf : this.employeeForm.controls.cpf.value,
-      rg :  this.employeeForm.controls.rg.value,
-      birth :  this.employeeForm.controls.birth.value,
-      password :  this.employeeForm.controls.password.value,
-      role :  this.employeeForm.controls.role.value,
-      commission : this.employeeForm.controls.commission.value,
-      phone : [
-       {
-          whats :  this.employeeForm.controls.whats.value,
-          personal : this.employeeForm.controls.personal.value
-       }
-     ],
-      email :  this.employeeForm.controls.email.value 
+    if(this.employeeForm.controls.password.value != null){
+     
+      this.employee = {
+        name :  this.employeeForm.controls.name.value,
+        cpf : this.employeeForm.controls.cpf.value,
+        rg :  this.employeeForm.controls.rg.value,
+        birth :  this.employeeForm.controls.birth.value,
+        role :  this.employeeForm.controls.role.value,
+        commission : this.employeeForm.controls.commission.value,
+        password: this.employeeForm.controls.password.value,
+        phone : [
+         {
+            whats :  this.employeeForm.controls.whats.value,
+            personal : this.employeeForm.controls.personal.value
+         }
+       ],
+        email :  this.employeeForm.controls.email.value 
+      }
+      
+     console.log(this.employee)
+    }else{
+      this.employee = {
+        name :  this.employeeForm.controls.name.value,
+        cpf : this.employeeForm.controls.cpf.value,
+        rg :  this.employeeForm.controls.rg.value,
+        birth :  this.employeeForm.controls.birth.value,
+        role :  this.employeeForm.controls.role.value,
+        commission : this.employeeForm.controls.commission.value,
+        phone : [
+         {
+            whats :  this.employeeForm.controls.whats.value,
+            personal : this.employeeForm.controls.personal.value
+         }
+       ],
+        email :  this.employeeForm.controls.email.value 
+      }
     }
+
 
     this.check()
     

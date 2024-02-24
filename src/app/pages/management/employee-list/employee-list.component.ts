@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service'
-import { EmployeeData } from 'src/app/models/employeeData';
+import { EmployeeData, EmployeesResponse } from 'src/app/models/employeeData';
 import { environment } from 'src/environments/environment';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
@@ -13,7 +13,7 @@ export class EmployeeListComponent implements OnInit {
 
   exp:any
 
-  employees!:EmployeeData[] |any
+  employees!:EmployeesResponse[]
 
   isTableShown:boolean=true
 
