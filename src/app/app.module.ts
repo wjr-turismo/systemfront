@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import {RouterModule } from '@angular/router'
@@ -30,6 +30,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PacCardComponent } from './pages/home/pac-card/pac-card.component';
 import { PackageListComponent } from './pages/management/package-list/package-list.component';
 import { PackComponent } from './pages/management/pack/pack.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -63,7 +64,13 @@ import { PackComponent } from './pages/management/pack/pack.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
