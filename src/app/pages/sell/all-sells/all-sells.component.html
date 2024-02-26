@@ -1,7 +1,7 @@
 <div class="allsells-container">
 
 
-    <div class="filter-allsells" style="margin-top: 2rem; border-right: solid gray 1px;" *ngIf="!isEditShown">
+    <div class="filter-allsells" *ngIf="!isEditShown">
         <div class="filter-date-allsells">
             <span>Inicial:</span>
             <input type="date" name="" id="" [(ngModel)]="dateFrom" (change)="eraseFilterPage()">

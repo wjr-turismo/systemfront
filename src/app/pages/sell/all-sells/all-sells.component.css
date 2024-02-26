@@ -18,6 +18,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2rem; 
+    border-right: solid gray 1px;
 }
 
 .filter-date-allsells{
@@ -67,4 +69,31 @@ table{
     border: #90171B solid 1px;
     border-radius: 1rem;
     padding: 0.5rem;
+}
+
+
+@media (max-width: 475px){
+    .allsells-container{
+        flex-direction: column;
+    }
+
+
+    .filter-allsells{
+        padding: 0.2rem;
+        border: none;
+    }
+
+    .filter-date-allsells, .filter-employee-allsells, .filter-buttons-allsells{
+        padding: 0;
+    }
+
+    thead{
+        font-size: smaller;
+    } 
+
+    td{
+        font-size: 10px;
+    }
+
+    
 }
