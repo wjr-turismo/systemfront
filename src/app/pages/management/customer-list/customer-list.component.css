@@ -51,3 +51,16 @@ table{
     border-radius: 1rem;
     padding: 0.5rem;
 }
+
+@media (max-width: 475px){
+
+    thead{
+        font-size: smaller;
+    } 
+
+    td{
+        font-size: 10px;
+    }
+
+    
+}
