@@ -1,0 +1,48 @@
+<div class="sell-form-cotainer">
+
+    <div class="formCard-sell">
+           <h2 style="margin-bottom: 1rem;">Editar Venda</h2>
+
+            <form [formGroup]="sellForm"  (submit)="updateSell()" action="" class="form">
+                <div class="main">
+                    <div class="fields">
+                        <label for="operator">Operadora</label>
+                        <select id="operator" formControlName="operator" style="width: 150px;">
+                            
+                            <option *ngFor="let i of operators" [ngValue]="i.name">{{i.name}}</option>
+                        </select>
+                    </div>
+                    <div class="fields">
+                        <label for="bookingNumber">Reserva</label>
+                        <input type="text"id="bookingNumber" [placeholder]="sellToBeEdited.bookingNumber" formControlName="bookingNumber">
+                    </div>
+                    <div class="fields">
+                        <label for="sellAmount">Venda</label>
+                        <input id="sellAmount" [placeholder]="sellToBeEdited.sellAmount|number:'1.2-2':'br'" formControlName="sellAmount" mask="separator.2" thousandSeparator="." decimalMarker=",">
+                    </div>
+                    <div class="fields">
+                        <label for="rav">RAV</label>
+                        <input id="rav" [placeholder]="sellToBeEdited.rav|number:'1.2-2':'br'" formControlName="rav" mask="separator.2" thousandSeparator="." decimalMarker=",">
+                    </div>
+                    <div class="fields">
+                        <label for="overBonus">Over Bon.</label>
+                        <input [placeholder]="sellToBeEdited.overBonus|number:'1.2-2':'br'" id="overBonus" formControlName="overBonus" mask="separator.2" thousandSeparator=".">
+                    </div>
+                   
+                </div>
+
+            </form>
+            
+           
+            <div *ngIf="!isEditEnabled" class="buttons">
+                <button type="submit" (click)="toogleSaveEditButton()" >Editar</button>
+                <button type="submit" (click)="deleteSell()" >Excluir</button>
+                
+            </div>
+        
+            <button *ngIf="isSaveEditedShown" (click)="updateSell()" type="submit">Salvar</button>
+
+    </div>
+    
+
+</div>

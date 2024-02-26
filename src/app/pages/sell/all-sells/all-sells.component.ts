@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SellData } from 'src/app/models/sellData';
+import { AddSellRequest, SellData, SellJoinedDataResponse } from 'src/app/models/sellData';
 import { SellService } from 'src/app/services/sell.service';
 import { registerLocaleData } from '@angular/common'
 import localeBr from '@angular/common/locales/br'
@@ -23,6 +23,9 @@ export class AllSellsComponent implements OnInit {
   sells: SellData[]  = []
   sellsFiltered: SellData[] = []
 
+
+  sellSelected!: SellData 
+
   sella:any[] = []
 
   employees!:EmployeesResponse[]
@@ -37,6 +40,8 @@ export class AllSellsComponent implements OnInit {
 
   isMoreShown:boolean = true
   isMoreFilteredShown:boolean = false
+
+  isEditShown:boolean = false
 
   exp:any
 
@@ -201,8 +206,10 @@ export class AllSellsComponent implements OnInit {
 
   }
 
-  selectSell(sell:any){
+  selectSell(sell:SellData){
       console.log(sell)
+      this.sellSelected = sell
+      this.isEditShown = !this.isEditShown
   }
 
   clean(){

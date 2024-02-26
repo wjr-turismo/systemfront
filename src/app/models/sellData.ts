@@ -9,7 +9,8 @@ export interface SellData {
     sellerBonus: number,
     managerBonus: number,
     date: Date,
-    empName: string
+    empName: string,
+    empId: number
 }
 
 export interface SellJoinedDataResponse {

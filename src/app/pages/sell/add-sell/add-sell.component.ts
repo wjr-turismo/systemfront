@@ -62,7 +62,8 @@ export class AddSellComponent implements OnInit {
         sellerBonus: 0,
         managerBonus: 0,
         date: new Date(),
-        empName: ""      
+        empName: "",
+        empId: 0
       }
       
     }

@@ -1,7 +1,7 @@
 <div class="allsells-container">
 
 
-    <div class="filter-allsells" style="margin-top: 2rem; border-right: solid gray 1px;">
+    <div class="filter-allsells" style="margin-top: 2rem; border-right: solid gray 1px;" *ngIf="!isEditShown">
         <div class="filter-date-allsells">
             <span>Inicial:</span>
             <input type="date" name="" id="" [(ngModel)]="dateFrom" (change)="eraseFilterPage()">
@@ -32,7 +32,7 @@
     </div>
 
 
-    <div class="content">
+    <div class="content" *ngIf="!isEditShown">
     
         <div class="table-sell-list">
         <table>
@@ -44,7 +44,7 @@
                 <td>Data</td>
                 <td>Funcionário</td>
             </thead>
-            <tbody *ngFor="let i of sells" (click)="selectSell(i.id)">       
+            <tbody *ngFor="let i of sells" (click)="selectSell(i)">       
                     <td>{{i.operator}}</td>
                     <td>{{i.bookingNumber}}</td>
                     <td> R${{i.sellAmount |number:'1.2-2':'br'}}</td>
@@ -83,6 +83,11 @@
     <button *ngIf="isMoreFilteredShown" type="button" (click)="dateFilter()" >Carregar Mais</button>
     
     </div>
+
+    <div>
+        <app-edit-sell  *ngIf="isEditShown" [sellToBeEdited]="sellSelected" ></app-edit-sell>
+    </div>
+
 
     
     

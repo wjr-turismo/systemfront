@@ -31,6 +31,7 @@ import { PacCardComponent } from './pages/home/pac-card/pac-card.component';
 import { PackageListComponent } from './pages/management/package-list/package-list.component';
 import { PackComponent } from './pages/management/pack/pack.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { EditSellComponent } from './pages/sell/edit-sell/edit-sell.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HomeComponent,
     PacCardComponent,
     PackageListComponent,
-    PackComponent
+    PackComponent,
+    EditSellComponent
   ],
   imports: [
     BrowserModule,

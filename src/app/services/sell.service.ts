@@ -13,6 +13,7 @@ export class SellService {
 
   sells!: SellJoinedDataResponse | any
   baseurl!: string
+  sell:any
 
   responseFiltered:any
 
@@ -67,7 +68,7 @@ export class SellService {
        return this.sells
   }
 
-getSellsFiltered(filter:DatesFilterRequest, page:number):Observable<SellJoinedDataResponse>{
+  getSellsFiltered(filter:DatesFilterRequest, page:number):Observable<SellJoinedDataResponse>{
   
   const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
 
@@ -85,21 +86,41 @@ getSellsFiltered(filter:DatesFilterRequest, page:number):Observable<SellJoinedDa
   )
 
   return this.responseFiltered;
-}
+  }
 
+  putSell(sell:SellData):Observable<SellData>{
 
- /*getAllSellsByDates(dates:DatesFilterRequest):Observable<any>{
-  const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+    const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
 
-  this.responseFiltered = this.http.post(`${this.baseurl}/sell/filter/dates`,dates,{headers}).pipe(
-    catchError( (err:any, caught: Observable<any>) => {
-      console.log(err);
-      return caught;
-    })
-  )
+    this.sell = this.http.put<SellData>(`${this.baseurl}/sell`,sell,{headers}).pipe(
+      catchError((err:any, caught: Observable<SellData>) => {
 
-  return this.responseFiltered;
+        console.log(err);
+        return caught
 
-}*/
+      })
+    )
+      
+    alert("Venda Atualizada com sucesso!")
+    return this.sell;
+
+  }
+
+  deleteSell(id:number):Observable<SellData>{
+    
+    const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+
+    this.sell =  this.http.delete<SellData>(`${this.baseurl}/sell/${id}`,{headers}).pipe(
+      catchError( (err:any,caught:Observable<SellData>) => {
+          console.log(err);
+          return caught;
+      })
+    )
+
+    alert("Venda Deletada!")
+    return this.sell;
+
+  }
+
 
 }
