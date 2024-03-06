@@ -18,12 +18,15 @@ export class AddSellComponent implements OnInit {
     bookingNumber: new FormControl('',Validators.required),
     sellAmount: new FormControl(null,Validators.required),
     rav: new FormControl(null,Validators.required),
+    date: new FormControl(`${environment.year}-${environment.month}-${environment.day}`,Validators.required),
     overBonus: new FormControl(null)
 
   })
 
   sell!: AddSellRequest
   operators!: operatorData | any
+
+  date!: Date
 
   exp:any
 
@@ -49,6 +52,9 @@ export class AddSellComponent implements OnInit {
       return
     }
     
+    var dateParsed = new Date(Date.parse(`${this.sellForm.controls.date.value}T09:00:00.023-03:00`));
+    console.log(dateParsed);
+    
     this.sell = {
       emplId: Number(localStorage.getItem('id')),
       sell:{
@@ -61,7 +67,7 @@ export class AddSellComponent implements OnInit {
         overBonus: Number(this.sellForm.controls.overBonus.value),
         sellerBonus: 0,
         managerBonus: 0,
-        date: new Date(),
+        date: dateParsed,
         empName: "",
         empId: 0
       }
@@ -92,6 +98,11 @@ export class AddSellComponent implements OnInit {
 
       
     })
+  }
+
+  printa(){
+      console.log(this.date);
+      
   }
 
 }

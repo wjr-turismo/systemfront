@@ -21,6 +21,10 @@
                         <input id="sellAmount" [placeholder]="sellToBeEdited.sellAmount|number:'1.2-2':'br'" formControlName="sellAmount" mask="separator.2" thousandSeparator="." decimalMarker=",">
                     </div>
                     <div class="fields">
+                        <label for="date">Data</label>
+                        <input type="date"  id="date" formControlName="date">
+                    </div>
+                    <div class="fields">
                         <label for="rav">RAV</label>
                         <input id="rav" [placeholder]="sellToBeEdited.rav|number:'1.2-2':'br'" formControlName="rav" mask="separator.2" thousandSeparator="." decimalMarker=",">
                     </div>

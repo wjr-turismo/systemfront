@@ -15,11 +15,16 @@ import { SellService } from 'src/app/services/sell.service';
 })
 export class EditSellComponent {
 
+  
+  @Input()
+  sellToBeEdited!: SellData
+
   sellForm = new FormGroup({
     operator: new FormControl(),
     bookingNumber: new FormControl(),
     sellAmount: new FormControl(),
     rav: new FormControl(),
+    date: new FormControl(),
     overBonus: new FormControl()
 
   })
@@ -32,8 +37,6 @@ export class EditSellComponent {
 
   isSaveEditedShown: boolean = false;
 
-  @Input()
-  sellToBeEdited!: SellData
 
 
   constructor(private operatorService: OperatorService, private sellService: SellService , private guard: AuthGuardService, private router: Router){
@@ -69,6 +72,17 @@ export class EditSellComponent {
   updateSell(){
 
     console.log(this.sellForm);
+    if(this.sellForm.invalid){
+      alert("Verifique os campos!")
+      return
+    }
+
+    console.log(this.sellForm.controls.date.value);
+    
+
+    var dateParsed = new Date(Date.parse(`${this.sellForm.controls.date.value}T09:00:00.023-03:00`));
+    console.log(dateParsed);
+    
 
     this.sellToBeEdited = {
       id: this.sellToBeEdited.id,
@@ -77,7 +91,7 @@ export class EditSellComponent {
       sellAmount: this.sellForm.controls.sellAmount.value,
       rav: this.sellForm.controls.rav.value,
       commission: this.sellToBeEdited.commission,
-      date: this.sellToBeEdited.date,
+      date: dateParsed,
       overBonus: this.sellForm.controls.overBonus.value,
       sellerBonus: this.sellToBeEdited.sellerBonus,
       managerBonus: 0,
@@ -85,7 +99,7 @@ export class EditSellComponent {
       empName: this.sellToBeEdited.empName
     }
 
-    console.log(this.sellToBeEdited)
+    console.log(`Sell edited: ${this.sellToBeEdited.date}`);
 
     this.sellService.putSell(this.sellToBeEdited).subscribe((response) => {
       console.log(response)
@@ -113,9 +127,12 @@ export class EditSellComponent {
 
   fillSellData(){
 
-    this.sellForm.controls.operator .setValue(this.sellToBeEdited.operator)
-    this.sellForm.controls.bookingNumber .setValue(this.sellToBeEdited.bookingNumber)
+    var dateToBeEdited =  this.parseDate(this.sellToBeEdited.date);
+
+    this.sellForm.controls.operator .setValue(this.sellToBeEdited.operator);
+    this.sellForm.controls.bookingNumber .setValue(this.sellToBeEdited.bookingNumber);
     this.sellForm.controls.sellAmount.setValue(this.sellToBeEdited.sellAmount);
+    this.sellForm.controls.date.setValue(dateToBeEdited);
     this.sellForm.controls.rav.setValue(this.sellToBeEdited.rav);
     this.sellForm.controls.overBonus.setValue(this.sellToBeEdited.overBonus);
 
@@ -129,6 +146,7 @@ export class EditSellComponent {
     
       this.sellForm.controls.bookingNumber.enable();
       this.sellForm.controls.sellAmount.enable();
+      this.sellForm.controls.date.enable();
       this.sellForm.controls.rav.enable();
       this.sellForm.controls.overBonus.enable();
       this.sellForm.controls.operator.enable();
@@ -138,6 +156,29 @@ export class EditSellComponent {
 
 
 
+  parseDate(dateToBeEdited:Date):string{
+
+    console.log(dateToBeEdited);
+
+    var date = new Date(Date.parse(`${dateToBeEdited}`));
+
+    var dateParsed = `${(date.getFullYear()).toString()}-${(date.getMonth()+1).toString().padStart(2, '0')}-${(date.getDate()).toString().padStart(2, '0')}`;
+    
+    console.log(date);
+    
+    console.log(dateParsed);
+    
+    
+   return dateParsed;
+
+
+  }
+
+  printa(){
+    console.log(this.sellForm.controls.date);
+    console.log(this.sellForm.controls.date.value);
+    
+  }
 
 
 
