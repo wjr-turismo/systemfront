@@ -35,7 +35,7 @@
     <div class="content" *ngIf="!isEditShown">
     
         <div class="table-sell-list">
-        <table>
+        <table id="table">
             <thead>
                 <td>Operadora</td>
                 <td>Reserva</td>
@@ -79,8 +79,9 @@
         </table>
     </div>
 
-    <button *ngIf="isMoreShown" type="button" (click)="getSells()" >Carregar Mais</button>
+    <button *ngIf="isMoreShown" type="button" (click)="getSells()">Carregar Mais</button>
     <button *ngIf="isMoreFilteredShown" type="button" (click)="dateFilter()" >Carregar Mais</button>
+   <img src="https://www.awicons.com/free-icons/download/application-icons/dragon-soft-icons-by-artua.com/png/512/printer.png" alt="Imprimir" class="printImg" (click)="printDiv()" >
     
     </div>
 

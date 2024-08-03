@@ -71,6 +71,15 @@ table{
     padding: 0.5rem;
 }
 
+.printImg{
+    width: 30px;
+
+}
+
+.printImg:hover{
+    cursor: pointer;
+}
+
 
 @media (max-width: 475px){
     .allsells-container{

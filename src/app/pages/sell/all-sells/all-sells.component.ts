@@ -247,5 +247,19 @@ export class AllSellsComponent implements OnInit {
 
   }
 
+  printDiv(){
+    var divToPrint:any;
+    var newWin:any;
+    divToPrint = document.getElementById('table');
+    newWin = window.open('', 'Print-Window');
+    newWin.document.open();
+    newWin.document.write('<html><style>*{font-family: "Roboto", sans-serif;}thead{font-weight: 700;background-color: #1B5693;color: white;} td{padding: 0.5rem 0.5rem;} tbody:nth-child(even){background-color: rgb(206, 203, 203);}</style><body onload="window.print()"> <p> Relatório de Vendas Gerado dia: ' + environment.day+'/'+ environment.month+'/'+environment.year+ ', por: ' +localStorage.getItem('user')+
+                          ' <br> </p>  <table>' + divToPrint.innerHTML + '</table></body></html>');
+    newWin.document.close();
+    setTimeout(function() {
+      newWin.close();
+    }, 10000);
+  }
+
 
 }
