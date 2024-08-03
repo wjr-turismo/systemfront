@@ -25,7 +25,7 @@ export class SellService {
   getAllSells(page:number):Observable<SellJoinedDataResponse>{
 
     const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
-    this.sells = this.http.get<SellJoinedDataResponse>(`${this.baseurl}/sell?page=${page}&size=5`,{headers}).pipe(
+    this.sells = this.http.get<SellJoinedDataResponse>(`${this.baseurl}/sell?page=${page}&size=20`,{headers}).pipe(
       catchError((err:any,caught:Observable<SellJoinedDataResponse>) => {
         console.log(err)
 
@@ -68,14 +68,16 @@ export class SellService {
        return this.sells
   }
 
-  getSellsFiltered(filter:DatesFilterRequest, page:number):Observable<SellJoinedDataResponse>{
+  getSellsFiltered(filter:DatesFilterRequest, page:number, option:number):Observable<SellJoinedDataResponse>{
   
   const headers = {'Authorization': `Bearer ${localStorage.getItem('token')}`}
 
   var url = `${this.baseurl}/sell/filter`;
 
-  if(filter.employeeId==null && page!=null){
-    url +=`?page=${page}&size=5`
+  if(option==0){
+    url += `?page=${page}&size=20`
+  }else{
+    url+= `?page=0&size=300`
   }
 
   this.responseFiltered = this.http.post<SellJoinedDataResponse>(url,filter,{headers}).pipe(

@@ -146,7 +146,7 @@ export class AllSellsComponent implements OnInit {
     
       filter = {startDate:from, endDate:to, employeeId: null};
 
-      this.service.getSellsFiltered(filter,this.pagefilter).subscribe((response) => {
+      this.service.getSellsFiltered(filter,this.pagefilter,0).subscribe((response) => {
 
         if(Object.keys(response.sells).length != 0){
         
@@ -169,7 +169,7 @@ export class AllSellsComponent implements OnInit {
 
       filter = {startDate:from, endDate:to, employeeId: this.employeeId};
 
-      this.service.getSellsFiltered(filter,0).subscribe((response) => {
+      this.service.getSellsFiltered(filter,0,1).subscribe((response) => {
 
         this.sells = response.sells;
         this.totalSells = response.totalSells;

@@ -113,7 +113,7 @@ export class SellsComponent implements OnInit {
 
     console.log(dates);
 
-    this.service.getSellsFiltered(dates,0).subscribe((response) => {
+    this.service.getSellsFiltered(dates,0,1).subscribe((response) => {
       console.log("RESPOSTA FILTRADA:")
       console.log(response)
 
